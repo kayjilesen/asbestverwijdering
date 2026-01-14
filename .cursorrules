@@ -1,0 +1,229 @@
+# Perfect Finish Theme - Cursor Rules
+
+## Project Context
+- **Theme:** Perfect Finish WordPress Theme
+- **Stack:** WordPress + ACF Pro + Tailwind CSS + Swiper.js
+- **Author:** Kay Jilesen
+- **Version:** 1.0.0
+
+## Naming Conventions
+
+### PHP Functions
+- **CRITICAL: All custom functions MUST start with `kj_` prefix**
+- Examples: `kj_render_button()`, `kj_acf()`, `kj_image()`
+- Never create functions without the `kj_` prefix
+
+### File Naming
+- **Directories:** lowercase with hyphens (`text-image`, `call-to-action`)
+- **PHP files:** lowercase with hyphens (`hero.php`, `text-image.php`)
+- **CSS files:** lowercase with hyphens (`hero.css`, `text-image.css`)
+- **JavaScript files:** lowercase with hyphens (`hero.js`, `text-image.js`)
+
+### CSS Classes
+- **Block classes:** BEM methodology (`hero-block`, `hero-block__title`, `hero-block__content`)
+- **Utility classes:** Tailwind CSS utilities (`flex`, `items-center`, `gap-4`)
+- **Component classes:** `kj-` prefix (`kj-button`, `kj-button-inner`)
+
+### ACF Field Names
+- **Field names:** lowercase with underscores (`button_label`, `background_image`)
+- **Group names:** `group_layout_<slug>` for layout field groups
+- **Layout names:** lowercase with hyphens in flexible content (`text-image`, `call-to-action`)
+
+## ACF (Advanced Custom Fields) Workflow
+
+### JSON Sync
+- **CRITICAL: Always use JSON sync** - All fields stored in `/acf-json/` for version control
+- **CRITICAL: When creating NEW ACF field groups, ALWAYS include `"acfe_autosync": ["json"]` in the JSON file** - This enables automatic JSON sync
+- **CRITICAL: After ANY ACF JSON edit, ALWAYS update the `"modified"` field to current Unix timestamp** (use `date +%s` command)
+- Never edit fields directly in database
+- Always commit JSON files to Git
+
+### Field Group Structure
+1. **Main Pagebuilder:** `acf-json/group_pagebuilder.json` - Contains flexible content field
+2. **Layout Field Groups:** `acf-json/group_layout_<slug>.json` - Per-block field groups
+   - Set `"active": false` (cloned in pagebuilder)
+   - Naming: `group_layout_<block-slug>` (e.g., `group_layout_hero`)
+3. **Reusable Groups:** `acf-json/group_button_fields.json` - For components
+
+### ACF Rules
+- **Buttons are ALWAYS repeaters** - Even for 1 button, use repeater (flexibility for future)
+- **Image fields:** Always use "Image Array" return format (not Image ID or URL)
+- **Layout field groups:** Set `"active": false` to prevent direct admin appearance
+
+## Pagebuilder Block System
+
+### Block Structure
+Each pagebuilder block MUST have these files:
+```
+templates/pagebuilder/<block-slug>/
+├── <block-slug>.php      # Template markup
+├── <block-slug>.css      # Block-specific styles
+├── <block-slug>.js       # Block-specific JavaScript (can be empty)
+└── thumbnail.jpg         # ACF preview thumbnail (optional)
+```
+
+### Creating New Block - Complete Workflow
+1. **Create block folder:** `templates/pagebuilder/<block-slug>/`
+2. **Create files:** `<block-slug>.php`, `<block-slug>.css`, `<block-slug>.js`
+3. **Create ACF field group:** `acf-json/group_layout_<block-slug>.json`
+   - Set `"active": false`
+   - **ALWAYS include `"acfe_autosync": ["json"]` to enable JSON sync**
+   - Update `"modified"` timestamp (`date +%s`)
+4. **Add layout to pagebuilder:** Edit `acf-json/group_pagebuilder.json`
+   - Add layout entry with `type: clone` pointing to `group_layout_<block-slug>`
+   - Update `"modified"` timestamp
+5. **Import CSS:** Add `@import '../../templates/pagebuilder/<block-slug>/<block-slug>.css';` to `assets/css/input.css`
+6. **Register JavaScript:** Add block name to `pagebuilderBlocks` array in `scripts/build-pagebuilder-js.js`
+7. **Build:** Run `npm run build:js` for JavaScript
+
+### Block Template (PHP) Rules
+- Always use `get_sub_field()` for ACF fields (NOT `get_field()`)
+- Always escape output: `wp_kses_post()`, `esc_html()`, `esc_url()`
+- Use BEM class naming combined with Tailwind utilities
+- Use semantic HTML (`<section>`, `<article>`, etc.)
+- Template automatically loaded via `templates/pagebuilder/loop.php` based on `get_row_layout()`
+
+### Block CSS Rules
+- **NO media queries** - Use Tailwind responsive classes in PHP templates
+- Use `@apply` directive for Tailwind utilities where possible
+- Only custom CSS when Tailwind doesn't suffice
+- Import in `assets/css/input.css` required
+
+### Block JavaScript Rules
+- Wrap in IIFE: `(function() { ... })();`
+- Use `'use strict';`
+- Always check if element exists before using
+- Add to `scripts/build-pagebuilder-js.js` array for bundling
+
+## CSS and Responsive Design
+
+### Media Queries
+- **CRITICAL: Avoid using CSS media queries (@media) in CSS files. Always use Tailwind CSS responsive classes (sm:, md:, lg:, xl:, 2xl:) instead.**
+- Media queries should ONLY be used when there is a very specific query requirement that cannot be achieved with Tailwind's responsive utilities.
+- When making responsive changes, apply Tailwind responsive classes directly in PHP templates or HTML, not in CSS files.
+- Use mobile-first approach: set default styles for mobile, then use md:, lg: etc. for larger screens.
+- **For pseudo-elements (::before, ::after):** Tailwind responsive classes don't work well with @apply in pseudo-elements. Instead, use a wrapper div element in the PHP template with Tailwind responsive classes, rather than using pseudo-elements with media queries.
+
+### Examples:
+- ❌ Bad: `@media (max-width: 768px) { .element { padding: 1rem; } }`
+- ✅ Good: `<div class="p-4 md:p-6 lg:p-8">` in PHP template
+- ❌ Bad: `@media (min-width: 1024px) { .element::after { width: 25%; } }`
+- ✅ Good: `<div class="absolute w-full h-1/4 lg:w-1/4 lg:h-full">` wrapper element in PHP template
+- ❌ Bad: Using `@apply` with responsive classes in pseudo-elements
+- ✅ Good: Create a wrapper div element instead of using pseudo-elements when responsive behavior is needed
+
+### Tailwind Colors
+- **CRITICAL: Always use Tailwind color classes, NEVER hex/rgb codes**
+- Available colors: `primary`/`yellow` (#FFD500), `secondary`/`grey-dark` (#1A1603), `grey-surface`, `grey-decor`, `grey`, `grey-light`, `grey-text`, `yellow-light`
+- ❌ Bad: `<div style="background-color: #FFD500;">` or `<div class="bg-[#FFD500]">`
+- ✅ Good: `<div class="bg-primary">` or `<div class="bg-yellow">`
+
+### CSS File Structure
+- **Main entry:** `assets/css/input.css`
+- **Import order:**
+  1. Component CSS (`header.css`, `footer.css`, etc.)
+  2. Pagebuilder block CSS (all `@import` statements)
+  3. Tailwind directives (`@tailwind base/components/utilities`)
+
+### @apply Directive
+- Use `@apply` for Tailwind utilities in CSS files
+- Only use raw CSS for: custom transforms, complex transitions, pseudo-elements with specific CSS features
+
+## Build Workflow
+
+### NPM Scripts
+- `npm run build` - Build all assets (CSS + JS)
+- `npm run build:css` - Build CSS only (Tailwind compile)
+- `npm run build:js` - Build JS only (pagebuilder blocks bundling)
+- `npm run dev` - Development mode (CSS watch)
+
+### Build Process
+- **CSS:** Tailwind compiles `assets/css/input.css` → `assets/css/style.css` (minified)
+- **JavaScript:** `scripts/build-pagebuilder-js.js` combines all block JS files → `assets/js/pagebuilder.js`
+- **Cache busting:** Automatic via `filemtime()` in WordPress enqueuing
+
+### Development Workflow
+1. Start: `npm run dev` (CSS watch mode)
+2. Make changes: PHP/CSS auto-compiles, JS requires `npm run build:js`
+3. Production: `npm run build` before commit/deploy
+
+## Helper Functions
+
+### ACF Helpers
+- `kj_acf($field_name, $post_id)` - Echo escaped ACF field value
+- `kj_image($field_name, $size, $post_id)` - Output WordPress image
+- `kj_sub_image($field_name, $size, $post_id)` - Output sub field image
+
+### Components
+- `kj_render_button($data)` - Render single button
+- `kj_render_buttons()` - Render button repeater (from sub fields)
+- `kj_component($component, $field_name, $is_subfield, $is_option)` - Render component
+
+### Utilities
+- `kj_is_live_domain()` - Check if on live domain
+- `kj_escape_html($text)` - Escape HTML with allowed tags
+
+## Security & Best Practices
+
+### Security
+- **Always escape output:** `esc_html()`, `esc_url()`, `wp_kses_post()`
+- **ACF output:** Always use `wp_kses_post(get_sub_field('title'))` not raw `get_sub_field()`
+- Use nonce verification for form submissions
+- Sanitize input for database queries
+
+### Performance
+- Conditional script loading (archives, specific pages)
+- Use appropriate image sizes (see `inc/helpers.php` for available sizes)
+- Cache busting via `filemtime()` in script/style enqueuing
+
+### Code Quality
+- Use strict typing where possible: `declare(strict_types=1);`
+- Add function documentation with `@param` and `@return`
+- Follow WordPress coding standards
+- Use WordPress hooks instead of modifying core
+
+## Component System
+
+### Button Component
+- **Location:** `templates/components/button.php`
+- **Function:** `kj_render_button($button_data)` or `kj_render_buttons()` for repeater
+- **Styles:** `primary yellow`, `primary grey-dark`, `primary white`, `secondary yellow`, `secondary grey-dark`, `secondary white`, `text`
+- **Link types:** `internal`, `external`, `section`, `contact`
+
+## Project Structure
+```
+perfectfinish/
+├── acf-json/                    # ACF field definitions (JSON sync)
+│   ├── group_pagebuilder.json   # Main flexible content
+│   ├── group_layout_*.json      # Per-block field groups
+│   └── group_button_fields.json # Reusable button fields
+├── assets/
+│   ├── css/
+│   │   ├── input.css            # Main entry (imports all)
+│   │   └── style.css             # Compiled output (generated)
+│   └── js/
+│       ├── script.js            # Main JavaScript
+│       └── pagebuilder.js       # Combined blocks (generated)
+├── templates/
+│   ├── components/              # Reusable components
+│   └── pagebuilder/             # Pagebuilder blocks
+│       └── <block-name>/
+│           ├── <block-name>.php
+│           ├── <block-name>.css
+│           └── <block-name>.js
+├── inc/                         # PHP includes
+├── scripts/
+│   └── build-pagebuilder-js.js  # JS bundler
+├── tailwind.config.js
+└── package.json
+```
+
+## Important Reminders
+- When creating NEW ACF field groups, ALWAYS include `"acfe_autosync": ["json"]` to enable automatic JSON sync
+- When editing ACF JSON files, ALWAYS update `"modified"` timestamp using `date +%s`
+- Buttons in layouts: Always use repeater field, even if only 1 button needed
+- Image fields: Always use "Image Array" return format
+- Never create PHP functions without `kj_` prefix
+- Never use media queries in CSS files - use Tailwind responsive classes
+- Never use hex/rgb color codes - use Tailwind color classes
+- Always escape ACF field output before displaying

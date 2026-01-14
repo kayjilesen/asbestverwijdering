@@ -1,0 +1,58 @@
+/**
+ * Project Card Component Styles
+ *
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.project-card {
+  @apply h-full;
+}
+
+.project-card__image-wrapper {
+  @apply bg-grey-light;
+}
+
+.project-card__link {
+  @apply no-underline text-inherit;
+}
+
+.project-card__gradient {
+  @apply absolute h-[60%] w-full bottom-0 left-0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-card__gradient {
+  opacity: 0.9;
+}
+
+.project-card__content {
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-card__content {
+  transform: translateY(-4px);
+}
+
+.project-card__services {
+  max-width: calc(100% - 2rem);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-card__service-badge {
+  display: inline-block;
+}
+
+.project-card__featured-badge {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-card__arrow {
+  flex-shrink: 0;
+}
+
+/* Featured Project Card - Full Width Layout */
+.project-card--featured {
+  @apply col-span-1;
+}

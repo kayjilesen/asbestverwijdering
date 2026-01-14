@@ -1,0 +1,22 @@
+/**
+ * Text & Image Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.text-image {
+  /* Text image specific styles can be added here */
+}
+
+/* Yellow underline highlight for strong text in titles */
+.text-image h2 strong,
+.text-image h3 strong {
+  @apply inline relative;
+}
+.text-image h2 strong::after,
+.text-image h3 strong::after {
+  @apply content-[''] absolute bottom-0 left-0 w-full h-2 md:h-3 bg-yellow -z-[1];
+}
+

@@ -1,0 +1,32 @@
+/**
+ * Veelgestelde Vragen Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.veelgestelde-vragen-block__item {
+  @apply transition-all duration-200;
+}
+
+.veelgestelde-vragen-block__icon {
+  @apply -rotate-90;
+}
+
+.veelgestelde-vragen-block__answer-wrapper {
+  @apply max-h-0;
+}
+
+.veelgestelde-vragen-block__item.is-active .veelgestelde-vragen-block__answer-wrapper {
+  @apply mt-[18px] max-h-[2000px];
+}
+
+.veelgestelde-vragen-block__item.is-active .veelgestelde-vragen-block__icon {
+  @apply rotate-0;
+}
+
+.veelgestelde-vragen-block__answer p {
+  @apply my-0;
+}
+

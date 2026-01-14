@@ -1,0 +1,135 @@
+/**
+ * Project Archive Styles
+ *
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+/* Hero Section */
+.project-archive-hero {
+  @apply min-h-[400px] md:min-h-[300px];
+}
+
+.project-archive-hero__breadcrumbs {
+  @apply text-white/90;
+}
+
+.project-archive-hero__breadcrumbs a {
+  @apply text-white/90 no-underline transition-colors duration-300 hover:text-white;
+}
+
+.project-archive-hero__breadcrumbs .breadcrumb-current {
+  @apply text-white/70;
+}
+
+/* Filters Section */
+.project-archive-filters {
+  @apply transition-all duration-300;
+}
+
+.project-archive-filter-btn {
+  @apply py-2 px-4 bg-white border border-grey/40 text-grey-dark font-bold cursor-pointer transition-all duration-200 whitespace-nowrap no-underline inline-flex items-center gap-3 font-title uppercase rounded-none text-base tracking-wider leading-[1.4] flex-shrink-0;
+}
+
+.project-archive-filter-btn:hover {
+  @apply border-grey-dark;
+}
+
+.project-archive-filter-btn.active {
+  @apply text-grey-dark bg-yellow border-yellow relative pr-11;
+}
+
+.project-archive-filter-btn.active::after {
+  @apply absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-black/15 bg-center bg-no-repeat;
+  content: '';
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.5 4.5L11.5 11.5M11.5 4.5L4.5 11.5' stroke='%231A1603' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 10px 10px;
+}
+
+/* Featured Projects */
+.project-archive-featured {
+  @apply mb-8;
+}
+
+.project-archive-featured__grid {
+  @apply grid grid-cols-1 gap-8;
+}
+
+.project-item--featured {
+  @apply w-full;
+}
+
+/* Projects Grid */
+.project-archive-grid__wrapper {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    @apply opacity-0 translate-y-5;
+  }
+  to {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+.project-archive-item {
+  @apply opacity-100 transition-all duration-300;
+}
+
+.project-archive-item.hide {
+  @apply hidden;
+}
+
+.project-archive-item__image-wrapper {
+  @apply bg-grey-light;
+}
+
+.project-archive-item__link {
+  @apply no-underline text-inherit;
+}
+
+.project-archive-item__excerpt {
+  @apply line-clamp-2;
+}
+
+/* Pagination */
+.project-archive-pagination {
+  @apply flex justify-center;
+}
+
+.project-archive-pagination .pagination {
+  @apply flex gap-2 items-center;
+}
+
+.project-archive-pagination .pagination a,
+.project-archive-pagination .pagination span {
+  @apply py-2 px-4 border border-grey/10 rounded-md no-underline text-grey-dark transition-all duration-300;
+}
+
+.project-archive-pagination .pagination a:hover {
+  @apply bg-secondary border-secondary text-white;
+}
+
+.project-archive-pagination .pagination .current {
+  @apply bg-secondary border-secondary text-white;
+}
+
+/* Empty State */
+.project-archive-empty {
+  @apply min-h-[300px] flex items-center justify-center;
+}
+
+/* Responsive Scrolling */
+.project-archive-filters__wrapper {
+  @apply overflow-x-auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.project-archive-filters__wrapper::-webkit-scrollbar {
+  @apply hidden;
+}
+

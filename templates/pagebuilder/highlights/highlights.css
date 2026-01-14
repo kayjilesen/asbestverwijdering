@@ -1,0 +1,46 @@
+/**
+ * Highlights Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.highlights-block__grid {
+  @apply min-h-0;
+}
+
+.highlights-block__featured-wrapper {
+  @apply relative w-full overflow-hidden;
+}
+
+.highlights-block__featured-image {
+  @apply w-full h-auto object-cover;
+  aspect-ratio: 3 / 4;
+}
+
+.highlights-block__content {
+  @apply min-h-0;
+}
+
+.highlights-block__swiper-wrapper {
+  @apply relative overflow-hidden;
+}
+
+.highlights-block__swiper-wrapper .swiper {
+  @apply overflow-visible;
+}
+
+.highlights-block__image-wrapper {
+  @apply relative w-full overflow-hidden;
+}
+
+.highlights-block__image {
+  @apply w-full h-auto object-cover;
+  aspect-ratio: 3 / 4;
+}
+
+.highlights-block__swiper-wrapper .swiper-scrollbar-drag {
+  @apply bg-primary;
+}
+

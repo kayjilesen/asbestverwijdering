@@ -1,0 +1,20 @@
+/**
+ * Info Cards Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.info-cards-block__card {
+    @apply transition-shadow duration-300;
+}
+
+.info-cards-block__card:hover {
+    @apply shadow-lg;
+}
+
+.info-cards-block__icon {
+    @apply object-contain;
+}
+

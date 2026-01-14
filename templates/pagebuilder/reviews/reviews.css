@@ -1,0 +1,41 @@
+/**
+ * Reviews Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.reviews-block__wrapper {
+  @apply grid;
+}
+
+.reviews-block__swiper-wrapper {
+  @apply relative overflow-hidden;
+}
+
+.reviews-block__swiper-wrapper .swiper {
+  @apply overflow-visible;
+}
+
+.reviews-block__item {
+  @apply min-h-full;
+}
+
+/* Text left: swiper can overflow to the right, cover left overflow */
+.reviews-block.text-left .reviews-block__swiper-wrapper {
+  @apply overflow-visible;
+}
+
+.reviews-block.text-left .reviews-block__swiper-wrapper::after {
+  @apply content-[''] absolute top-0 bottom-0 right-full w-[100vw] bg-grey-light z-[1];
+}
+
+/* Text right: swiper can overflow to the left, cover right overflow */
+.reviews-block.text-right .reviews-block__swiper-wrapper {
+  @apply overflow-visible;
+}
+
+.reviews-block.text-right .reviews-block__swiper-wrapper::after {
+  @apply content-[''] absolute top-0 bottom-0 left-full w-[100vw] bg-grey-light z-[1];
+}

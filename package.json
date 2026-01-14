@@ -1,0 +1,18 @@
+{
+  "name": "asbestverwijdering",
+  "version": "1.0.0",
+  "description": "Asbestverwijdering WordPress Theme",
+  "scripts": {
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "tailwindcss -i assets/css/input.css -o assets/css/style.css --minify",
+    "build:js": "node scripts/build-pagebuilder-js.js",
+    "dev": "npm run dev:css",
+    "dev:css": "tailwindcss -i assets/css/input.css -o assets/css/style.css --watch"
+  },
+  "author": "Kay Jilesen",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.16"
+  }
+}

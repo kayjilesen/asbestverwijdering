@@ -1,0 +1,15 @@
+/**
+ * Waarom? Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.waarom-block__item {
+  @apply transition-all duration-300;
+}
+.waarom-block__title-row-inner::after {
+  @apply absolute -left-2 bottom-3 w-[calc(100%+1rem)] h-4 bg-primary -z-[1];
+  content: '';
+}

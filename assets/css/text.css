@@ -1,0 +1,81 @@
+/**
+ * Text Template Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.text-hero {
+    @apply relative overflow-hidden bg-secondary;
+}
+
+.text-hero__background {
+    @apply absolute top-0 left-0 right-0 bottom-0 w-full h-full z-0 overflow-hidden;
+}
+
+.text-hero__background-image {
+    @apply object-cover object-center w-full h-full;
+}
+
+.text-hero__gradient {
+    @apply absolute top-0 left-0 right-0 bottom-0 w-full h-full z-[5];
+}
+
+.text-hero__container {
+    @apply container relative z-10;
+}
+
+.text-hero__content {
+    @apply text-white py-20 lg:py-32;
+}
+
+.text-hero__title {
+    @apply text-2xl md:text-3xl lg:text-5xl font-serif font-medium mb-6 !leading-[1.25] text-center;
+}
+
+.text-content {
+    @apply w-full bg-white py-16 lg:py-24;
+}
+
+.text-content__wrapper {
+    @apply mx-auto w-full max-w-screen-lg;
+}
+
+/* Prose styling for content */
+.text-content__wrapper.prose {
+    @apply max-w-none;
+}
+
+.text-content__wrapper.prose p {
+    @apply mb-4 text-grey-dark;
+}
+
+.text-content__wrapper.prose h2 {
+    @apply text-2xl md:text-3xl font-serif font-medium mt-8 mb-4 text-grey-dark;
+}
+
+.text-content__wrapper.prose h3 {
+    @apply text-xl md:text-2xl font-serif font-medium mt-6 mb-3 text-grey-dark;
+}
+
+.text-content__wrapper.prose ul {
+    @apply mb-4 pl-6 text-grey-dark list-disc;
+}
+
+.text-content__wrapper.prose ol {
+    @apply mb-4 pl-6 text-grey-dark list-decimal;
+}
+
+.text-content__wrapper.prose li {
+    @apply mb-2 text-grey-dark;
+}
+
+.text-content__wrapper.prose a {
+    @apply text-primary hover:text-secondary transition-colors;
+}
+
+.text-content__wrapper.prose strong {
+    @apply font-semibold text-grey-dark;
+}
+

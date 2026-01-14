@@ -1,0 +1,16 @@
+/**
+ * Waar? Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.waar-block__item {
+  @apply transition-all duration-300;
+}
+.waar-block__title-row-inner::after {
+  @apply absolute -left-2 bottom-3 w-[calc(100%+1rem)] h-4 bg-primary -z-[1];
+  content: '';
+}
+

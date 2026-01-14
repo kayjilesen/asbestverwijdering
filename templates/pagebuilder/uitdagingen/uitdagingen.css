@@ -1,0 +1,56 @@
+/**
+ * Uitdagingen Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.uitdagingen-block {
+    @apply bg-white;
+}
+
+.uitdagingen-block__title {
+    @apply font-title uppercase text-4xl md:text-5xl lg:text-[48px] font-normal leading-none text-secondary mb-6;
+}
+
+.uitdagingen-block__text {
+    @apply opacity-80 text-grey-text text-base leading-[1.83];
+}
+
+.uitdagingen-block__text :is(p, ul, ol) {
+    @apply opacity-80 text-grey-text text-base leading-[1.83] my-4 first:mt-0 last:mb-0;
+}
+
+.uitdagingen-block__facts {
+    @apply bg-yellow-light p-6 lg:p-8 mb-8;
+}
+
+.uitdagingen-block__facts-title {
+    @apply font-title uppercase text-2xl md:text-3xl lg:text-[28px] font-normal leading-none text-secondary mb-6;
+}
+
+.uitdagingen-block__facts-list {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+}
+
+.uitdagingen-block__fact {
+    @apply flex items-start gap-3;
+}
+
+.uitdagingen-block__fact-icon {
+    @apply flex-shrink-0 w-[23px] h-[23px] bg-primary flex items-center justify-center;
+}
+
+.uitdagingen-block__fact-text {
+    @apply font-sans font-bold text-base leading-[1.83] text-secondary;
+}
+
+.uitdagingen-block__image-container {
+    @apply relative overflow-hidden;
+}
+
+.uitdagingen-block__image {
+    @apply w-full h-auto;
+}
+

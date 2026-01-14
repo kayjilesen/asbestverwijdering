@@ -1,0 +1,40 @@
+/**
+ * Call to Action Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.call-to-action-block {
+  @apply w-full relative;
+}
+
+.call-to-action-block__container {
+  @apply w-full;
+}
+
+.call-to-action-block__wrapper {
+  @apply w-full;
+}
+
+.call-to-action-block__left {
+  @apply flex flex-col;
+}
+
+.call-to-action-block__right {
+  @apply min-h-full;
+}
+
+.call-to-action-block__right-image {
+  @apply w-full;
+}
+
+.call-to-action-block__right-image-container {
+  @apply w-full;
+}
+
+.call-to-action-block__right-image-img {
+  @apply w-full h-auto object-cover;
+}
+

@@ -1,0 +1,4 @@
+.route-block__map-container iframe {
+  @apply w-full h-full border-0;
+}
+

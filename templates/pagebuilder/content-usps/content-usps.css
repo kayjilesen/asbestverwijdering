@@ -1,0 +1,16 @@
+/**
+ * Content & USPs Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.content-usps-block__images-grid {
+    @apply relative;
+}
+
+.content-usps-block__image {
+    @apply w-full h-auto object-cover;
+}
+

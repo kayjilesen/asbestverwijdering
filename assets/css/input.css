@@ -1,0 +1,84 @@
+@import 'header.css';
+@import 'fonts.css';
+@import 'footer.css';
+@import 'text.css';
+@import 'archive-project.css';
+@import 'components/buttons.css';
+@import 'components/form.css';
+@import 'components/swiper.css';
+@import 'components/project-hero.css';
+@import 'components/project-card.css';
+
+/* Pagebuilder Block Styles */
+@import '../../templates/pagebuilder/hero/hero.css';
+@import '../../templates/pagebuilder/text-image/text-image.css';
+@import '../../templates/pagebuilder/projecten-cases/projecten-cases.css';
+@import '../../templates/pagebuilder/reviews/reviews.css';
+@import '../../templates/pagebuilder/call-to-action/call-to-action.css';
+@import '../../templates/pagebuilder/waar/waar.css';
+@import '../../templates/pagebuilder/waarom/waarom.css';
+@import '../../templates/pagebuilder/veelgestelde-vragen/veelgestelde-vragen.css';
+@import '../../templates/pagebuilder/route/route.css';
+@import '../../templates/pagebuilder/vacatures/vacatures.css';
+@import '../../templates/pagebuilder/text-services/text-services.css';
+@import '../../templates/pagebuilder/certificeringen/certificeringen.css';
+@import '../../templates/pagebuilder/werken-bij/werken-bij.css';
+@import '../../templates/pagebuilder/proces/proces.css';
+@import '../../templates/pagebuilder/content-usps/content-usps.css';
+@import '../../templates/pagebuilder/info-cards/info-cards.css';
+@import '../../templates/pagebuilder/uitdagingen/uitdagingen.css';
+@import '../../templates/pagebuilder/highlights/highlights.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  @apply mx-auto px-4 lg:px-0;
+}
+
+.section-title {
+  @apply text-2xl md:text-3xl lg:text-4xl font-bold font-serif text-grey-dark;
+}
+
+.image-container {
+  @apply relative w-full h-full overflow-hidden;
+}
+.image-container.horizontal {
+  @apply pb-[56.25%];
+}
+.image-container.vertical {
+  @apply pb-[177.77%];
+}
+
+.image-container img {
+  @apply absolute top-0 left-0 w-full h-full object-cover;
+}
+
+.section-pd {
+  @apply py-20 lg:py-[120px];
+}
+.section-mg {
+  @apply my-20 lg:my-[120px];
+}
+
+.outer-container {
+  @apply relative max-w-full md:max-w-[calc(100%-40px)] xl:max-w-[calc(100%-80px)] 2xl:max-w-[calc(100%-160px)] mx-auto;
+}
+
+/* Text Wrapper */
+.text-wrapper :is(p, ul, ol) {
+  @apply my-4 first:mt-0 last:mb-0;
+}
+
+.text-wrapper ul {
+  @apply list-disc pl-6;
+}
+
+.text-wrapper ol {
+  @apply list-decimal pl-6;
+}
+
+.text-wrapper li {
+  @apply mb-2;
+}

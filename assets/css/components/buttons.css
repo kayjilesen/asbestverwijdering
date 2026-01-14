@@ -1,0 +1,215 @@
+.button-wrapper {
+    @apply flex flex-row flex-wrap gap-2.5;
+}
+
+/* Default button container styling - flex-row with wrap for all button containers */
+[class*="buttons"]:not(.kj-button) {
+    @apply flex flex-row flex-wrap;
+}
+
+.kj-button {
+    @apply leading-none text-base py-4 px-5 xl:px-6 inline-block duration-300 ease-in-out !no-underline font-button font-bold w-auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+/* Primary Buttons - Link has no background or padding, inner div has background and padding */
+.kj-button.primary {
+    @apply bg-transparent p-0 inline-flex;
+}
+
+/* Secondary Buttons - Same structure as primary, no border/background on button itself */
+.kj-button.secondary {
+    @apply bg-transparent p-0 inline-flex;
+}
+
+/* Primary Button Inner - Contains the label with background color */
+.kj-button-inner {
+    @apply py-4 px-5 xl:px-6 rounded-[2.5px];
+}
+
+.kj-button-inner.primary.yellow {
+    @apply bg-primary text-grey-dark;
+}
+.kj-button-inner.primary.grey-dark {
+    @apply bg-grey-dark text-white;
+}
+.kj-button-inner.primary.white {
+    @apply bg-white text-secondary;
+}
+.kj-button-inner.primary.blue {
+    @apply bg-blue text-white;
+}
+
+/* Secondary Button Inner - Contains the label with border and background */
+.kj-button-inner.secondary.yellow {
+    @apply bg-transparent border border-primary/10 text-primary hover:bg-primary/10;
+}
+.kj-button-inner.secondary.grey-dark {
+    @apply bg-transparent border border-grey-dark/10 text-grey-dark hover:bg-grey-dark/10;
+}
+.kj-button-inner.secondary.white {
+    @apply bg-transparent border border-white/10 text-white hover:bg-white/10;
+}
+.kj-button-inner.secondary.blue {
+    @apply bg-transparent border border-blue/10 text-blue hover:bg-blue/10;
+}
+
+.kj-button:has(> .icon-button) {
+    @apply py-2.5 pr-3 pl-4;
+}
+
+.group-icon-button .icon-button {
+    @apply relative w-8 h-8 overflow-hidden bg-white/20 rounded-[2px];
+}
+.kj-button.primary.yellow .icon-button {
+    @apply bg-grey-dark;
+}
+.kj-button.primary.grey-dark .icon-button {
+    @apply bg-white;
+}
+.kj-button.primary.white .icon-button {
+    @apply bg-secondary;
+}
+.icon-button .svg-wrapper {
+    @apply absolute w-full h-full flex items-center justify-center first:-translate-x-full first:opacity-0 duration-[500ms] ease-in-out;
+}
+.group-icon-button svg {
+    @apply fill-white absolute;
+}
+
+.group-icon-button:hover .svg-wrapper {
+    @apply first:translate-x-0 first:opacity-100 translate-x-full opacity-0;
+}
+.icon-button .svg-wrapper {
+    @apply first:-translate-x-full;
+}
+.group-icon-button:hover .svg-wrapper {
+    @apply first:translate-x-0 first:opacity-100 translate-x-full opacity-0;
+}
+
+/* Arrow Box for Primary Buttons */
+.kj-button-arrow-box {
+    @apply w-12 h-12 relative overflow-hidden rounded-[2.5px];
+}
+
+.kj-button-arrow-svg {
+    @apply w-4 h-auto absolute top-1/2 left-1/2 -translate-y-1/2 transition-all duration-[400ms] ease-in-out;
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+/* First arrow (out) - starts in center */
+.kj-button-arrow-svg-out {
+    @apply -translate-x-1/2 opacity-100;
+}
+
+/* Second arrow (in) - starts from left */
+.kj-button-arrow-svg-in {
+    @apply -translate-x-[200%] opacity-0;
+}
+
+/* Hover state: first arrow goes right, second arrow comes to center */
+.kj-button.primary:hover .kj-button-arrow-svg-out,
+.kj-button.secondary:hover .kj-button-arrow-svg-out {
+    @apply translate-x-[150%] opacity-0;
+}
+
+.kj-button.primary:hover .kj-button-arrow-svg-in,
+.kj-button.secondary:hover .kj-button-arrow-svg-in {
+    @apply -translate-x-1/2 opacity-100;
+}
+
+/* Arrow Box Colors - Match Button Styles */
+.kj-button-arrow-box.primary.yellow {
+    @apply bg-primary text-grey-dark;
+}
+
+.kj-button-arrow-box.primary.grey-dark {
+    @apply bg-grey-dark text-white;
+}
+
+.kj-button-arrow-box.primary.white {
+    @apply bg-white text-secondary;
+}
+
+.kj-button-arrow-box.primary.blue {
+    @apply bg-blue text-white;
+}
+
+/* Secondary Arrow Box Colors */
+.kj-button-arrow-box.secondary.yellow {
+    @apply bg-transparent text-primary border border-primary/10 hover:bg-primary/10;
+}
+
+.kj-button-arrow-box.secondary.grey-dark {
+    @apply bg-transparent text-grey-dark border border-grey-dark/10 hover:bg-grey-dark/10;
+}
+
+.kj-button-arrow-box.secondary.white {
+    @apply bg-transparent text-white border border-white/10 hover:bg-white/10;
+}
+
+.kj-button-arrow-box.secondary.blue {
+    @apply bg-transparent text-blue border border-blue/10 hover:bg-blue/10;
+}
+
+/* Secondary Button Inner Hover States */
+.kj-button.secondary.yellow:hover .kj-button-inner {
+    @apply bg-primary/10;
+}
+
+.kj-button.secondary.grey-dark:hover .kj-button-inner {
+    @apply bg-grey-dark/10;
+}
+
+.kj-button.secondary.white:hover .kj-button-inner {
+    @apply bg-white/10;
+}
+
+.kj-button.secondary.blue:hover .kj-button-inner {
+    @apply bg-blue/10;
+}
+
+/* Secondary Arrow Box Hover States */
+.kj-button.secondary.yellow:hover .kj-button-arrow-box {
+    @apply bg-primary/10;
+}
+
+.kj-button.secondary.grey-dark:hover .kj-button-arrow-box {
+    @apply bg-grey-dark/10;
+}
+
+.kj-button.secondary.white:hover .kj-button-arrow-box {
+    @apply bg-white/10;
+}
+
+.kj-button.secondary.blue:hover .kj-button-arrow-box {
+    @apply bg-blue/10;
+}
+
+/* Text Button Variant */
+.kj-button.text {
+    @apply font-button text-base underline font-bold py-0 px-0 bg-transparent border-0 rounded-none;
+}
+.kj-button.text svg {
+    @apply transition-transform duration-300 ease-in-out;
+}
+.kj-button.text:hover svg {
+    @apply translate-x-2;
+}
+.kj-button.text span {
+    @apply relative;
+}
+.kj-button.text span::after {
+    @apply content-[''] absolute -bottom-0.5 left-0 w-full h-[1.5px] bg-grey-dark transition-all duration-300 ease-in-out;
+}
+.kj-button.text:hover span::after {
+    @apply bg-primary;
+}
+
+.kj-button-text-arrow {
+    @apply w-4 h-auto ml-2;
+    fill: currentColor;
+    stroke: currentColor;
+}

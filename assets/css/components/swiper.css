@@ -1,0 +1,70 @@
+/**
+ * Swiper Component Styles
+ * Website-wide styling for Swiper sliders
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+/* Swiper Scrollbar - Website Wide */
+.swiper-scrollbar {
+  @apply !relative bg-black/20 !h-1.5 !w-full !rounded-[0] !left-0;
+}
+
+.swiper-scrollbar-drag {
+  @apply bg-primary cursor-pointer;
+}
+
+/* Swiper Navigation - Website Wide */
+.swiper-navigation-wrapper {
+  @apply flex items-center;
+}
+.swiper-navigation-wrapper.is-relative :is(.swiper-button-next, .swiper-button-prev) {
+  @apply relative z-[1] !left-0 !right-0;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply w-10 h-10 flex items-center justify-center bg-transparent border-0 text-grey-dark hover:text-primary transition-colors duration-300 cursor-pointer;
+  position: relative;
+  top: auto;
+  bottom: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+.swiper-button-next svg,
+.swiper-button-prev svg {
+  @apply w-auto h-3;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.swiper-button-prev svg {
+  transform: rotate(180deg);
+}
+
+.swiper-pagination-custom {
+  @apply text-grey-dark font-title font-semibold text-xl px-4;
+  width: auto;
+}
+
+.swiper-pagination-custom .swiper-pagination-current {
+  opacity: 1;
+}
+
+.swiper-pagination-custom .swiper-pagination-separator {
+  opacity: 0.7;
+  @apply px-2;
+}
+
+.swiper-pagination-custom .swiper-pagination-total {
+  opacity: 0.7;
+}
+

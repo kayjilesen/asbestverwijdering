@@ -1,0 +1,21 @@
+/**
+ * Text & Services Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.text-services-block__service {
+  @apply block;
+  transition: transform 0.3s ease;
+}
+
+.text-services-block__service:hover img {
+  transform: scale(1.05);
+}
+
+.text-services-block__service-content {
+  @apply flex items-end justify-between;
+}
+

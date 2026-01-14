@@ -1,0 +1,21 @@
+/**
+ * Projecten en Cases Block Styles
+ *
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.projecten-cases-block__swiper-wrapper {
+  @apply relative;
+}
+
+.projecten-cases-block__swiper-wrapper .swiper {
+  @apply overflow-visible;
+}
+
+/* Swiper Scrollbar */
+.projecten-cases-block__swiper-wrapper .swiper-scrollbar {
+  @apply mt-6;
+}
+

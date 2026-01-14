@@ -1,0 +1,227 @@
+/* Header */
+header {
+	@apply xl:px-0 left-0 top-0 fixed w-full ease-in-out z-[99] bg-white;
+}
+header .logo img {
+    @apply h-auto w-auto object-contain;
+}
+header.color {
+    @apply bg-white;
+}
+header.color .navbar-logo {
+    @apply py-2;
+}
+header nav.main-bar {
+    @apply border-b border-grey/10;
+}
+header.color .main-bar {
+    @apply border-b-0;
+}
+header.color.scrolled .main-bar {
+    box-shadow: 0px 8px 40px -16px rgba(0,0,0,0.15);
+}
+
+header .navbar-container {
+    @apply max-w-full lg:max-w-[calc(100%-40px)] xl:max-w-[calc(100%-160px)] mx-auto;
+}
+
+/* Menu - Show */
+header button > div {
+    @apply duration-300;
+}
+ul.navbar-nav {
+    @apply relative list-none mx-auto xl:mx-0 my-8 h-0 p-0 transition;
+}
+header:not(.transparant) ul.navbar-nav {
+    @apply my-8;
+}
+.show-mobile-menu #mobile-menu {
+    @apply pointer-events-auto opacity-100;
+}
+.show-mobile-menu #mobile-menu .mobile-inner-menu {
+    @apply -translate-x-full bg-secondary h-screen;
+}
+.show-mobile-menu #mobile-menu .menu-overlay {
+    @apply opacity-100;
+}
+
+/* Topbar */
+ul.topbar-menu .menu-item {
+    @apply flex flex-row items-center;
+}
+.top-bar {
+    @apply bg-grey;
+}
+.topbar-switch-item {
+    @apply transition-colors;
+}
+
+.topbar-switch-particulier {
+    @apply bg-white text-grey;
+}
+
+.topbar-switch-zakelijk:hover {
+    @apply text-yellow;
+}
+
+/* Menu Mobile Toggle Button */
+.mobile-nav-button .navbar-bar {
+    @apply h-0.5 w-7 opacity-100 duration-200 bg-grey-dark; 
+}
+
+.show-mobile-menu header.color .mobile-nav-button .navbar-bar {
+    @apply duration-300 bg-white;
+}
+.show-mobile-menu .mobile-nav-button .navbar-nav {
+    @apply lg:block opacity-100;
+}
+.navbar-nav .nav-item {
+    @apply duration-300 relative;
+}
+.show-mobile-menu .navbar-nav .nav-item {
+    @apply opacity-100;
+}
+.show-mobile-menu .navbar-bar.bar1 {
+    @apply w-8 origin-center -rotate-45;
+}
+.show-mobile-menu .navbar-bar.bar2 {
+    @apply w-0 ml-auto mr-auto;
+}
+.show-mobile-menu .navbar-bar.bar3 {
+    @apply w-8 origin-center rotate-45;
+} 
+.show-mobile-menu :is(.navbar-wrapper-1){
+    @apply translate-y-2.5;
+}
+.show-mobile-menu .navbar-wrapper-3 {
+    @apply -translate-y-2.5;
+}
+
+/* Basic UL / LI */
+header ul.menu {
+    @apply flex flex-col lg:flex-row items-center py-1 h-full gap-5;
+}
+header ul li.menu-item {
+    @apply font-semibold font-serif font-sans text-sm duration-300 transition relative;
+}
+header.color ul li.menu-item {
+    @apply text-grey-dark;
+}
+header ul li.menu-item a {
+    @apply py-2.5 px-0 flex flex-row items-center duration-300 hover:opacity-80;
+}
+header.color ul li.menu-item a {
+    @apply text-grey-dark;
+}
+header ul li.menu-item-has-children {
+    @apply flex flex-row items-center;
+}
+header .primary-menu .menu-item.menu-item-has-children ul.sub-menu {
+    @apply opacity-0 duration-300 ease-in pointer-events-none relative lg:absolute lg:left-1/2 lg:-translate-x-1/2 flex flex-col bg-white p-2 top-full right-5 mt-0 min-w-[280px] border border-grey/10;
+    box-shadow: 0px 8px 24px rgba(0,0,0,0.05);
+}
+header .primary-menu .menu-item.menu-item-has-children:hover ul.sub-menu {
+    @apply opacity-100 pointer-events-auto;
+}
+header .primary-menu .menu-item.menu-item-has-children ul.sub-menu li {
+    @apply mx-0;
+}
+
+header .primary-menu .menu-item.menu-item-has-children ul.sub-menu a {
+    @apply text-grey-dark hover:text-yellow font-semibold text-sm px-4 py-3 transition-colors;
+}
+header .menu-item.menu-item-has-children .chevron-wrapper {
+    @apply h-full flex items-center justify-center xl:ml-0;
+}
+header .menu-item.menu-item-has-children svg {
+    @apply fill-yellow;
+}
+header .menu-item.menu-item-has-children:hover svg {
+    @apply rotate-180;
+}
+header .menu-item.menu-item-has-children:hover :is(i, svg).chevron {
+    @apply rotate-180;
+}
+/* Dropdown */
+header .primary-menu .sub-menu :is(i, svg){
+    @apply text-xl mr-3;
+}
+header .primary-menu .sub-menu :is(li, a) {
+    @apply text-sm !text-grey-dark duration-200 hover:bg-grey-light;
+}
+header .primary-menu .menu ul.sub-menu a {
+    @apply px-2.5 py-2.5 block;
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    @apply z-[85];
+}
+body.show-mobile-menu .mobile-menu-overlay {
+    @apply opacity-100 pointer-events-auto;
+}
+
+/* Mobile Menu */
+#mobile-menu {
+    @apply z-[90] bg-white
+}
+body.show-mobile-menu #mobile-menu {
+    @apply translate-x-0;
+}
+
+/* Override desktop menu styles for mobile menu */
+#mobile-menu .menu {
+    @apply w-full gap-0 !important;
+}
+/* Completely disable hover for mobile menu - force click-only behavior */
+#mobile-menu * {
+    pointer-events: auto;
+}
+#mobile-menu .menu-item-has-children:hover {
+    pointer-events: auto;
+}
+#mobile-menu ul.menu {
+    @apply flex flex-col gap-0 items-stretch py-0 h-auto;
+}
+#mobile-menu ul {
+    @apply flex flex-col w-full gap-0;
+}
+#mobile-menu ul li.menu-item {
+    @apply py-2 w-full border-b border-grey-dark/10 last:border-b-0 font-semibold text-base gap-0;
+}
+#mobile-menu ul li.menu-item a {
+    @apply text-grey-dark font-title uppercase font-bold text-2xl py-2.5 px-0 flex flex-grow items-center justify-between;
+    gap: 0 !important;
+}
+#mobile-menu ul li.menu-item .chevron-wrapper {
+    @apply w-8 h-8 bg-primary flex items-center justify-center ml-2 flex-shrink-0 cursor-pointer;
+}
+#mobile-menu ul li.menu-item svg {
+    @apply inline-block fill-grey-dark transition-transform duration-300;
+}
+#mobile-menu ul li.menu-item-has-children {
+    @apply flex-wrap gap-0 !relative;
+}
+#mobile-menu ul li.menu-item-has-children > a {
+    gap: 0 !important;
+}
+#mobile-menu ul li.menu-item-has-children > a svg {
+    @apply rotate-90;
+}
+#mobile-menu ul li.menu-item :is(ul.sub-menu, ul.children) {
+    @apply relative w-full flex flex-col h-0 overflow-hidden transition-all duration-300 ease-in-out pl-2 mt-2 gap-0;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+}
+#mobile-menu ul li.menu-item :is(ul.sub-menu, ul.children) li.menu-item a {
+    @apply text-grey-dark font-semibold text-base font-sans py-2;
+}
+#mobile-menu ul li.menu-item-has-children.open :is(ul.sub-menu, ul.children) {
+    @apply h-auto opacity-100;
+}
+#mobile-menu ul li.menu-item-has-children.open .chevron-wrapper svg {
+    @apply rotate-[180deg];
+}

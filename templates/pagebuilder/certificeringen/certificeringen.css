@@ -1,0 +1,93 @@
+/**
+ * Certificeringen Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.certificeringen-block {
+    /* Base styles */
+}
+
+.certificeringen-block__container {
+    /* Container styles */
+}
+
+.certificeringen-block__wrapper {
+    /* Grid wrapper styles */
+}
+
+.certificeringen-block__logos {
+    /* Left column with logos */
+    min-height: 400px;
+}
+
+.certificeringen-block__logos-list {
+    /* Logo list container */
+    width: 100%;
+}
+
+.certificeringen-block__logo-link,
+.certificeringen-block__logo-wrapper {
+    /* Logo wrapper */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.certificeringen-block__logo-image {
+    /* Logo image */
+    filter: brightness(0) invert(1);
+    max-width: 200px;
+    height: auto;
+}
+
+.certificeringen-block__content {
+    /* Right column with content */
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.certificeringen-block__content-inner {
+    /* Content inner wrapper */
+}
+
+.certificeringen-block__title {
+    /* Title styles */
+    color: white;
+}
+
+.certificeringen-block__text {
+    /* Text styles */
+    color: #F7F7F7;
+}
+
+.certificeringen-block__text p {
+    margin-bottom: 1rem;
+}
+
+.certificeringen-block__text p:last-child {
+    margin-bottom: 0;
+}
+
+.certificeringen-block__decoration {
+    /* Decorative squares */
+    pointer-events: none;
+}
+
+.certificeringen-block__buttons {
+    /* Button container */
+}
+
+
+
+
+
+
+
+
+

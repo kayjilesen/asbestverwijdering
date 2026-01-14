@@ -1,0 +1,70 @@
+footer .footer-col {
+    @apply flex flex-col;
+}
+footer .footer-title {
+    @apply text-white font-serif font-bold text-lg mb-4;
+}
+footer .footer-link {
+    @apply font-semibold text-white transition-all duration-300;
+}
+.footer-link:hover {
+    @apply text-white/80;
+}
+footer .footer-contact-link {
+    @apply text-base md:text-base font-medium;
+}
+.footer-text {
+    @apply text-sm font-light;
+}
+.footer-line {
+    @apply font-light text-base my-3 block;
+}
+.copyright-bar-items a {
+    @apply text-white hover:text-primary transition-colors duration-300;
+}
+
+:is(ul.footer-menu, footer .menu ul) {
+    @apply flex flex-col gap-2;
+}
+ul.footer-menu li {
+    @apply flex relative !list-none text-base 2xl:text-base;
+}
+ul.footer-menu li a {
+    @apply font-normal relative overflow-hidden inline text-white transition-all duration-300;
+}
+ul.footer-menu li a:hover {
+    @apply text-white;
+}
+ul.footer-menu li a::after {
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-[1px] bg-primary transition-all duration-500 ease-in-out;
+}
+ul.footer-menu li a:hover::after {
+    @apply w-full;
+}
+
+/* Footer link underline animation for all footer links */
+footer .space-y-2 li a:not(.flex),
+footer .footer-link-underline:not(.flex) {
+    @apply relative inline-block text-white transition-all duration-300;
+    @apply overflow-hidden;
+}
+footer .space-y-2 li a.flex,
+footer .footer-link-underline.flex {
+    @apply relative inline-flex text-white transition-all duration-300;
+    @apply overflow-hidden;
+    display: inline-flex;
+    white-space: nowrap;
+}
+footer .space-y-2 li a:hover,
+footer .footer-link-underline:hover {
+    @apply text-white;
+}
+footer .space-y-2 li a::after,
+footer .footer-link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-[1px] bg-primary transition-all duration-500 ease-in-out;
+}
+footer .space-y-2 li a:hover::after,
+footer .footer-link-underline:hover::after {
+    @apply w-full;
+}

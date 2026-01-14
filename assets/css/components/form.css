@@ -1,0 +1,15 @@
+.srfm-form {
+    @apply !gap-2;
+}
+.srfm-form-container .srfm-form .srfm-block:not(.srfm-number-block) .srfm-input-common {
+    @apply !pr-4 !py-4 md:!pr-5 !h-auto !bg-white border border-grey/10 rounded-lg;
+}
+.srfm-form-container .srfm-form .srfm-input-phone {
+    @apply !pl-16;
+}
+.srfm-form-container {
+    @apply !bg-[unset];
+}
+.srfm-form-container .srfm-button {
+    @apply !bg-primary !border-primary !text-secondary !px-6 md:!px-7 md:!py-3 !h-auto !rounded-lg;
+}

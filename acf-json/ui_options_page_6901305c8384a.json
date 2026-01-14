@@ -1,0 +1,23 @@
+{
+    "key": "ui_options_page_6901305c8384a",
+    "title": "Footer",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "Footer",
+    "menu_slug": "footer",
+    "parent_slug": "theme-settings",
+    "advanced_configuration": false,
+    "icon_url": "",
+    "menu_title": "",
+    "position": null,
+    "redirect": false,
+    "description": "",
+    "menu_icon": [],
+    "update_button": "Updaten",
+    "updated_message": "Opties geüpdatet",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": false,
+    "modified": 1761685596
+}

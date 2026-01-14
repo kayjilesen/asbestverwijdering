@@ -1,0 +1,90 @@
+/**
+ * Vacatures Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.vacatures-block__item {
+  @apply overflow-hidden;
+}
+
+.vacatures-block__link {
+  @apply no-underline text-inherit;
+}
+
+.vacatures-block__image-wrapper {
+  @apply bg-grey-light relative w-full;
+  padding-bottom: 100%;
+}
+
+.vacatures-block__image {
+  @apply absolute inset-0 w-full h-full object-cover;
+}
+
+.vacatures-block__gradient {
+  @apply bg-gradient-to-t from-black via-black/60 to-transparent;
+}
+
+.vacatures-block__image-content {
+  @apply absolute inset-0 z-20 flex flex-col items-start justify-end p-6 text-white;
+}
+
+.vacatures-block__item-title {
+  @apply font-title uppercase font-bold leading-none;
+}
+
+.vacatures-block__item-excerpt {
+  @apply text-sm md:text-base leading-[1.4] text-[#dadada] line-clamp-3;
+}
+
+.vacatures-block__details {
+  @apply w-full;
+}
+
+.vacatures-block__detail-item {
+  @apply flex items-center gap-3;
+}
+
+.vacatures-block__detail-item:not(:last-child) {
+  @apply mb-4 pb-4 border-b border-white/10;
+}
+
+.vacatures-block__icon-wrapper {
+  @apply flex-shrink-0;
+}
+
+.vacatures-block__icon {
+  @apply w-5 h-5 text-white;
+}
+
+.vacatures-block__detail-text {
+  @apply font-bold text-base text-white;
+}
+
+.vacatures-block__button-wrapper {
+  @apply mt-auto;
+}
+
+.vacatures-block__pagination {
+  @apply flex justify-center;
+}
+
+.vacatures-block__pagination .pagination {
+  @apply flex gap-2 items-center;
+}
+
+.vacatures-block__pagination .pagination a,
+.vacatures-block__pagination .pagination span {
+  @apply py-2 px-4 border border-grey/10 rounded-md no-underline text-grey-dark transition-all duration-300;
+}
+
+.vacatures-block__pagination .pagination a:hover {
+  @apply bg-secondary border-secondary text-white;
+}
+
+.vacatures-block__pagination .pagination .current {
+  @apply bg-secondary border-secondary text-white;
+}
+
