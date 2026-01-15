@@ -13,6 +13,11 @@
     flex-shrink: 0;
     align-self: flex-start;
 }
+
+/* Text buttons should be vertically centered when next to other buttons */
+.kj-button.text {
+    align-self: center;
+}
 /* Primary Buttons - Link has no background or padding, inner div has background and padding */
 .kj-button.primary {
     @apply bg-transparent p-0 inline-flex;

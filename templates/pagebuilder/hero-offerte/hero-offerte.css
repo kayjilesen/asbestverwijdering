@@ -1,0 +1,23 @@
+/**
+ * Hero & Offerte Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.hero-offerte-block__title {
+  @apply leading-tight;
+}
+
+.hero-offerte-block__image-wrapper {
+  @apply w-full;
+}
+
+.hero-offerte-block__image {
+  @apply object-cover;
+}
+
+.hero-offerte-block__form-wrapper {
+  @apply sticky top-8;
+}

@@ -28,6 +28,8 @@
 @import '../../templates/pagebuilder/info-cards/info-cards.css';
 @import '../../templates/pagebuilder/uitdagingen/uitdagingen.css';
 @import '../../templates/pagebuilder/highlights/highlights.css';
+@import '../../templates/pagebuilder/hero-offerte/hero-offerte.css';
+@import '../../templates/pagebuilder/stappen/stappen.css';
 
 @tailwind base;
 @tailwind components;

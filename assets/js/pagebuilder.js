@@ -7,7 +7,7 @@
  * @author Kay Jilesen
  * 
  * This file combines all pagebuilder block JavaScript files.
- * Generated: 2026-01-08T13:58:16.746Z
+ * Generated: 2026-01-15T23:04:31.014Z
  */
 
 (function() {
@@ -191,5 +191,11 @@
                 });
             });
         });
+
+    // hero-offerte block
+    // Add any JavaScript functionality here if needed
+
+    // stappen block
+    // Block-specific JavaScript if needed
 
 })();

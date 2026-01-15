@@ -84,10 +84,18 @@ templates/pagebuilder/<block-slug>/
 - Template automatically loaded via `templates/pagebuilder/loop.php` based on `get_row_layout()`
 
 ### Block CSS Rules
+- **CRITICAL: ALWAYS prefer Tailwind CSS classes directly in PHP templates over custom CSS**
 - **NO media queries** - Use Tailwind responsive classes in PHP templates
-- Use `@apply` directive for Tailwind utilities where possible
-- Only custom CSS when Tailwind doesn't suffice
-- Import in `assets/css/input.css` required
+- **STRICT RULE: Use Tailwind utilities directly in HTML/PHP templates instead of custom CSS whenever possible**
+- Only use custom CSS (`@apply` or raw CSS) when Tailwind utilities are absolutely not available or insufficient
+- Examples:
+  - ❌ Bad: `.element { position: relative; display: inline-block; }` in CSS
+  - ✅ Good: `<div class="relative inline-block">` in PHP template
+  - ❌ Bad: `.element { top: 50%; left: 50%; transform: translate(-50%, -50%); }` in CSS
+  - ✅ Good: `<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">` in PHP template
+  - ❌ Bad: `.element { width: 1.5em; height: 1.5em; }` in CSS
+  - ✅ Good: `<div class="w-[1.5em] h-[1.5em]">` in PHP template
+- Import in `assets/css/input.css` required (even if CSS file is empty)
 
 ### Block JavaScript Rules
 - Wrap in IIFE: `(function() { ... })();`
@@ -98,11 +106,16 @@ templates/pagebuilder/<block-slug>/
 ## CSS and Responsive Design
 
 ### Media Queries
-- **CRITICAL: Avoid using CSS media queries (@media) in CSS files. Always use Tailwind CSS responsive classes (sm:, md:, lg:, xl:, 2xl:) instead.**
-- Media queries should ONLY be used when there is a very specific query requirement that cannot be achieved with Tailwind's responsive utilities.
+- **CRITICAL: NEVER use CSS media queries (@media) in CSS files. Always use Tailwind CSS responsive classes (sm:, md:, lg:, xl:, 2xl:) instead.**
+- **STRICT RULE: Media queries are FORBIDDEN. Use Tailwind responsive utilities or CSS functions like clamp() for responsive behavior.**
 - When making responsive changes, apply Tailwind responsive classes directly in PHP templates or HTML, not in CSS files.
 - Use mobile-first approach: set default styles for mobile, then use md:, lg: etc. for larger screens.
-- **For pseudo-elements (::before, ::after):** Tailwind responsive classes don't work well with @apply in pseudo-elements. Instead, use a wrapper div element in the PHP template with Tailwind responsive classes, rather than using pseudo-elements with media queries.
+- **For pseudo-elements (::before, ::after):** Tailwind responsive classes don't work well with @apply in pseudo-elements. Use CSS functions like `clamp()` for responsive values instead of media queries, or use a wrapper div element in the PHP template with Tailwind responsive classes.
+- Examples:
+  - ❌ Bad: `@media (min-width: 768px) { .element { height: 1rem; } }`
+  - ✅ Good: `height: clamp(0.75rem, 1vw, 1rem);` (responsive without media query)
+  - ❌ Bad: `@media (max-width: 1024px) { .element { padding: 1rem; } }`
+  - ✅ Good: `<div class="p-4 lg:p-6">` in PHP template
 
 ### Examples:
 - ❌ Bad: `@media (max-width: 768px) { .element { padding: 1rem; } }`

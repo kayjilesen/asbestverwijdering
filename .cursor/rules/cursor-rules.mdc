@@ -159,10 +159,27 @@ Als deze input ontbreekt: stel maximaal 5 gerichte vragen en start daarna met ee
   - Maak een layout field group `acf-json/group_layout_<slug>.json` (meestal `active: false`) en clone die in de layout via `type: clone` (zoals `hero` en `text-image`).
   - **Altijd** na ACF JSON edits: update het `"modified"` veld naar een actuele Unix timestamp (`date +%s`).
 - **Styling (Tailwind + block CSS)**:
+  - **KRITIEK: ALTIJD Tailwind CSS classes direct in PHP templates gebruiken in plaats van custom CSS**
+  - **STRENGE REGEL: Gebruik Tailwind utilities direct in HTML/PHP templates in plaats van custom CSS waar mogelijk**
   - Gebruik Tailwind utilities in markup voor layout/spacing, gecombineerd met een block class + BEM elementen (bv. `my-block`, `my-block__title`) voor specifieke styling.
+  - Alleen custom CSS (`@apply` of raw CSS) gebruiken wanneer Tailwind utilities absoluut niet beschikbaar of onvoldoende zijn.
+  - Voorbeelden:
+    - ❌ Slecht: `.element { position: relative; display: inline-block; }` in CSS
+    - ✅ Goed: `<div class="relative inline-block">` in PHP template
+    - ❌ Slecht: `.element { top: 50%; left: 50%; transform: translate(-50%, -50%); }` in CSS
+    - ✅ Goed: `<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">` in PHP template
+    - ❌ Slecht: `.element { width: 1.5em; height: 1.5em; }` in CSS
+    - ✅ Goed: `<div class="w-[1.5em] h-[1.5em]">` in PHP template
+  - **Media queries VERBODEN**: Gebruik NOOIT CSS media queries (`@media`) in CSS bestanden. Gebruik altijd Tailwind responsive classes (sm:, md:, lg:, xl:, 2xl:) of CSS functies zoals `clamp()` voor responsive gedrag.
+  - Media query voorbeelden:
+    - ❌ Slecht: `@media (min-width: 768px) { .element { height: 1rem; } }`
+    - ✅ Goed: `height: clamp(0.75rem, 1vw, 1rem);` (responsive zonder media query)
+    - ❌ Slecht: `@media (max-width: 1024px) { .element { padding: 1rem; } }`
+    - ✅ Goed: `<div class="p-4 lg:p-6">` in PHP template
+  - Voor pseudo-elements (::before, ::after): gebruik CSS functies zoals `clamp()` voor responsive waardes in plaats van media queries, of gebruik een wrapper div element in de PHP template met Tailwind responsive classes.
   - **Kleuren**: gebruik project Tailwind classes (zie `tailwind.config.js`). Gebruik géén hex/rgb tenzij expliciet gevraagd.
   - **Radius & shadows**: neem deze **exact** over uit design (bij voorkeur via bestaande utilities/tokens; geen willekeurige “close enough” waardes).
-  - Voeg nieuwe block CSS altijd toe aan `assets/css/input.css` via `@import '../../templates/pagebuilder/<slug>/<slug>.css';`.
+  - Voeg nieuwe block CSS altijd toe aan `assets/css/input.css` via `@import '../../templates/pagebuilder/<slug>/<slug>.css';` (zelfs als CSS bestand leeg is).
 - **JavaScript bundling**:
   - Voeg `<slug>` toe aan `scripts/build-pagebuilder-js.js` in `pagebuilderBlocks`.
   - Genereer `assets/js/pagebuilder.js` via `npm run build:js`.

@@ -25,7 +25,7 @@ $padding_top = ( $padding_top_value === null ) ? true : ! empty( $padding_top_va
 $padding_bottom = ( $padding_bottom_value === null ) ? true : ! empty( $padding_bottom_value );
 
 // Set background and text colors based on mode
-$bg_class = $mode === 'dark' ? 'bg-secondary' : 'bg-white';
+$bg_class = $mode === 'dark' ? 'bg-secondary' : 'bg-beige';
 $text_class = $mode === 'dark' ? 'text-white' : '';
 
 // Set padding classes based on options

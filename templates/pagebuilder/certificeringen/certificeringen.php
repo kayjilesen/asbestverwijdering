@@ -47,13 +47,13 @@ if ( $padding_bottom ) {
 $padding_class = ! empty( $padding_classes ) ? implode( ' ', $padding_classes ) : '';
 ?>
 
-<section class="certificeringen-block <?php echo esc_attr( $padding_class ); ?> bg-grey-light">
+<section class="certificeringen-block <?php echo esc_attr( $padding_class ); ?> bg-beige">
     <div class="certificeringen-block__container container">
         <div class="certificeringen-block__wrapper grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
             
             <!-- Left Column: Logos -->
             <?php if ( ! empty( $logos ) ) : ?>
-                <div class="certificeringen-block__logos col-span-1 lg:col-span-4 bg-grey-dark p-8 lg:p-12 flex flex-col items-center justify-center gap-8 relative overflow-hidden">
+                <div class="certificeringen-block__logos col-span-1 lg:col-span-4 bg-beige-darker p-8 lg:p-12 flex flex-col items-center justify-center gap-8 relative overflow-hidden">
                     
                     <div class="certificeringen-block__logos-list flex flex-col items-center gap-8 relative z-10">
                         <?php foreach ( $logos as $logo ) : 
@@ -88,11 +88,11 @@ $padding_class = ! empty( $padding_classes ) ? implode( ' ', $padding_classes ) 
             
             <!-- Right Column: Content -->
             <?php if ( ! empty( $title ) || ! empty( $text ) || ! empty( $button ) ) : ?>
-                <div class="certificeringen-block__content col-span-1 lg:col-span-8 bg-grey-dark p-8 lg:p-12 text-white relative overflow-hidden">
+                <div class="certificeringen-block__content col-span-1 lg:col-span-8 bg-beige-darker p-8 lg:p-12 text-white relative overflow-hidden">
                     
                     <div class="certificeringen-block__content-inner relative z-10">
                         <?php if ( ! empty( $title ) ) : ?>
-                            <h2 class="certificeringen-block__title font-title uppercase text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                            <h2 class="certificeringen-block__title font-title uppercase text-3xl md:text-4xl lg:text-[80px] text-grey-dark font-bold mb-6">
                                 <?php echo esc_html( $title ); ?>
                             </h2>
                         <?php endif; ?>

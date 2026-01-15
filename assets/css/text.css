@@ -79,3 +79,20 @@
     @apply font-semibold text-grey-dark;
 }
 
+/* Yellow line behind <strong> tags - Global styling */
+/* Note: Using CSS pseudo-element because Tailwind doesn't support pseudo-elements well */
+/* Using clamp() for responsive height instead of media queries */
+strong.highlight-strong,
+.highlight-strong strong {
+    @apply relative inline-block z-[1];
+}
+
+strong.highlight-strong::after,
+.highlight-strong strong::after {
+    content: '';
+    @apply absolute bg-primary top-1/2 left-1/2 rounded-sm -z-[1];
+    transform: translate(-50%, -50%) rotate(-2deg);
+    width: calc(100% + 8px);
+    height: clamp(0.75rem, 2rem, 3rem);
+}
+

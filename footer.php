@@ -25,69 +25,58 @@ defined( 'ABSPATH' ) || exit;
 				<!-- Column 1: Logo Wit -->
 				<div class="footer-col">
 					<div class="mb-4">
-						<img src="<?php echo esc_url( $footer_logo_wit['url'] ); ?>" alt="<?php echo esc_attr( $footer_logo_wit['alt'] ?: 'Logo' ); ?>" class="h-auto max-h-12 object-contain">
+						<img src="<?php echo esc_url( $footer_logo_wit['url'] ); ?>" alt="<?php echo esc_attr( $footer_logo_wit['alt'] ?: 'Logo' ); ?>" class="h-auto max-h-12 md:max-h-16 object-contain">
 					</div>
 				</div>
 				<?php endif; ?>
 				
 				<?php
-				// Column 2: Diensten & Doelgroepen (from project taxonomies)
-				$diensten = get_terms( array(
-					'taxonomy'   => 'project_dienst',
-					'hide_empty' => true,
-					'orderby'    => 'name',
-					'order'      => 'ASC',
-				) );
-				$doelgroepen = get_terms( array(
-					'taxonomy'   => 'project_doelgroep',
-					'hide_empty' => true,
-					'orderby'    => 'name',
-					'order'      => 'ASC',
-				) );
-				$has_diensten = !is_wp_error( $diensten ) && !empty( $diensten );
-				$has_doelgroepen = !is_wp_error( $doelgroepen ) && !empty( $doelgroepen );
+				// Column 2: Paginalijst 1
+				$kolom1_titel = get_field( 'footer_kolom1_titel', 'option' );
+				$kolom1_paginas = get_field( 'footer_kolom1_paginas', 'option' );
 				?>
-				<?php if ( $has_diensten || $has_doelgroepen ) : ?>
-				<!-- Column 2: Diensten & Doelgroepen -->
+				<?php if ( !empty( $kolom1_paginas ) ) : ?>
+				<!-- Column 2: Paginalijst 1 -->
 				<div class="footer-col">
-					<?php if ( $has_diensten ) : ?>
-						<h4 class="footer-title mb-4"><?php _e( 'Asbest & Sloop', 'kj' ); ?></h4>
-						<ul class="space-y-1 mb-6">
-							<?php foreach ( $diensten as $dienst ) : ?>
+					<?php if ( $kolom1_titel ) : ?>
+						<h4 class="footer-title mb-4"><?php echo esc_html( $kolom1_titel ); ?></h4>
+					<?php endif; ?>
+					<ul class="space-y-1">
+						<?php foreach ( $kolom1_paginas as $item ) : ?>
+							<?php if ( !empty( $item['pagina'] ) ) : ?>
 								<li>
-									<a href="<?php echo esc_url( get_term_link( $dienst ) ); ?>" class="footer-link-underline">
-										<?php echo esc_html( $dienst->name ); ?>
+									<a href="<?php echo esc_url( get_permalink( $item['pagina']->ID ) ); ?>" class="footer-link-underline">
+										<?php echo esc_html( $item['pagina']->post_title ); ?>
 									</a>
 								</li>
-							<?php endforeach; ?>
-						</ul>
-					<?php endif; ?>
-
-					<?php if ( $has_doelgroepen ) : ?>
-						<h4 class="footer-title mb-4"><?php _e( 'Voor wie?', 'kj' ); ?></h4>
-						<ul class="space-y-1">
-							<?php foreach ( $doelgroepen as $doelgroep ) : ?>
-								<li>
-									<a href="<?php echo esc_url( get_term_link( $doelgroep ) ); ?>" class="footer-link-underline">
-										<?php echo esc_html( $doelgroep->name ); ?>
-									</a>
-								</li>
-							<?php endforeach; ?>
-						</ul>
-					<?php endif; ?>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</ul>
 				</div>
 				<?php endif; ?>
 
 				<?php
-				// Column 3: Footer Menu
-				$footer_menu = wp_get_nav_menu_object( 'Footermenu' );
-				$has_navigation = $footer_menu && wp_get_nav_menu_items( $footer_menu->term_id );
+				// Column 3: Paginalijst 2
+				$kolom2_titel = get_field( 'footer_kolom2_titel', 'option' );
+				$kolom2_paginas = get_field( 'footer_kolom2_paginas', 'option' );
 				?>
-				<?php if ( $has_navigation ) : ?>
-				<!-- Column 3: Footer Menu -->
+				<?php if ( !empty( $kolom2_paginas ) ) : ?>
+				<!-- Column 3: Paginalijst 2 -->
 				<div class="footer-col">
-					<h4 class="footer-title mb-4"><?php _e( 'Menu', 'kj' ); ?></h4>
-					<?php kj_nav( 'footer-menu', 'Footermenu' ); ?>
+					<?php if ( $kolom2_titel ) : ?>
+						<h4 class="footer-title mb-4"><?php echo esc_html( $kolom2_titel ); ?></h4>
+					<?php endif; ?>
+					<ul class="space-y-1">
+						<?php foreach ( $kolom2_paginas as $item ) : ?>
+							<?php if ( !empty( $item['pagina'] ) ) : ?>
+								<li>
+									<a href="<?php echo esc_url( get_permalink( $item['pagina']->ID ) ); ?>" class="footer-link-underline">
+										<?php echo esc_html( $item['pagina']->post_title ); ?>
+									</a>
+								</li>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</ul>
 				</div>
 				<?php endif; ?>
 				

@@ -11,34 +11,59 @@
     <header id="masthead" class="site-header color fixed top-0 left-0 right-0 z-50">
         <!-- Top Bar -->
         <div id="topbar" class="top-bar bg-grey-dark h-auto py-2 flex items-center">
-            <div class="container w-full flex justify-end items-center text-white text-sm px-4 lg:px-0">
+            <div class="container w-full flex justify-end items-center text-white text-xs px-4 lg:px-0">
                 <div class="flex items-center gap-4 lg:gap-6">
                     <?php 
                     $phone = get_field( 'phone', 'option' ) ?: get_field( 'telefoon', 'option' );
+                    $email = get_field( 'email', 'option' );
                     if ( $phone ) : 
                     ?>
-                        <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', $phone ) ); ?>" class="text-white hover:text-yellow transition-colors">
+                        <a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', $phone ) ); ?>" class="text-white hover:text-yellow transition-colors flex items-center gap-2">
+                            <svg width="12" height="12" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-current">
+                                <path d="M1.56617 3.3703C2.18918 4.59468 3.19291 5.59842 4.4173 6.22142L5.36911 5.26961C5.49026 5.14847 5.65899 5.11386 5.81041 5.16145C6.29497 5.32152 6.81415 5.40805 7.35495 5.40805C7.4697 5.40805 7.57974 5.45364 7.66088 5.53477C7.74201 5.61591 7.7876 5.72595 7.7876 5.8407V7.35495C7.7876 7.4697 7.74201 7.57974 7.66088 7.66088C7.57974 7.74201 7.4697 7.7876 7.35495 7.7876C5.4043 7.7876 3.53354 7.0127 2.15422 5.63338C0.774894 4.25406 0 2.3833 0 0.432644C0 0.3179 0.045582 0.207855 0.126719 0.126719C0.207855 0.045582 0.3179 0 0.432644 0H1.9469C2.06164 0 2.17169 0.045582 2.25282 0.126719C2.33396 0.207855 2.37954 0.3179 2.37954 0.432644C2.37954 0.97345 2.46607 1.49262 2.62615 1.97718C2.67374 2.12861 2.63913 2.29734 2.51799 2.41848L1.56617 3.3703Z"/>
+                            </svg>
                             <?php echo esc_html( $phone ); ?>
                         </a>
+                        <?php if ( $email ) : ?>
+                            <span class="h-4 w-px bg-white/30"></span>
+                        <?php endif; ?>
                     <?php endif; ?>
                     
-                    <?php if ( get_field( 'email', 'option' ) ) : ?>
-                        <a href="mailto:<?php echo esc_attr( get_field( 'email', 'option' ) ); ?>" class="text-white hover:text-yellow transition-colors">
-                            <?php echo esc_html( get_field( 'email', 'option' ) ); ?>
+                    <?php if ( $email ) : ?>
+                        <a href="mailto:<?php echo esc_attr( $email ); ?>" class="text-white hover:text-yellow transition-colors flex items-center gap-2">
+                            <svg width="12" height="12" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-current">
+                                <path d="M8.24552 1.83234L4.58084 4.12276L0.916169 1.83234V0.916169L4.58084 3.20659L8.24552 0.916169V1.83234ZM8.24552 0H0.916169C0.407695 0 0 0.407695 0 0.916169V6.41318C0 6.65616 0.0965246 6.8892 0.26834 7.06101C0.440155 7.23283 0.673186 7.32935 0.916169 7.32935H8.24552C8.4885 7.32935 8.72153 7.23283 8.89335 7.06101C9.06516 6.8892 9.16169 6.65616 9.16169 6.41318V0.916169C9.16169 0.407695 8.74941 0 8.24552 0Z"/>
+                            </svg>
+                            <?php echo esc_html( $email ); ?>
                         </a>
+                        <span class="h-4 w-px bg-white/30"></span>
+                    <?php endif; ?>
+                    
+                    <?php
+                    // Get vacatures count
+                    $vacatures_count = wp_count_posts( 'vacature' )->publish;
+                    $vacatures_url = get_post_type_archive_link( 'vacature' );
+                    if ( $vacatures_url && $vacatures_count > 0 ) :
+                    ?>
+                        <a href="<?php echo esc_url( $vacatures_url ); ?>" class="text-white hover:text-yellow transition-colors relative inline-block">
+                            <?php _e( 'Bekijk onze vacatures', 'kj' ); ?>
+                            <span class="absolute -top-1.5 -right-2 bg-yellow text-grey-dark text-xs font-bold rounded-full min-w-[20px] h-5 flex items-center justify-center leading-none px-1"><?php echo esc_html( $vacatures_count ); ?></span>
+                        </a>
+                        <span class="h-4 w-px bg-white/30"></span>
                     <?php endif; ?>
                     
                     <!-- Particulier / Zakelijk Switch -->
-                    <div class="topbar-switch flex items-center border border-white px-1 py-1 rounded-[0px]">
+                    <span class="text-white text-xs"><?php _e( 'Wissel naar:', 'kj' ); ?></span>
+                    <div class="topbar-switch flex items-center border border-white/30 px-1 py-1 rounded-[0px]">
                         <?php
                         $zakelijk_link = get_field( 'topbar_zakelijk_link', 'option' );
                         ?>
                         <a href="<?php echo esc_url( home_url( '/' ) ); ?>"
-                           class="topbar-switch-item topbar-switch-particulier px-3 py-1 bg-white text-grey text-sm transition-colors">
+                           class="topbar-switch-item topbar-switch-particulier px-3 py-1 bg-white text-grey text-xs transition-colors">
                             <?php _e( 'Particulier', 'kj' ); ?>
                         </a>
                         <a href="<?php echo esc_url( $zakelijk_link ?: '#' ); ?>"
-                           class="topbar-switch-item topbar-switch-zakelijk px-3 py-1 text-white text-sm transition-colors <?php echo !$zakelijk_link ? 'pointer-events-none opacity-50' : ''; ?>"
+                           class="topbar-switch-item topbar-switch-zakelijk px-3 py-1 text-white text-xs transition-colors <?php echo !$zakelijk_link ? 'pointer-events-none opacity-50' : ''; ?>"
                            <?php echo $zakelijk_link ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>>
                             <?php _e( 'Zakelijk', 'kj' ); ?>
                         </a>
@@ -64,7 +89,7 @@
                     </div>
 
                     <!-- Desktop Navigation -->
-                    <div class="hidden lg:flex items-center gap-6">
+                    <div class="hidden lg:flex items-center">
                         <?php kj_nav('primary-menu', 'Hoofdmenu'); ?>
                         
                         <!-- CTA Button -->

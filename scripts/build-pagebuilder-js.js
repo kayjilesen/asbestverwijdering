@@ -17,7 +17,9 @@ const pagebuilderBlocks = [
     'waar',
     'veelgestelde-vragen',
     'uitdagingen',
-    'highlights'
+    'highlights',
+    'hero-offerte',
+    'stappen'
 ];
 
 const templateDir = path.join(__dirname, '..', 'templates', 'pagebuilder');

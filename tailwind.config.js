@@ -21,6 +21,7 @@ module.exports = {
         'yellow-light' : '#F2F1EB',
         'blue' : '#004E64',
         'beige' : '#F7F7F2',
+        'beige-darker' : '#F0F0EC',
       },
       fontFamily: {
         'sans': ['Karla', 'system-ui', 'sans-serif'],

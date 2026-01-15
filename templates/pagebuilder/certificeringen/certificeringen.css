@@ -38,10 +38,11 @@
 }
 
 .certificeringen-block__logo-image {
-    /* Logo image */
-    filter: brightness(0) invert(1);
+    /* Logo image - converted to grey-dark color */
+    filter: brightness(0) saturate(100%);
     max-width: 200px;
     height: auto;
+    opacity: 1;
 }
 
 .certificeringen-block__content {

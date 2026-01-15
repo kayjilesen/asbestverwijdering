@@ -281,11 +281,11 @@
             "append": ""
         },
         {
-            "key": "field_pagebuilder_cta_subtitle",
-            "label": "Subtitel",
-            "name": "cta_default_subtitle",
+            "key": "field_pagebuilder_cta_text",
+            "label": "Tekst",
+            "name": "cta_default_text",
             "aria-label": "",
-            "type": "text",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -295,39 +295,18 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 1,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0,
+            "allow_in_bindings": 0
         },
         {
-            "key": "field_pagebuilder_cta_form",
-            "label": "Formulier Shortcode",
-            "name": "cta_default_form_id",
+            "key": "field_pagebuilder_cta_buttons",
+            "label": "Buttons",
+            "name": "cta_default_buttons",
             "aria-label": "",
-            "type": "text",
-            "instructions": "Voer hier de formulier shortcode in",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_pagebuilder_cta_contact_title",
-            "label": "Contact Titel",
-            "name": "cta_default_contact_title",
-            "aria-label": "",
-            "type": "text",
+            "type": "repeater",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -336,12 +315,37 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 1,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "layout": "block",
+            "min": 0,
+            "max": 2,
+            "collapsed": "",
+            "button_label": "Button toevoegen",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_pagebuilder_cta_button_item",
+                    "label": "Button",
+                    "name": "button",
+                    "aria-label": "",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "clone": [
+                        "group_button_fields"
+                    ],
+                    "display": "seamless",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0,
+                    "parent_repeater": "field_pagebuilder_cta_buttons"
+                }
+            ]
         },
         {
             "key": "field_pagebuilder_cta_image",
@@ -372,29 +376,7 @@
             "acfe_thumbnail": 0,
             "upload_folder": ""
         },
-        {
-            "key": "field_pagebuilder_cta_openingstijden",
-            "label": "Openingstijden",
-            "name": "cta_default_openingstijden",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "rows": 4,
-            "placeholder": "",
-            "new_lines": "br",
-            "allow_in_bindings": 0,
-            "acfe_textarea_code": 0
-        },
-        {
+                {
             "key": "field_pagebuilder_defaults_certificeringen_tab",
             "label": "Certificeringen",
             "name": "",

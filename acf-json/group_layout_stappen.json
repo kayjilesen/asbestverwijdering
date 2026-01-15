@@ -1,14 +1,14 @@
 {
-    "key": "group_layout_call_to_action",
-    "title": "Layout: Call to Action",
+    "key": "group_layout_stappen",
+    "title": "Layout: Stappen",
     "fields": [
         {
-            "key": "field_cta_mode",
-            "label": "Gebruik standaard CTA (options)",
-            "name": "mode",
+            "key": "field_stappen_content_tab",
+            "label": "Inhoud",
+            "name": "",
             "aria-label": "",
-            "type": "true_false",
-            "instructions": "Zet uit voor handmatige invoer in deze layout.",
+            "type": "tab",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -16,57 +16,20 @@
                 "class": "",
                 "id": ""
             },
-            "message": "",
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "Standaard",
-            "ui_off_text": "Handmatig",
-            "style": ""
-        },
-        {
-            "key": "field_cta_content_tab",
-            "label": "Content",
-            "name": "",
-            "aria-label": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_cta_mode",
-                        "operator": "!=",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
             "placement": "top",
             "endpoint": 0,
-            "no_preference": 0,
-            "selected": 0
+            "selected": 0,
+            "no_preference": 0
         },
         {
-            "key": "field_cta_left_title",
+            "key": "field_stappen_title",
             "label": "Titel",
             "name": "title",
             "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_cta_mode",
-                        "operator": "==",
-                        "value": "0"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -80,65 +43,52 @@
             "append": ""
         },
         {
-            "key": "field_cta_text",
-            "label": "Tekst",
-            "name": "text",
+            "key": "field_stappen_description",
+            "label": "Beschrijving",
+            "name": "description",
             "aria-label": "",
-            "type": "wysiwyg",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_cta_mode",
-                        "operator": "==",
-                        "value": "0"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
-            "tabs": "all",
-            "toolbar": "basic",
-            "media_upload": 0,
-            "delay": 0,
-            "allow_in_bindings": 0
+            "maxlength": "",
+            "rows": 4,
+            "placeholder": "",
+            "new_lines": "br",
+            "allow_in_bindings": 1,
+            "acfe_textarea_code": 0
         },
         {
-            "key": "field_cta_buttons",
+            "key": "field_stappen_buttons",
             "label": "Buttons",
             "name": "buttons",
             "aria-label": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_cta_mode",
-                        "operator": "==",
-                        "value": "0"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
             "layout": "block",
+            "pagination": 0,
             "min": 0,
             "max": 2,
             "collapsed": "",
             "button_label": "Button toevoegen",
             "rows_per_page": 20,
+            "acfe_repeater_stylised_button": 0,
             "sub_fields": [
                 {
-                    "key": "field_cta_button_item",
+                    "key": "field_stappen_button_item",
                     "label": "Button",
                     "name": "button",
                     "aria-label": "",
@@ -158,27 +108,24 @@
                     "layout": "block",
                     "prefix_label": 0,
                     "prefix_name": 0,
-                    "parent_repeater": "field_cta_buttons"
+                    "acfe_seamless_style": 0,
+                    "acfe_clone_modal": 0,
+                    "acfe_clone_modal_close": 0,
+                    "acfe_clone_modal_button": "",
+                    "acfe_clone_modal_size": "large",
+                    "parent_repeater": "field_stappen_buttons"
                 }
             ]
         },
         {
-            "key": "field_cta_image_tab",
-            "label": "Afbeelding",
+            "key": "field_stappen_items_tab",
+            "label": "Stappen",
             "name": "",
             "aria-label": "",
             "type": "tab",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_cta_mode",
-                        "operator": "!=",
-                        "value": "1"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -186,47 +133,81 @@
             },
             "placement": "top",
             "endpoint": 0,
-            "no_preference": 0,
-            "selected": 0
+            "selected": 0,
+            "no_preference": 0
         },
         {
-            "key": "field_cta_right_image",
-            "label": "Afbeelding",
-            "name": "right_image",
+            "key": "field_stappen_items",
+            "label": "Stappen",
+            "name": "stappen",
             "aria-label": "",
-            "type": "image",
-            "instructions": "Afbeelding wordt rechts aan de onderkant uitgelijnd",
+            "type": "repeater",
+            "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_cta_mode",
-                        "operator": "==",
-                        "value": "0"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 0,
-            "min_height": 0,
-            "min_size": 0,
-            "max_width": 0,
-            "max_height": 0,
-            "max_size": 0,
-            "mime_types": "",
-            "uploader": "",
-            "acfe_thumbnail": 0,
-            "upload_folder": ""
+            "layout": "block",
+            "pagination": 0,
+            "min": 1,
+            "max": 0,
+            "collapsed": "field_stappen_item_title",
+            "button_label": "Stap toevoegen",
+            "rows_per_page": 20,
+            "acfe_repeater_stylised_button": 0,
+            "sub_fields": [
+                {
+                    "key": "field_stappen_item_title",
+                    "label": "Titel",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 1,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_stappen_items"
+                },
+                {
+                    "key": "field_stappen_item_text",
+                    "label": "Tekst",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "rows": 4,
+                    "placeholder": "",
+                    "new_lines": "br",
+                    "allow_in_bindings": 1,
+                    "acfe_textarea_code": 0,
+                    "parent_repeater": "field_stappen_items"
+                }
+            ]
         },
         {
-            "key": "field_cta_spacing_tab",
+            "key": "field_stappen_whitespace_tab",
             "label": "Witruimte",
             "name": "",
             "aria-label": "",
@@ -240,10 +221,12 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0,
+            "no_preference": 0
         },
         {
-            "key": "field_cta_padding_top",
+            "key": "field_stappen_padding_top",
             "label": "Witruimte boven",
             "name": "padding_top",
             "aria-label": "",
@@ -263,7 +246,7 @@
             "ui_off_text": "Uit"
         },
         {
-            "key": "field_cta_padding_bottom",
+            "key": "field_stappen_padding_bottom",
             "label": "Witruimte onder",
             "name": "padding_bottom",
             "aria-label": "",
@@ -281,41 +264,6 @@
             "ui": 1,
             "ui_on_text": "Aan",
             "ui_off_text": "Uit"
-        },
-        {
-            "key": "field_cta_background_color",
-            "label": "Achtergrondkleur",
-            "name": "background_color",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "Kies de achtergrondkleur voor dit blok",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "white": "Wit",
-                "beige": "Beige",
-                "grey-light": "Lichtgrijs"
-            },
-            "default_value": "white",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "ajax": 0,
-            "return_format": "value",
-            "placeholder": "",
-            "create_options": 0,
-            "save_options": 0,
-            "allow_custom": 0,
-            "search_placeholder": "",
-            "prepend": "",
-            "append": "",
-            "min": "",
-            "max": ""
         }
     ],
     "location": [
@@ -339,7 +287,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": false,
-    "description": "",
+    "description": "Stappen layout met header en grid van genummerde stappen",
     "show_in_rest": 0,
     "display_title": "",
     "acfe_autosync": [
@@ -348,5 +296,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1705251600
+    "modified": 1736956800
 }
