@@ -51,7 +51,7 @@ $padding_class = ! empty( $padding_classes ) ? implode( ' ', $padding_classes ) 
 
 <section class="call-to-action-block rounded-[8px] <?php echo esc_attr( $padding_class ); ?> <?php echo esc_attr( $bg_class ); ?>">
     <div class="call-to-action-block__container container">
-        <div class="call-to-action-block__wrapper grid grid-cols-1 lg:grid-cols-5 bg-primary rounded-[2.5px] overflow-hidden">
+        <div class="call-to-action-block__wrapper grid grid-cols-1 lg:grid-cols-5 bg-primary rounded-lg overflow-hidden">
 
             <!-- Left: Content (3/5 = 60%) -->
             <div class="call-to-action-block__left lg:col-span-3 p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center lg:items-start lg:text-left">

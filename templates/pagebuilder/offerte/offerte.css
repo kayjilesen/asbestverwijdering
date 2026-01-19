@@ -1,0 +1,11 @@
+/**
+ * Offerte Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.offerte-block__title {
+  @apply leading-tight;
+}

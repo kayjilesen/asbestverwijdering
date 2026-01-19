@@ -46,23 +46,54 @@ if ($current_dienst || $current_doelgroep) {
         $wp_query->set('tax_query', $tax_query);
     }
 }
+
+// Use featured image of first project as fallback if no hero image is set
+if (!$archive_hero_image) {
+    // Try to get from current query first (respects filters)
+    global $wp_query;
+    $temp_query = new WP_Query($wp_query->query_vars);
+    if ($temp_query->have_posts()) {
+        $temp_query->the_post();
+        $featured_image_id = get_post_thumbnail_id();
+        if ($featured_image_id) {
+            $archive_hero_image = array('ID' => $featured_image_id);
+        }
+        wp_reset_postdata();
+    } else {
+        // Fallback to latest project if no posts in current query
+        $first_project = get_posts(array(
+            'post_type' => 'project',
+            'posts_per_page' => 1,
+            'post_status' => 'publish',
+            'orderby' => 'date',
+            'order' => 'DESC',
+        ));
+        
+        if (!empty($first_project)) {
+            $featured_image_id = get_post_thumbnail_id($first_project[0]->ID);
+            if ($featured_image_id) {
+                $archive_hero_image = array('ID' => $featured_image_id);
+            }
+        }
+    }
+}
 ?>
 
 <main id="primary" class="site-main">
 
     <!-- Hero Section -->
     <section class="hero-block relative overflow-hidden">
-        <div class="outer-container">
+        <div class="outer-container bg-white">
             <?php if ($archive_hero_image) : ?>
                 <div class="hero-block__background absolute top-0 left-0 right-0 bottom-0 w-full h-full z-0 overflow-hidden">
                     <?php echo wp_get_attachment_image($archive_hero_image['ID'], 'full', false, array('class' => 'hero-block__background-image object-cover object-center w-full h-full')); ?>
                 </div>
-                <div class="hero-block__gradient absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-gradient-to-r from-black/80 to-black/30 z-[5]"></div>
+                <div class="hero-block__gradient absolute top-0 left-0 right-0 bottom-0 w-full h-full z-[5]"></div>
             <?php endif; ?>
 
             <div class="hero-block__container container relative z-10 px-4 md:px-8">
                 <!-- Hero Content -->
-                <div class="hero-block__content text-white pt-72 pb-12 max-w-screen-lg mr-auto">
+                <div class="hero-block__content text-white pt-72 pb-12 max-w-screen-lg mx-auto text-center">
 
                     <?php if ($archive_title) : ?>
                         <h1 class="hero-block__title text-3xl md:text-4xl lg:text-[90px] font-title uppercase font-normal mb-6 !leading-[1]"><?php echo wp_kses_post($archive_title); ?></h1>
@@ -70,14 +101,11 @@ if ($current_dienst || $current_doelgroep) {
 
                 </div>
             </div>
-            <div class="svg-wrapper">
-                <?php echo file_get_contents(get_template_directory() . '/assets/svg/hero.svg'); ?>
-            </div>
         </div>
     </section>
 
     <!-- Breadcrumbs -->
-    <section class="breadcrumbs-section bg-white">
+    <section class="breadcrumbs-section bg-beige">
         <div class="container py-4">
             <?php echo kj_breadcrumbs(); ?>
         </div>
@@ -85,7 +113,7 @@ if ($current_dienst || $current_doelgroep) {
 
     <!-- Intro Section -->
     <?php if ($intro_title || $intro_text) : ?>
-    <section class="project-archive-intro bg-white py-12 lg:py-16">
+    <section class="project-archive-intro bg-beige py-12 lg:py-16">
         <div class="container">
             <div class="project-archive-intro__content max-w-4xl mx-auto text-center">
                 <?php if ($intro_title) : ?>
@@ -121,9 +149,9 @@ if ($current_dienst || $current_doelgroep) {
             'order' => 'ASC',
         ));
     ?>
-    <section class="project-archive-filters bg-white sticky top-[var(--header-height,80px)] z-40 py-6">
+    <section class="project-archive-filters bg-beige sticky top-[var(--header-height,80px)] z-40 py-6">
         <div class="container">
-            <div class="project-archive-filters__wrapper border border-grey/40 p-6 flex flex-col lg:flex-row lg:flex-wrap justify-between gap-6">
+            <div class="project-archive-filters__wrapper border border-grey/40 bg-white p-6 flex flex-col lg:flex-row lg:flex-wrap justify-between gap-6 rounded-lg">
 
                 <!-- Diensten Filters (Left) -->
                 <div class="project-archive-filters__group flex flex-col lg:flex-row lg:items-center gap-3">
@@ -173,7 +201,7 @@ if ($current_dienst || $current_doelgroep) {
     <?php endif; ?>
     
     <!-- Projects Grid -->
-    <section class="project-archive-grid pb-16 lg:pb-24 bg-white">
+    <section class="project-archive-grid pb-16 lg:pb-24 bg-beige">
         <div class="container">
 
             <?php if (have_posts()) :

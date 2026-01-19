@@ -40,6 +40,12 @@ function kj_scripts() {
         wp_register_script('kj-archive-project', get_template_directory_uri() . '/assets/js/archive-project.js', array(), filemtime(get_stylesheet_directory() . '/assets/js/archive-project.js'), true);
         wp_enqueue_script('kj-archive-project');
     }
+
+    // Archive Kennisbank Scripts (home.php / blog archive)
+    if (is_home() || (is_archive() && get_post_type() === 'post')) {
+        wp_register_script('kj-archive-kennisbank', get_template_directory_uri() . '/assets/js/archive-kennisbank.js', array(), filemtime(get_stylesheet_directory() . '/assets/js/archive-kennisbank.js'), true);
+        wp_enqueue_script('kj-archive-kennisbank');
+    }
 }
 add_action('wp_enqueue_scripts', 'kj_scripts');
 
@@ -61,6 +67,12 @@ function kj_styles() {
     if (is_post_type_archive('vacature') || is_singular('vacature')) {
         wp_register_style('archive-vacature', get_template_directory_uri() . '/assets/css/archive-project.css', array('style'), filemtime(get_theme_file_path('/assets/css/archive-project.css')), 'all');
         wp_enqueue_style('archive-vacature');
+    }
+
+    // Archive Kennisbank Styles (home.php / blog archive)
+    if (is_home() || (is_archive() && get_post_type() === 'post')) {
+        wp_register_style('archive-kennisbank', get_template_directory_uri() . '/assets/css/archive-kennisbank.css', array('style'), filemtime(get_theme_file_path('/assets/css/archive-kennisbank.css')), 'all');
+        wp_enqueue_style('archive-kennisbank');
     }
 
 }

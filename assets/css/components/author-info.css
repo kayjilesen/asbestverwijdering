@@ -1,0 +1,18 @@
+/**
+ * Author Info Component Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.author-info {
+  /* Most styling is handled by Tailwind classes in the template */
+}
+
+.author-info__photo {
+  /* Ensure image is properly contained and exactly 44x44px */
+  @apply object-cover;
+  width: 44px;
+  height: 44px;
+}

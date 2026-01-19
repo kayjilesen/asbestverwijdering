@@ -177,11 +177,132 @@ function kj_render_button($button_data = array()) {
 
         <?php elseif($button_link_type == 'contact') : ?>
 
-            <?php 
+            <?php
             $contact_page = get_field('page_contact', 'option');
-            $contact_url = $contact_page ? $contact_page : '/contact';
+            $contact_url = $contact_page ? get_permalink($contact_page) : '/contact';
             ?>
             <a href="<?php echo esc_url($contact_url); ?>" class="kj-button <?php echo esc_attr($button_style); ?><?php echo ($is_primary || $is_secondary || $is_text) ? ' flex items-center gap-2' : ''; ?>">
+                <?php if($is_primary) : ?>
+                    <div class="kj-button-inner <?php echo esc_attr($button_style); ?>">
+                        <span><?php echo esc_html($button_label); ?></span>
+                    </div>
+                    <div class="kj-button-arrow-box <?php echo esc_attr($button_style); ?>">
+                        <svg class="kj-button-arrow-svg kj-button-arrow-svg-out" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                        </svg>
+                        <svg class="kj-button-arrow-svg kj-button-arrow-svg-in" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                        </svg>
+                    </div>
+                <?php elseif($is_secondary) : ?>
+                    <div class="kj-button-inner <?php echo esc_attr($button_style); ?>">
+                        <span><?php echo esc_html($button_label); ?></span>
+                    </div>
+                    <div class="kj-button-arrow-box <?php echo esc_attr($button_style); ?>">
+                        <svg class="kj-button-arrow-svg kj-button-arrow-svg-out" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                        </svg>
+                        <svg class="kj-button-arrow-svg kj-button-arrow-svg-in" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                        </svg>
+                    </div>
+                <?php elseif($is_text) : ?>
+                    <span><?php echo esc_html($button_label); ?></span>
+                    <svg class="kj-button-text-arrow" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                    </svg>
+                <?php else : ?>
+                    <span><?php echo esc_html($button_label); ?></span>
+                <?php endif; ?>
+            </a>
+
+        <?php elseif($button_link_type == 'offerte') : ?>
+
+            <?php
+            $offerte_page = get_field('page_offerte_aanvragen', 'option');
+            $offerte_url = $offerte_page ? get_permalink($offerte_page) : '/offerte-aanvragen';
+            ?>
+            <a href="<?php echo esc_url($offerte_url); ?>" class="kj-button <?php echo esc_attr($button_style); ?><?php echo ($is_primary || $is_secondary || $is_text) ? ' flex items-center gap-2' : ''; ?>">
+                <?php if($is_primary) : ?>
+                    <div class="kj-button-inner <?php echo esc_attr($button_style); ?>">
+                        <span><?php echo esc_html($button_label); ?></span>
+                    </div>
+                    <div class="kj-button-arrow-box <?php echo esc_attr($button_style); ?>">
+                        <svg class="kj-button-arrow-svg kj-button-arrow-svg-out" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                        </svg>
+                        <svg class="kj-button-arrow-svg kj-button-arrow-svg-in" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                        </svg>
+                    </div>
+                <?php elseif($is_secondary) : ?>
+                    <div class="kj-button-inner <?php echo esc_attr($button_style); ?>">
+                        <span><?php echo esc_html($button_label); ?></span>
+                    </div>
+                    <div class="kj-button-arrow-box <?php echo esc_attr($button_style); ?>">
+                        <svg class="kj-button-arrow-svg kj-button-arrow-svg-out" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                        </svg>
+                        <svg class="kj-button-arrow-svg kj-button-arrow-svg-in" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                        </svg>
+                    </div>
+                <?php elseif($is_text) : ?>
+                    <span><?php echo esc_html($button_label); ?></span>
+                    <svg class="kj-button-text-arrow" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                    </svg>
+                <?php else : ?>
+                    <span><?php echo esc_html($button_label); ?></span>
+                <?php endif; ?>
+            </a>
+
+        <?php elseif($button_link_type == 'projecten') : ?>
+
+            <?php
+            $projecten_url = get_post_type_archive_link('project');
+            ?>
+            <a href="<?php echo esc_url($projecten_url); ?>" class="kj-button <?php echo esc_attr($button_style); ?><?php echo ($is_primary || $is_secondary || $is_text) ? ' flex items-center gap-2' : ''; ?>">
+                <?php if($is_primary) : ?>
+                    <div class="kj-button-inner <?php echo esc_attr($button_style); ?>">
+                        <span><?php echo esc_html($button_label); ?></span>
+                    </div>
+                    <div class="kj-button-arrow-box <?php echo esc_attr($button_style); ?>">
+                        <svg class="kj-button-arrow-svg kj-button-arrow-svg-out" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                        </svg>
+                        <svg class="kj-button-arrow-svg kj-button-arrow-svg-in" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                        </svg>
+                    </div>
+                <?php elseif($is_secondary) : ?>
+                    <div class="kj-button-inner <?php echo esc_attr($button_style); ?>">
+                        <span><?php echo esc_html($button_label); ?></span>
+                    </div>
+                    <div class="kj-button-arrow-box <?php echo esc_attr($button_style); ?>">
+                        <svg class="kj-button-arrow-svg kj-button-arrow-svg-out" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                        </svg>
+                        <svg class="kj-button-arrow-svg kj-button-arrow-svg-in" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                        </svg>
+                    </div>
+                <?php elseif($is_text) : ?>
+                    <span><?php echo esc_html($button_label); ?></span>
+                    <svg class="kj-button-text-arrow" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
+                    </svg>
+                <?php else : ?>
+                    <span><?php echo esc_html($button_label); ?></span>
+                <?php endif; ?>
+            </a>
+
+        <?php elseif($button_link_type == 'vacatures') : ?>
+
+            <?php
+            $vacatures_url = get_post_type_archive_link('vacature');
+            ?>
+            <a href="<?php echo esc_url($vacatures_url); ?>" class="kj-button <?php echo esc_attr($button_style); ?><?php echo ($is_primary || $is_secondary || $is_text) ? ' flex items-center gap-2' : ''; ?>">
                 <?php if($is_primary) : ?>
                     <div class="kj-button-inner <?php echo esc_attr($button_style); ?>">
                         <span><?php echo esc_html($button_label); ?></span>

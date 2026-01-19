@@ -6,3 +6,17 @@
 
 /* All styling is done via Tailwind classes in the PHP template */
 /* Strong tag styling with yellow line is available globally via text.css */
+
+/* Decorative SVG positioning - Left top (half above the grid) */
+.stappen-block__svg--left {
+  @apply -translate-y-1/2 -translate-x-8;
+}
+
+/* Decorative SVG positioning - Right (same as text-image with image right) */
+.stappen-block__svg--right {
+  @apply translate-x-[80px] bottom-20 lg:bottom-[120px];
+}
+
+.stappen-block__svg svg rect {
+  stroke: #FFD500;
+}

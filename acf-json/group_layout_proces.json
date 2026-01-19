@@ -267,6 +267,67 @@
             ]
         },
         {
+            "key": "field_proces_tab_image",
+            "label": "Afbeelding",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_proces_mode",
+                        "operator": "==",
+                        "value": "0"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0,
+            "no_preference": 0
+        },
+        {
+            "key": "field_proces_image",
+            "label": "Afbeelding",
+            "name": "image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Staande afbeelding (portrait) werkt het beste.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_proces_mode",
+                        "operator": "==",
+                        "value": "0"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 1,
+            "preview_size": "thumbnail"
+        },
+        {
             "key": "field_proces_spacing_tab",
             "label": "Witruimte",
             "name": "",
@@ -354,5 +415,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1765372118
+    "modified": 1768812375
 }

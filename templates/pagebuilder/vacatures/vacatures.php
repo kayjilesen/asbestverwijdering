@@ -70,8 +70,8 @@ if ( $padding_bottom ) {
 $padding_class = ! empty( $padding_classes ) ? implode( ' ', $padding_classes ) : '';
 ?>
 
-<section class="vacatures-block <?php echo esc_attr( $padding_class ); ?> bg-white">
-    <div class="vacatures-block__container container">
+<section class="vacatures-block <?php echo esc_attr( $padding_class ); ?> bg-beige">
+    <div class="vacatures-block__container container md:bg-white md:p-4 lg:p-6 rounded-[10px]">
         
         <?php if ( $subtitle || $title ) : ?>
             <div class="vacatures-block__header mb-12 text-center">

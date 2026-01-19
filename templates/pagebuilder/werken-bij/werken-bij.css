@@ -10,3 +10,14 @@
   /* Werken bij specific styles can be added here */
 }
 
+.werken-bij-block__title strong {
+  @apply inline relative z-[1];
+}
+
+.werken-bij-block__title strong::after {
+  content: '';
+  @apply absolute left-0 w-full bg-yellow;
+  bottom: clamp(0.25rem, 0.75vw, 0.5rem);
+  height: clamp(0.5rem, 1.5vw, 0.875rem);
+  z-index: -1;
+}

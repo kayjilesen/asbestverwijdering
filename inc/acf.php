@@ -5,27 +5,26 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Add ACF Pro Options
  */
-if( function_exists('acf_add_options_page') ) {
-
-    $parent = acf_add_options_page(array(
-        'page_title'  => __('Theme Settings', 'kj'),
-        'menu_title'  => __('Theme Settings', 'kj'),
+if ( function_exists( 'acf_add_options_page' ) ) {
+    acf_add_options_page( array(
+        'page_title'  => 'Theme Settings',
+        'menu_title'  => 'Theme Settings',
         'menu_slug'   => 'theme-settings',
         'redirect'    => false,
-    ));
-
-    // ACF JSON Save/Load
-    add_filter('acf/settings/save_json', function($path) {
-        $path = get_template_directory() . '/acf-json';
-        return $path;
-    });
-
-    add_filter('acf/settings/load_json', function($paths) {
-        unset($paths[0]);
-        $paths[] = get_template_directory() . '/acf-json';
-        return $paths;
-    });
+    ) );
 }
+
+// ACF JSON Save/Load
+add_filter('acf/settings/save_json', function($path) {
+    $path = get_template_directory() . '/acf-json';
+    return $path;
+});
+
+add_filter('acf/settings/load_json', function($paths) {
+    unset($paths[0]);
+    $paths[] = get_template_directory() . '/acf-json';
+    return $paths;
+});
 
 /**
  * Auto Escape ACF Field

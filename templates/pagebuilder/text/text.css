@@ -1,0 +1,186 @@
+/**
+ * Text Block Styles
+ *
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+/* Typography styling for text block content */
+.text-block__text {
+    @apply text-grey;
+}
+
+/* Paragraphs */
+.text-block__text p {
+    @apply mb-4 text-base leading-relaxed;
+    font-size: 16px;
+}
+
+.text-block__text p:first-child {
+    @apply mt-0;
+}
+
+.text-block__text p:last-child {
+    @apply mb-0;
+}
+
+/* Headings */
+.text-block__text h1,
+.text-block__text h3,
+.text-block__text h4,
+.text-block__text h5,
+.text-block__text h6 {
+    @apply font-serif font-bold text-grey-dark;
+}
+
+.text-block__text h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl mt-8 mb-4 leading-tight;
+}
+
+.text-block__text h2 {
+    @apply font-title font-bold text-grey-dark text-2xl md:text-3xl lg:text-4xl mt-8 mb-4 leading-tight uppercase;
+}
+
+.text-block__text h3 {
+    @apply text-lg md:text-xl lg:text-2xl mt-6 mb-3 leading-tight;
+}
+
+.text-block__text h4 {
+    @apply text-lg md:text-xl lg:text-2xl mt-6 mb-3 leading-tight;
+}
+
+.text-block__text h5 {
+    @apply text-base md:text-lg lg:text-xl mt-4 mb-2 leading-tight;
+}
+
+.text-block__text h6 {
+    @apply text-sm md:text-base lg:text-lg mt-4 mb-2 leading-tight;
+}
+
+.text-block__text h1:first-child,
+.text-block__text h2:first-child,
+.text-block__text h3:first-child,
+.text-block__text h4:first-child,
+.text-block__text h5:first-child,
+.text-block__text h6:first-child {
+    @apply mt-0;
+}
+
+/* Unordered and Ordered Lists */
+.text-block__text ul,
+.text-block__text ol {
+    @apply mb-4 pl-6 text-grey;
+}
+
+.text-block__text ul {
+    @apply list-disc;
+}
+
+.text-block__text ol {
+    @apply list-decimal;
+}
+
+.text-block__text ul:last-child,
+.text-block__text ol:last-child {
+    @apply mb-0;
+}
+
+/* List Items */
+.text-block__text li {
+    @apply mb-2 text-base leading-relaxed;
+}
+
+.text-block__text li:last-child {
+    @apply mb-0;
+}
+
+/* Nested Lists */
+.text-block__text ul ul,
+.text-block__text ol ol,
+.text-block__text ul ol,
+.text-block__text ol ul {
+    @apply mt-2 mb-0;
+}
+
+/* Links */
+.text-block__text a {
+    @apply text-primary underline transition-colors hover:text-secondary;
+}
+
+/* Strong/Bold */
+.text-block__text strong,
+.text-block__text b {
+    @apply font-semibold text-grey-dark;
+}
+
+/* Emphasis/Italic */
+.text-block__text em,
+.text-block__text i {
+    @apply italic;
+}
+
+/* Code */
+.text-block__text code {
+    @apply bg-grey-light px-1 py-0.5 rounded text-sm font-mono;
+}
+
+.text-block__text pre {
+    @apply bg-grey-light p-4 rounded mb-4 overflow-x-auto;
+}
+
+.text-block__text pre code {
+    @apply bg-transparent p-0;
+}
+
+/* Blockquotes */
+.text-block__text blockquote {
+    @apply border-l-4 border-primary pl-4 my-4 italic text-grey-text;
+}
+
+.text-block__text blockquote p {
+    @apply mb-0;
+}
+
+/* Images */
+.text-block__text img {
+    @apply max-w-full h-auto my-4 rounded;
+}
+
+.text-block__text img:first-child {
+    @apply mt-0;
+}
+
+.text-block__text img:last-child {
+    @apply mb-0;
+}
+
+/* Horizontal Rules */
+.text-block__text hr {
+    @apply border-t border-grey-decor my-6;
+}
+
+/* Tables */
+.text-block__text table {
+    @apply w-full mb-4 border-collapse;
+}
+
+.text-block__text th,
+.text-block__text td {
+    @apply border border-grey-decor px-4 py-2 text-left;
+}
+
+.text-block__text th {
+    @apply bg-grey-light font-semibold text-grey-dark;
+}
+
+/* Alignment adjustments for centered text */
+.text-block__content.text-center .text-block__text ul,
+.text-block__content.text-center .text-block__text ol {
+    @apply list-inside;
+}
+
+.text-block__content.text-center .text-block__text blockquote {
+    @apply border-l-0 border-t-4 pl-0 pt-4;
+    text-align: center;
+}

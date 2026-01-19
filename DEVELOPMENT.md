@@ -186,3 +186,10 @@ kj_escape_html($text)                   // Escape HTML
 **Tailwind classes werken niet:**
 - Run `npm run build:css`
 - Check `tailwind.config.js` content paths
+
+---
+
+## Layout Migraties
+
+Voor instructies over het kopiëren van layouts naar andere websites, zie:
+- **Text Layout:** `TEXT_LAYOUT_MIGRATION.md`

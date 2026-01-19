@@ -22,6 +22,7 @@ module.exports = {
         'blue' : '#004E64',
         'beige' : '#F7F7F2',
         'beige-darker' : '#F0F0EC',
+        'grey-card' : '#6C6C6C',
       },
       fontFamily: {
         'sans': ['Karla', 'system-ui', 'sans-serif'],

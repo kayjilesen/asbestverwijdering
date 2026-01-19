@@ -1,0 +1,23 @@
+{
+    "key": "ui_options_page_kennisbank_artikel",
+    "title": "Kennisbank - Artikel",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "Kennisbank - Artikel",
+    "menu_slug": "kennisbank-artikel",
+    "parent_slug": "theme-settings",
+    "advanced_configuration": false,
+    "icon_url": "",
+    "menu_title": "",
+    "position": null,
+    "redirect": false,
+    "description": "",
+    "menu_icon": [],
+    "update_button": "Updaten",
+    "updated_message": "Opties geüpdatet",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": false,
+    "modified": 1768658026
+}

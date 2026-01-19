@@ -53,7 +53,7 @@ ul.topbar-menu .menu-item {
     @apply bg-grey;
 }
 .topbar-switch-item {
-    @apply transition-colors;
+    @apply transition-colors rounded-[2px];
 }
 
 .topbar-switch-particulier {
@@ -62,6 +62,24 @@ ul.topbar-menu .menu-item {
 
 .topbar-switch-zakelijk:hover {
     @apply text-yellow;
+}
+
+/* Topbar Mobile Swiper */
+.topbar-mobile {
+    @apply flex items-center;
+}
+
+.topbar-mobile .swiper {
+    @apply w-full;
+}
+
+.topbar-mobile .swiper-wrapper {
+    @apply items-center;
+}
+
+.topbar-mobile .swiper-slide {
+    @apply flex items-center justify-center;
+    height: auto;
 }
 
 /* Menu Mobile Toggle Button */
@@ -97,23 +115,26 @@ ul.topbar-menu .menu-item {
     @apply -translate-y-2.5;
 }
 
-/* Basic UL / LI */
-header ul.menu {
-    @apply flex flex-col lg:flex-row items-center py-1 h-full gap-5;
+/* Basic UL / LI - Desktop menu only */
+header .primary-menu {
+    @apply flex flex-col lg:flex-row items-center py-1 h-full gap-0;
 }
-header ul li.menu-item {
+header .primary-menu li.menu-item {
     @apply font-semibold font-serif font-sans text-sm duration-300 transition relative;
 }
-header.color ul li.menu-item {
+header.color .primary-menu li.menu-item {
     @apply text-grey-dark;
 }
-header ul li.menu-item a {
-    @apply py-2.5 px-0 flex flex-row items-center duration-300 hover:opacity-80;
+header .primary-menu li.menu-item a {
+    @apply py-2.5 px-3 flex flex-row items-center duration-300 rounded transition-colors border border-beige;
 }
-header.color ul li.menu-item a {
+header .primary-menu li.menu-item a:hover {
+    @apply bg-beige-darker border-grey-dark/10;
+}
+header.color .primary-menu li.menu-item a {
     @apply text-grey-dark;
 }
-header ul li.menu-item-has-children {
+header .primary-menu li.menu-item-has-children {
     @apply flex flex-row items-center;
 }
 header .primary-menu .menu-item.menu-item-has-children ul.sub-menu {
@@ -186,27 +207,52 @@ body.show-mobile-menu #mobile-menu {
 #mobile-menu ul {
     @apply flex flex-col w-full gap-0;
 }
-#mobile-menu ul li.menu-item {
-    @apply py-2 w-full border-b border-grey-dark/10 last:border-b-0 font-semibold text-base gap-0;
+/* Parent menu items only - with divider between them */
+#mobile-menu ul.menu > li.menu-item {
+    @apply py-2 w-full border-b border-grey-dark/10 last:border-b-0 gap-0;
 }
-#mobile-menu ul li.menu-item a {
-    @apply text-grey-dark font-title uppercase font-bold text-2xl py-2.5 px-0 flex flex-grow items-center justify-between;
+/* All menu items - title font */
+#mobile-menu ul li.menu-item {
+    @apply py-2 w-full gap-0;
+}
+/* Menu items without children - full width */
+#mobile-menu ul li.menu-item:not(.menu-item-has-children) a {
+    @apply text-grey-dark font-title uppercase font-bold text-2xl py-2.5 px-0 flex items-center w-full;
     gap: 0 !important;
+    border: none !important;
+}
+/* Menu items with children - flex layout */
+#mobile-menu ul li.menu-item a {
+    @apply text-grey-dark font-title uppercase font-bold text-2xl py-2.5 px-0 flex items-center;
+    gap: 0 !important;
+    border: none !important;
+    flex: 1;
+    min-width: 0;
+}
+#mobile-menu ul li.menu-item a:hover {
+    @apply bg-transparent;
+    border: none !important;
 }
 #mobile-menu ul li.menu-item .chevron-wrapper {
-    @apply w-8 h-8 bg-primary flex items-center justify-center ml-2 flex-shrink-0 cursor-pointer;
+    @apply w-8 h-8 bg-primary flex items-center justify-center flex-shrink-0 cursor-pointer;
+    flex-shrink: 0 !important;
 }
 #mobile-menu ul li.menu-item svg {
     @apply inline-block fill-grey-dark transition-transform duration-300;
 }
 #mobile-menu ul li.menu-item-has-children {
-    @apply flex-wrap gap-0 !relative;
+    @apply flex flex-col w-full !relative;
 }
 #mobile-menu ul li.menu-item-has-children > a {
+    @apply flex items-center justify-between w-full;
     gap: 0 !important;
+    order: 1;
 }
-#mobile-menu ul li.menu-item-has-children > a svg {
-    @apply rotate-90;
+#mobile-menu ul li.menu-item-has-children > a .chevron-wrapper {
+    @apply ml-2 flex-shrink-0;
+}
+#mobile-menu ul li.menu-item-has-children > a .chevron-wrapper svg {
+    @apply rotate-0;
 }
 #mobile-menu ul li.menu-item :is(ul.sub-menu, ul.children) {
     @apply relative w-full flex flex-col h-0 overflow-hidden transition-all duration-300 ease-in-out pl-2 mt-2 gap-0;
@@ -215,13 +261,23 @@ body.show-mobile-menu #mobile-menu {
     left: auto !important;
     right: auto !important;
     transform: none !important;
+    clear: both !important;
+    width: 100% !important;
+    margin-top: 0.5rem !important;
+    order: 999;
 }
 #mobile-menu ul li.menu-item :is(ul.sub-menu, ul.children) li.menu-item a {
-    @apply text-grey-dark font-semibold text-base font-sans py-2;
+    @apply text-grey-dark font-sans font-semibold text-base py-1;
+    border: none !important;
+    text-transform: none;
+}
+#mobile-menu ul li.menu-item :is(ul.sub-menu, ul.children) li.menu-item a:hover {
+    @apply bg-transparent;
+    border: none !important;
 }
 #mobile-menu ul li.menu-item-has-children.open :is(ul.sub-menu, ul.children) {
     @apply h-auto opacity-100;
 }
-#mobile-menu ul li.menu-item-has-children.open .chevron-wrapper svg {
-    @apply rotate-[180deg];
+#mobile-menu ul li.menu-item-has-children.open > a .chevron-wrapper svg {
+    @apply rotate-180;
 }

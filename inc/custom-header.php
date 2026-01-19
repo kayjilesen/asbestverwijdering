@@ -47,8 +47,13 @@ function kj_add_chevron_to_menu_item($item_output, $item, $depth, $args) {
     $chevron_icon = '<div class="chevron-wrapper"><svg class="w-6 h-6 lg:w-4 lg:h-4 lg:ml-1 duration-300 ease-in-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/></svg></div>';
 
     if (in_array('menu-item-has-children', $item->classes)) {
-
-        $item_output = str_replace('</a>','</a>' . $chevron_icon, $item_output);
+        // For mobile menu, place chevron inside the <a> tag
+        if ($args->theme_location == 'mobile-menu') {
+            $item_output = str_replace('</a>', $chevron_icon . '</a>', $item_output);
+        } else {
+            // For desktop menu, keep chevron after </a>
+            $item_output = str_replace('</a>','</a>' . $chevron_icon, $item_output);
+        }
     }
 
     return $item_output;

@@ -1,0 +1,23 @@
+{
+    "key": "ui_options_page_kennisbank_archive",
+    "title": "Kennisbank - Overzicht",
+    "active": true,
+    "menu_order": 0,
+    "page_title": "Kennisbank - Overzicht",
+    "menu_slug": "kennisbank-archive",
+    "parent_slug": "theme-settings",
+    "advanced_configuration": false,
+    "icon_url": "",
+    "menu_title": "Kennisbank",
+    "position": null,
+    "redirect": false,
+    "description": "",
+    "menu_icon": [],
+    "update_button": "Updaten",
+    "updated_message": "Opties geüpdatet",
+    "capability": "edit_posts",
+    "data_storage": "options",
+    "post_id": "",
+    "autoload": false,
+    "modified": 1768658057
+}

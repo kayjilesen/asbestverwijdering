@@ -1,0 +1,168 @@
+/**
+ * Kennisbank Archive Styles
+ *
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+/* Hero Section */
+.kennisbank-archive-hero {
+  @apply min-h-[400px] md:min-h-[300px];
+}
+
+.kennisbank-archive-hero__breadcrumbs {
+  @apply text-white/90;
+}
+
+.kennisbank-archive-hero__breadcrumbs a {
+  @apply text-white/90 no-underline transition-colors duration-300 hover:text-white;
+}
+
+.kennisbank-archive-hero__breadcrumbs .breadcrumb-current {
+  @apply text-white/70;
+}
+
+/* Intro Section */
+
+.kennisbank-archive-intro__content {
+  @apply text-center;
+}
+
+.kennisbank-archive-intro__title {
+  @apply font-title uppercase font-normal;
+}
+
+.kennisbank-archive-intro__text {
+  @apply text-grey-text;
+}
+
+.kennisbank-archive-intro__text a {
+  @apply text-grey-dark no-underline transition-colors duration-300;
+}
+
+.kennisbank-archive-intro__text a:hover {
+  @apply underline;
+}
+
+.kennisbank-archive-intro__text p {
+  @apply mb-4;
+}
+
+.kennisbank-archive-intro__text p:last-child {
+  @apply mb-0;
+}
+
+/* Filters Section */
+.kennisbank-archive-filters {
+  @apply transition-all duration-300;
+}
+
+.kennisbank-archive-filter-btn {
+  @apply py-2 px-4 bg-white border border-grey/40 text-grey-dark font-bold cursor-pointer transition-all duration-200 whitespace-nowrap no-underline inline-flex items-center gap-3 font-title uppercase rounded-[8px] text-base tracking-wider leading-[1.4] flex-shrink-0;
+}
+
+.kennisbank-archive-filter-btn:hover {
+  @apply border-grey-dark;
+}
+
+.kennisbank-archive-filter-btn.active {
+  @apply text-grey-dark bg-yellow border-yellow relative pr-11;
+}
+
+.kennisbank-archive-filter-btn.active::after {
+  @apply absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-black/15 bg-center bg-no-repeat transition-all duration-200;
+  content: '';
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.5 4.5L11.5 11.5M11.5 4.5L4.5 11.5' stroke='%231A1603' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 10px 10px;
+}
+
+.kennisbank-archive-filter-btn.active:hover::after {
+  @apply bg-black/30;
+}
+
+/* Featured Posts */
+.kennisbank-archive-featured {
+  @apply mb-8;
+}
+
+.kennisbank-archive-featured__grid {
+  @apply grid grid-cols-1 gap-8;
+}
+
+.kennisbank-archive-item--featured {
+  @apply w-full;
+}
+
+/* Posts Grid */
+.kennisbank-archive-grid__wrapper {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    @apply opacity-0 translate-y-5;
+  }
+  to {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+.kennisbank-archive-item {
+  @apply opacity-100 transition-all duration-300;
+}
+
+.kennisbank-archive-item.hide {
+  @apply hidden;
+}
+
+.kennisbank-archive-item__image-wrapper {
+  @apply bg-grey-light;
+}
+
+.kennisbank-archive-item__link {
+  @apply no-underline text-inherit;
+}
+
+.kennisbank-archive-item__excerpt {
+  @apply line-clamp-2;
+}
+
+/* Pagination */
+.kennisbank-archive-pagination {
+  @apply flex justify-center;
+}
+
+.kennisbank-archive-pagination .pagination {
+  @apply flex gap-2 items-center;
+}
+
+.kennisbank-archive-pagination .pagination a,
+.kennisbank-archive-pagination .pagination span {
+  @apply py-2 px-4 border border-grey/10 rounded-md no-underline text-grey-dark transition-all duration-300;
+}
+
+.kennisbank-archive-pagination .pagination a:hover {
+  @apply bg-secondary border-secondary text-white;
+}
+
+.kennisbank-archive-pagination .pagination .current {
+  @apply bg-secondary border-secondary text-white;
+}
+
+/* Empty State */
+.kennisbank-archive-empty {
+  @apply min-h-[300px] flex items-center justify-center;
+}
+
+/* Responsive Scrolling */
+.kennisbank-archive-filters__wrapper {
+  @apply overflow-x-auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.kennisbank-archive-filters__wrapper::-webkit-scrollbar {
+  @apply hidden;
+}

@@ -215,12 +215,16 @@ function kj_breadcrumbs($args = array()) {
         $breadcrumbs[] = '<a href="' . esc_url(home_url('/')) . '" class="breadcrumb-link hover:underline">' . esc_html($args['home_text']) . '</a>';
     }
 
-    // Archive page
-    if (is_archive()) {
+    // Archive page or blog home
+    if (is_archive() || is_home()) {
         $post_type = get_post_type();
 
+        // Blog home (kennisbank)
+        if (is_home() && !is_front_page()) {
+            $breadcrumbs[] = '<span class="breadcrumb-current font-normal">' . esc_html(__('Kennisbank', 'kj')) . '</span>';
+        }
         // Add parent taxonomy links if available
-        if (is_tax()) {
+        elseif (is_tax()) {
             $term = get_queried_object();
 
             // Add post type archive link
@@ -239,6 +243,8 @@ function kj_breadcrumbs($args = array()) {
                 $breadcrumbs[] = '<span class="breadcrumb-current font-normal">' . esc_html(__('Projecten', 'kj')) . '</span>';
             } elseif ($post_type === 'vacature') {
                 $breadcrumbs[] = '<span class="breadcrumb-current font-normal">' . esc_html(__('Vacatures', 'kj')) . '</span>';
+            } elseif ($post_type === 'post' || is_category()) {
+                $breadcrumbs[] = '<span class="breadcrumb-current font-normal">' . esc_html(__('Kennisbank', 'kj')) . '</span>';
             } else {
                 $breadcrumbs[] = '<span class="breadcrumb-current font-normal">' . esc_html(get_the_archive_title()) . '</span>';
             }
@@ -272,6 +278,12 @@ function kj_breadcrumbs($args = array()) {
             $archive_url = get_post_type_archive_link('vacature');
             if ($archive_url) {
                 $breadcrumbs[] = '<a href="' . esc_url($archive_url) . '" class="breadcrumb-link hover:underline">' . esc_html(__('Vacatures', 'kj')) . '</a>';
+            }
+        } elseif ($post_type === 'post') {
+            // Add kennisbank archive link for blog posts
+            $archive_url = get_post_type_archive_link('post') ?: home_url('/');
+            if ($archive_url) {
+                $breadcrumbs[] = '<a href="' . esc_url($archive_url) . '" class="breadcrumb-link hover:underline">' . esc_html(__('Kennisbank', 'kj')) . '</a>';
             }
         }
 

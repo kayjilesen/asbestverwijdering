@@ -25,15 +25,15 @@ if ( ! $is_homepage && ! $background_image ) {
 }
 ?>
 
-<section class="hero-block relative overflow-hidden" <?php echo ( $is_homepage || ! $background_image ) ? '' : ''; ?>"">
-    <div class="outer-container">
+<section class="hero-block relative overflow-hidden">
+    <div class="outer-container bg-white">
         <?php if ( $background_image ) : ?>
             <div class="hero-block__background absolute top-0 left-0 right-0 bottom-0 w-full h-full z-0 overflow-hidden">
                 <?php echo wp_get_attachment_image( $background_image['ID'], 'full', false, array( 'class' => 'hero-block__background-image object-cover object-center w-full h-full' ) ); ?>
             </div>
             <div class="hero-block__gradient absolute top-0 left-0 right-0 bottom-0 w-full h-full z-[5]"></div>
         <?php endif; ?>
-        
+
         <div class="hero-block__container container relative z-10 px-4 md:px-8 <?php echo $is_homepage ? 'xl:px-8' : ''; ?>">
             <!-- Hero Content -->
             <div class="hero-block__content text-white <?php echo $is_homepage ? 'py-20 lg:py-32' : 'pt-72 pb-12'; ?> max-w-screen-lg mx-auto text-center">

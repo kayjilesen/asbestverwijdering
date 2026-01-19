@@ -18,25 +18,25 @@ get_header(); ?>
 			
 			<!-- Error Message -->
 			<h2 class="text-3xl md:text-4xl font-bold text-secondary mb-6">
-				Pagina niet gevonden
+				<?php esc_html_e( 'Pagina niet gevonden', 'kj' ); ?>
 			</h2>
-			
+
 			<!-- Description -->
 			<p class="text-lg text-grey mb-8 max-w-xl mx-auto">
-				De pagina die je zoekt bestaat niet of is verplaatst. Controleer de URL of gebruik de onderstaande knoppen om verder te gaan.
+				<?php esc_html_e( 'De pagina die je zoekt bestaat niet of is verplaatst. Controleer de URL of gebruik de onderstaande knoppen om verder te gaan.', 'kj' ); ?>
 			</p>
-			
+
 			<!-- Action Buttons -->
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
 				<?php
 				kj_render_button(array(
-					'button_label' => 'Terug naar home',
-					'button_style' => 'primary yellow',
+					'button_label' => __( 'Terug naar home', 'kj' ),
+					'button_style' => 'primary blue',
 					'button_link_type' => 'internal',
 					'button_link_intern' => get_option('page_on_front') ?: home_url('/')
 				));
 				?>
-				
+
 				<?php
 				$contact_page = get_field('page_contact', 'option');
 				$contact_url = '/contact'; // Fallback
@@ -52,7 +52,7 @@ get_header(); ?>
 				?>
 				<?php
 				kj_render_button(array(
-					'button_label' => 'Neem contact op',
+					'button_label' => __( 'Neem contact op', 'kj' ),
 					'button_style' => 'primary grey-dark',
 					'button_link_type' => 'internal',
 					'button_link_intern' => $contact_url

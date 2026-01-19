@@ -1,0 +1,539 @@
+/**
+ * Gravity Forms Styles
+ *
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+/* Hide form title */
+.gform_title {
+    @apply hidden;
+}
+
+/* Hide sub labels */
+.gform_required_legend,
+.gform-field-label--type-sub {
+    @apply !hidden;
+}
+
+/* Make labels bold and consistent styling */
+.gfield_label,
+.gform-field-label {
+    @apply block mb-2;
+    color: #1A1603 !important;
+    font-weight: 700 !important;
+}
+
+/* Show and style file upload labels (remove screen-reader-text hiding) */
+.gfield--type-fileupload .gfield_label.screen-reader-text {
+    @apply !block font-bold text-grey-dark mb-2;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    -webkit-clip-path: none !important;
+    clip-path: none !important;
+}
+
+/* Style H4 titles in HTML fields */
+.gfield--type-html h4 {
+    @apply text-base font-bold text-grey-dark;
+}
+
+/* Custom HTML fields - single line, vertically centered content */
+.gfield--type-html {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.gfield--type-html .gfield_html,
+.gfield--type-html .gfield_html_formatted {
+    @apply flex items-center gap-2;
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+}
+
+.gfield--type-html .gfield_html a,
+.gfield--type-html .gfield_html_formatted a,
+.gfield--type-html a {
+    @apply flex items-center gap-2;
+    display: inline-flex !important;
+    align-items: center !important;
+    vertical-align: middle !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+}
+
+.gfield--type-html .gfield_html *,
+.gfield--type-html .gfield_html_formatted * {
+    display: inline !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+}
+
+.gfield--type-html .gfield_html svg,
+.gfield--type-html .gfield_html_formatted svg,
+.gfield--type-html svg,
+.gfield--type-html a svg {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    flex-shrink: 0 !important;
+    margin-left: 0.25rem !important;
+    line-height: 1 !important;
+}
+
+/* Section field spacing */
+.gfield--type-section.gsection {
+
+}
+
+/* Hide section title */
+.gsection_title {
+    @apply hidden;
+}
+
+/* Hide upload rules in file upload fields */
+.gform_fileupload_rules {
+    @apply !hidden;
+}
+
+/* Hide description in file upload fields (but keep validation messages visible) */
+.gfield--type-fileupload .gfield_description:not(.gform_fileupload_rules):not(.validation_message) {
+    @apply !hidden;
+}
+
+/* Reduce column gap between form fields */
+.gform-theme--foundation .gform_fields {
+    row-gap: 0.75rem !important;
+}
+
+/* Input fields styling */
+.gform_wrapper input[type="text"],
+.gform_wrapper input[type="email"],
+.gform_wrapper input[type="tel"],
+.gform_wrapper input[type="number"],
+.gform_wrapper input[type="url"],
+.gform_wrapper input[type="password"],
+.gform_wrapper input[type="file"],
+.gform_wrapper select {
+    @apply !bg-beige-darker text-grey-dark !border-black/5;
+    box-shadow: 0px 0px 0px 0px !important;
+    height: 48px !important;
+    line-height: 48px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.gform_wrapper input[type="text"]:focus,
+.gform_wrapper input[type="email"]:focus,
+.gform_wrapper input[type="tel"]:focus,
+.gform_wrapper input[type="number"]:focus,
+.gform_wrapper input[type="url"]:focus,
+.gform_wrapper input[type="password"]:focus,
+.gform_wrapper input[type="file"]:focus,
+.gform_wrapper select:focus {
+    @apply outline-none !border-blue;
+    box-shadow: 0 0 0 2px rgba(0, 78, 100, 0.3) !important;
+}
+
+/* Textarea styling - no fixed height, allow multiple lines */
+.gform_wrapper textarea {
+    @apply !bg-beige-darker text-grey-dark !border-black/5;
+    box-shadow: 0px 0px 0px 0px !important;
+}
+
+.gform_wrapper textarea:focus {
+    @apply outline-none !border-blue;
+    box-shadow: 0 0 0 2px rgba(0, 78, 100, 0.3) !important;
+}
+
+/* Submit button - styled like primary blue button */
+.gform_wrapper .gform_button,
+.gform_wrapper input[type="submit"],
+.gform_footer .gform_button,
+.gform_footer input[type="submit"],
+input[id^="gform_submit_button"] {
+    @apply bg-blue text-white py-4 px-5 xl:px-6 rounded-[2.5px] font-button font-bold cursor-pointer border-0 transition-colors duration-300 ease-in-out !important;
+}
+
+.gform_wrapper .gform_button:hover,
+.gform_wrapper input[type="submit"]:hover,
+.gform_footer .gform_button:hover,
+.gform_footer input[type="submit"]:hover,
+input[id^="gform_submit_button"]:hover {
+    @apply bg-blue/90 !important;
+}
+
+/* Form on yellow background - different input styling */
+.gform-on-yellow-bg .gform_wrapper input[type="text"],
+.gform-on-yellow-bg .gform_wrapper input[type="email"],
+.gform-on-yellow-bg .gform_wrapper input[type="tel"],
+.gform-on-yellow-bg .gform_wrapper input[type="number"],
+.gform-on-yellow-bg .gform_wrapper input[type="url"],
+.gform-on-yellow-bg .gform_wrapper input[type="password"],
+.gform-on-yellow-bg .gform_wrapper input[type="file"],
+.gform-on-yellow-bg .gform_wrapper select {
+    @apply !bg-grey-dark/10 text-grey-dark !border-black/5;
+    box-shadow: 0px 0px 0px 0px !important;
+    height: 48px !important;
+    line-height: 48px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Hero Offerte layout - input fields max 42px height */
+.gform-hero-offerte .gform_wrapper input[type="text"],
+.gform-hero-offerte .gform_wrapper input[type="email"],
+.gform-hero-offerte .gform_wrapper input[type="tel"],
+.gform-hero-offerte .gform_wrapper input[type="number"],
+.gform-hero-offerte .gform_wrapper input[type="url"],
+.gform-hero-offerte .gform_wrapper input[type="password"],
+.gform-hero-offerte .gform_wrapper input[type="file"],
+.gform-hero-offerte .gform_wrapper select {
+    height: 42px !important;
+    max-height: 42px !important;
+    line-height: 42px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.gform-on-yellow-bg .gform_wrapper textarea {
+    @apply !bg-grey-dark/10 text-grey-dark !border-black/5;
+    box-shadow: 0px 0px 0px 0px !important;
+}
+
+/* Radio with icons styling */
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .ginput_container_radio,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .ginput_container_radio,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .ginput_container_radio,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .ginput_container_radio {
+    @apply grid gap-4 m-0 p-0;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1023px) {
+    fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .ginput_container_radio,
+    fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .ginput_container_radio,
+    fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .ginput_container_radio,
+    fieldset.gfield.radio-with-icons:has(input[type="radio"]) .ginput_container_radio {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 639px) {
+    fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .ginput_container_radio,
+    fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .ginput_container_radio,
+    fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .ginput_container_radio,
+    fieldset.gfield.radio-with-icons:has(input[type="radio"]) .ginput_container_radio {
+        grid-template-columns: 1fr;
+    }
+}
+
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gfield_radio,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gfield_radio,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gfield_radio,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gfield_radio {
+    @apply list-none m-0 p-0;
+    display: contents;
+}
+
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gform-radio-with-icon,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gform-radio-with-icon,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gform-radio-with-icon,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gform-radio-with-icon {
+    @apply block w-full;
+}
+
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice {
+    @apply m-0 p-0 relative flex items-stretch w-full;
+}
+
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice label,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice label,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice label,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice label {
+    @apply flex flex-row items-center justify-start p-3 border-2 border-transparent rounded relative w-full m-0;
+    background-color: #fff !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: auto;
+    max-height: 56px;
+    font-size: 0.875rem !important;
+    color: #1A1603 !important;
+    font-weight: 600 !important;
+    line-height: 1.4;
+    display: flex !important;
+}
+
+/* Icon color for non-active state - grey-dark */
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice label .gform-radio-icon svg,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice label .gform-radio-icon svg {
+    fill: #1A1603 !important;
+    stroke: #1A1603 !important;
+}
+
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice label:hover,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice label:hover,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice label:hover,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice label:hover {
+    background-color: #F0F0EC !important;
+}
+
+/* Hover state for checked items - darker grey */
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice input[type="radio"]:checked ~ label:hover,
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice input[type="radio"]:checked + label:hover,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice input[type="radio"]:checked ~ label:hover,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice input[type="radio"]:checked + label:hover,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice input[type="radio"]:checked ~ label:hover,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice input[type="radio"]:checked + label:hover,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice input[type="radio"]:checked ~ label:hover,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice input[type="radio"]:checked + label:hover,
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice.gchoice-selected label:hover,
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice.selected label:hover,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice.gchoice-selected label:hover,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice.selected label:hover,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice.gchoice-selected label:hover,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice.selected label:hover,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice.gchoice-selected label:hover,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice.selected label:hover {
+    background-color: #1A1603 !important;
+    opacity: 0.9;
+}
+
+/* Icon wrapper - exclude from Gravity Forms reset */
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice label .gform-radio-icon,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice label .gform-radio-icon,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice label .gform-radio-icon,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice label .gform-radio-icon,
+.gform-radio-icon {
+    all: revert !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 0.75rem !important;
+    flex-shrink: 0 !important;
+    position: relative !important;
+    width: 28px !important;
+    height: 28px !important;
+    max-width: 28px !important;
+    max-height: 28px !important;
+    box-sizing: border-box !important;
+}
+
+/* SVG elements - exclude from Gravity Forms reset */
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice label .gform-radio-icon svg,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice label .gform-radio-icon svg,
+.gform-radio-icon svg {
+    all: revert !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 28px !important;
+    max-height: 28px !important;
+    object-fit: contain !important;
+    box-sizing: border-box !important;
+}
+
+/* SVG paths and elements inside icons */
+.gform-radio-icon svg *,
+fieldset.gfield[class*="radio-with-icons"] .gform-radio-icon svg *,
+fieldset.gfield.radio-with-icons .gform-radio-icon svg * {
+    all: revert !important;
+    display: revert !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice label .gform-radio-icon > svg:first-child,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice label .gform-radio-icon > svg:first-child,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice label .gform-radio-icon > svg:first-child,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice label .gform-radio-icon > svg:first-child {
+    all: revert !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Default icon color - grey-dark - override Gravity Forms reset */
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice label .gform-radio-icon svg,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice label .gform-radio-icon svg {
+    all: revert !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 0.6 !important; /* Less opacity for inactive items */
+    fill: #1A1603 !important; /* grey-dark */
+    stroke: #1A1603 !important; /* grey-dark */
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice label .gform-radio-check,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice label .gform-radio-check,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice label .gform-radio-check,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice label .gform-radio-check {
+    @apply absolute bottom-[-12px] left-1/2 -translate-x-1/2 hidden items-center justify-center z-10 border-2 border-white;
+    width: 24px;
+    height: 24px;
+    background-color: #004E64;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice label .gform-radio-check svg,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice label .gform-radio-check svg,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice label .gform-radio-check svg,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice label .gform-radio-check svg {
+    width: 11px;
+    height: 10px;
+}
+
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice label > *:not(.gform-radio-icon):not(.gform-radio-check):not(input),
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice label > *:not(.gform-radio-icon):not(.gform-radio-check):not(input),
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice label > *:not(.gform-radio-icon):not(.gform-radio-check):not(input),
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice label > *:not(.gform-radio-icon):not(.gform-radio-check):not(input) {
+    @apply flex-1;
+}
+
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice input[type="radio"],
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice input[type="radio"],
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice input[type="radio"],
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice input[type="radio"] {
+    @apply absolute opacity-0 pointer-events-none;
+    width: 0;
+    height: 0;
+}
+
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice input[type="radio"]:checked ~ label,
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice input[type="radio"]:checked + label,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice input[type="radio"]:checked ~ label,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice input[type="radio"]:checked + label,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice input[type="radio"]:checked ~ label,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice input[type="radio"]:checked + label,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice input[type="radio"]:checked ~ label,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice input[type="radio"]:checked + label,
+fieldset.gfield[class*="radio-with-icons"] .gchoice:has(input[type="radio"]:checked) label,
+fieldset.gfield.radio-with-icons .gchoice:has(input[type="radio"]:checked) label {
+    border-color: #1A1603 !important;
+    background-color: #1A1603 !important;
+    color: #fff !important;
+}
+
+/* Icon color for active/checked state - white - override Gravity Forms reset */
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice input[type="radio"]:checked ~ label .gform-radio-icon svg,
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice input[type="radio"]:checked + label .gform-radio-icon svg,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice input[type="radio"]:checked ~ label .gform-radio-icon svg,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice input[type="radio"]:checked + label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice input[type="radio"]:checked ~ label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice input[type="radio"]:checked + label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice input[type="radio"]:checked ~ label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice input[type="radio"]:checked + label .gform-radio-icon svg,
+fieldset.gfield[class*="radio-with-icons"] .gchoice:has(input[type="radio"]:checked) label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons .gchoice:has(input[type="radio"]:checked) label .gform-radio-icon svg {
+    all: revert !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    fill: #fff !important;
+    stroke: #fff !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+/* Also target the icon wrapper itself for checked state */
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice input[type="radio"]:checked ~ label .gform-radio-icon,
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice input[type="radio"]:checked + label .gform-radio-icon,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice input[type="radio"]:checked ~ label .gform-radio-icon,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice input[type="radio"]:checked + label .gform-radio-icon,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice input[type="radio"]:checked ~ label .gform-radio-icon,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice input[type="radio"]:checked + label .gform-radio-icon,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice input[type="radio"]:checked ~ label .gform-radio-icon,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice input[type="radio"]:checked + label .gform-radio-icon,
+fieldset.gfield[class*="radio-with-icons"] .gchoice:has(input[type="radio"]:checked) label .gform-radio-icon,
+fieldset.gfield.radio-with-icons .gchoice:has(input[type="radio"]:checked) label .gform-radio-icon {
+    opacity: 1 !important;
+}
+
+/* Hide check indicator for checked items */
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice input[type="radio"]:checked ~ label .gform-radio-check,
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice input[type="radio"]:checked + label .gform-radio-check,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice input[type="radio"]:checked ~ label .gform-radio-check,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice input[type="radio"]:checked + label .gform-radio-check,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice input[type="radio"]:checked ~ label .gform-radio-check,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice input[type="radio"]:checked + label .gform-radio-check,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice input[type="radio"]:checked ~ label .gform-radio-check,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice input[type="radio"]:checked + label .gform-radio-check,
+fieldset.gfield[class*="radio-with-icons"] .gchoice:has(input[type="radio"]:checked) label .gform-radio-check,
+fieldset.gfield.radio-with-icons .gchoice:has(input[type="radio"]:checked) label .gform-radio-check {
+    @apply hidden;
+}
+
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice.gchoice-selected label,
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice.selected label,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice.gchoice-selected label,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice.selected label,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice.gchoice-selected label,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice.selected label,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice.gchoice-selected label,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice.selected label {
+    border-color: #1A1603 !important;
+    background-color: #1A1603 !important;
+    color: #fff !important;
+}
+
+/* Icon color for selected state - white - override Gravity Forms reset */
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice.gchoice-selected label .gform-radio-icon svg,
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice.selected label .gform-radio-icon svg,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice.gchoice-selected label .gform-radio-icon svg,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice.selected label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice.gchoice-selected label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice.selected label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice.gchoice-selected label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice.selected label .gform-radio-icon svg,
+fieldset.gfield[class*="radio-with-icons"] .gchoice.gchoice-selected:has(input[type="radio"]) label .gform-radio-icon svg,
+fieldset.gfield.radio-with-icons .gchoice.gchoice-selected:has(input[type="radio"]) label .gform-radio-icon svg {
+    all: revert !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    fill: #fff !important;
+    stroke: #fff !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+}
+
+/* Hide check indicator for selected items */
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice.gchoice-selected label .gform-radio-check,
+fieldset.gfield[class*="radio-with-icons"]:has(.ginput_container_radio) .gchoice.selected label .gform-radio-check,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice.gchoice-selected label .gform-radio-check,
+fieldset.gfield[class*="radio-with-icons"]:has(input[type="radio"]) .gchoice.selected label .gform-radio-check,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice.gchoice-selected label .gform-radio-check,
+fieldset.gfield.radio-with-icons:has(.ginput_container_radio) .gchoice.selected label .gform-radio-check,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice.gchoice-selected label .gform-radio-check,
+fieldset.gfield.radio-with-icons:has(input[type="radio"]) .gchoice.selected label .gform-radio-check {
+    @apply hidden;
+}

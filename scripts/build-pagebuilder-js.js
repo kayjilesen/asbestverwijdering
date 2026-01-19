@@ -19,7 +19,12 @@ const pagebuilderBlocks = [
     'uitdagingen',
     'highlights',
     'hero-offerte',
-    'stappen'
+    'stappen',
+    'sparren',
+    'zakelijke-aanvraag',
+    'kennisbank',
+    'offerte',
+    'text'
 ];
 
 const templateDir = path.join(__dirname, '..', 'templates', 'pagebuilder');

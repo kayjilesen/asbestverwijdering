@@ -53,7 +53,7 @@ $padding_class = ! empty( $padding_classes ) ? implode( ' ', $padding_classes ) 
             
             <!-- Left Column: Logos -->
             <?php if ( ! empty( $logos ) ) : ?>
-                <div class="certificeringen-block__logos col-span-1 lg:col-span-4 bg-beige-darker p-8 lg:p-12 flex flex-col items-center justify-center gap-8 relative overflow-hidden">
+                <div class="certificeringen-block__logos col-span-1 lg:col-span-4 bg-beige-darker p-8 lg:p-12 flex flex-col items-center justify-center gap-8 relative overflow-hidden rounded-lg">
                     
                     <div class="certificeringen-block__logos-list flex flex-col items-center gap-8 relative z-10">
                         <?php foreach ( $logos as $logo ) : 
@@ -88,7 +88,7 @@ $padding_class = ! empty( $padding_classes ) ? implode( ' ', $padding_classes ) 
             
             <!-- Right Column: Content -->
             <?php if ( ! empty( $title ) || ! empty( $text ) || ! empty( $button ) ) : ?>
-                <div class="certificeringen-block__content col-span-1 lg:col-span-8 bg-beige-darker p-8 lg:p-12 text-white relative overflow-hidden">
+                <div class="certificeringen-block__content col-span-1 lg:col-span-8 bg-beige-darker p-8 lg:p-12 text-white relative overflow-hidden rounded-lg">
                     
                     <div class="certificeringen-block__content-inner relative z-10">
                         <?php if ( ! empty( $title ) ) : ?>

@@ -17,6 +17,11 @@
                 "id": ""
             },
             "layout": "block",
+            "acfe_seamless_style": 0,
+            "acfe_group_modal": 0,
+            "acfe_group_modal_close": 0,
+            "acfe_group_modal_button": "",
+            "acfe_group_modal_size": "large",
             "sub_fields": [
                 {
                     "key": "field_button_label",
@@ -99,11 +104,18 @@
                     "choices": {
                         "internal": "Intern (pagina)",
                         "external": "Extern (URL)",
-                        "section": "Sectie op pagina"
+                        "section": "Sectie op pagina",
+                        "offerte": "Offerte aanvragen",
+                        "projecten": "Projecten",
+                        "vacatures": "Vacatures"
                     },
                     "default_value": "internal",
                     "return_format": "value",
                     "multiple": 0,
+                    "max": "",
+                    "prepend": "",
+                    "append": "",
+                    "required_message": "",
                     "allow_null": 0,
                     "allow_in_bindings": 1,
                     "ui": 0,
@@ -113,10 +125,7 @@
                     "save_options": 0,
                     "allow_custom": 0,
                     "search_placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "min": "",
-                    "max": ""
+                    "min": ""
                 },
                 {
                     "key": "field_button_section_id",
@@ -217,20 +226,15 @@
                     "allow_in_bindings": 1,
                     "placeholder": "https:\/\/"
                 }
-            ],
-            "acfe_seamless_style": 0,
-            "acfe_group_modal": 0,
-            "acfe_group_modal_close": 0,
-            "acfe_group_modal_button": "",
-            "acfe_group_modal_size": "large"
+            ]
         }
     ],
     "location": [
         [
             {
-                "param": "post_type",
+                "param": "options_page",
                 "operator": "==",
-                "value": "post"
+                "value": "theme-settings"
             }
         ]
     ],
@@ -250,5 +254,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1768380150
+    "modified": 1768827442
 }

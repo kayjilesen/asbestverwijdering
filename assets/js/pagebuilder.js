@@ -7,7 +7,7 @@
  * @author Kay Jilesen
  * 
  * This file combines all pagebuilder block JavaScript files.
- * Generated: 2026-01-15T23:04:31.014Z
+ * Generated: 2026-01-19T14:04:45.504Z
  */
 
 (function() {
@@ -197,5 +197,47 @@
 
     // stappen block
     // Block-specific JavaScript if needed
+
+    // sparren block
+    // Sparren block functionality (if needed)
+
+    // zakelijke-aanvraag block
+    // Block-specific JavaScript can be added here if needed
+
+    // kennisbank block
+    // DOM Ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize kennisbank swipers
+            const swipers = document.querySelectorAll('.js-kennisbank-swiper');
+
+            if (swipers.length === 0 || typeof Swiper === 'undefined') return;
+
+            swipers.forEach(function(swiperEl) {
+                // eslint-disable-next-line no-new
+                new Swiper(swiperEl, {
+                    slidesPerView: 1,
+                    spaceBetween: 24,
+                    navigation: {
+                        nextEl: swiperEl.querySelector('.swiper-button-next'),
+                        prevEl: swiperEl.querySelector('.swiper-button-prev'),
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 24,
+                        },
+                    },
+                    loop: false,
+                    speed: 600,
+                    grabCursor: true,
+                });
+            });
+        });
+
+    // offerte block
+    // Add any JavaScript functionality here if needed
+
+    // text block
+    // No JavaScript required for this block
 
 })();

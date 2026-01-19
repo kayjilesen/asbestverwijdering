@@ -10,6 +10,10 @@
   @apply transition-all duration-200;
 }
 
+.veelgestelde-vragen-block__question {
+  @apply cursor-pointer;
+}
+
 .veelgestelde-vragen-block__icon {
   @apply -rotate-90;
 }
@@ -19,14 +23,31 @@
 }
 
 .veelgestelde-vragen-block__item.is-active .veelgestelde-vragen-block__answer-wrapper {
-  @apply mt-[18px] max-h-[2000px];
+  @apply max-h-[2000px];
 }
 
 .veelgestelde-vragen-block__item.is-active .veelgestelde-vragen-block__icon {
   @apply rotate-0;
 }
 
-.veelgestelde-vragen-block__answer p {
-  @apply my-0;
+/* Spacing for content elements in FAQ answers */
+.veelgestelde-vragen-block__answer :is(p, ul, ol):not(:last-child) {
+  @apply mb-4;
 }
 
+.veelgestelde-vragen-block__answer :is(h1, h2, h3, h4, h5, h6) {
+  @apply mb-4 mt-6;
+}
+
+.veelgestelde-vragen-block__answer :is(h1, h2, h3, h4, h5, h6):first-child {
+  @apply mt-0;
+}
+
+/* Decorative SVG positioning */
+.veelgestelde-vragen-block__svg--top {
+  @apply translate-x-[80px];
+}
+
+.veelgestelde-vragen-block__svg--bottom {
+  @apply -translate-x-[80px];
+}

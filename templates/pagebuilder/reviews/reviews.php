@@ -75,22 +75,31 @@ $position_class = 'text-left';
 $background_color = get_sub_field( 'background_color' ) ?: 'grey-light';
 $bg_class = 'bg-' . $background_color;
 
+// Map background color to hex for CSS variable (used in ::after pseudo-element)
+$bg_color_map = array(
+    'white'        => '#FFFFFF',
+    'grey-light'   => '#F7F7F7',
+    'beige'        => '#F7F7F2',
+    'beige-darker' => '#F0F0EC',
+);
+$bg_hex = isset( $bg_color_map[ $background_color ] ) ? $bg_color_map[ $background_color ] : '#F7F7F7';
+
 // Unique ID for this swiper instance
 $swiper_id = 'reviews-' . uniqid();
 ?>
 
-<section class="reviews-block section-pd <?php echo esc_attr( $bg_class ); ?> <?php echo esc_attr( $position_class ); ?>">
+<section class="reviews-block section-pd <?php echo esc_attr( $bg_class ); ?> <?php echo esc_attr( $position_class ); ?>" style="--reviews-bg-color: <?php echo esc_attr( $bg_hex ); ?>">
     <div class="reviews-block__container container">
         <div class="reviews-block__wrapper grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
             
             <!-- Content: Title, Subtitle, Button (1/3) -->
-            <div class="reviews-block__content lg:col-span-1 bg-grey-light relative z-[1] <?php echo esc_attr( $grid_order_class ); ?>">
+            <div class="reviews-block__content lg:col-span-1 relative z-[1] <?php echo esc_attr( $grid_order_class ); ?>">
                 <?php if ( $title ) : ?>
-                    <h2 class="reviews-block__title font-title text-3xl md:text-4xl lg:text-5xl uppercase font-bold mb-6"><?php echo esc_html( $title ); ?></h2>
+                    <h2 class="reviews-block__title font-title text-3xl md:text-4xl lg:text-5xl uppercase font-bold mb-6 text-grey-dark"><?php echo esc_html( $title ); ?></h2>
                 <?php endif; ?>
                 
                 <?php if ( $subtitle ) : ?>
-                    <p class="reviews-block__subtitle text-sm md:text-base text-grey mb-2"><?php echo esc_html( $subtitle ); ?></p>
+                    <p class="reviews-block__subtitle text-sm md:text-base text-grey-dark mb-2"><?php echo esc_html( $subtitle ); ?></p>
                 <?php endif; ?>
                 
                 <?php if ( ! empty( $button_list ) ) : ?>
@@ -124,7 +133,7 @@ $swiper_id = 'reviews-' . uniqid();
                             }
                         }
                         ?>
-                        <article class="reviews-block__item bg-grey-dark p-4 md:p-6 lg:p-8 h-full flex flex-col">
+                        <article class="reviews-block__item bg-grey-card p-4 md:p-6 lg:p-8 h-full flex flex-col rounded-lg overflow-hidden">
                             <?php if ( $review_logo ) : ?>
                                 <div class="reviews-block__logo-wrapper flex items-start justify-start mb-4">
                                     <div class="reviews-block__logo-container">
@@ -141,8 +150,8 @@ $swiper_id = 'reviews-' . uniqid();
                             <?php endif; ?>
                             
                             <?php if ( $review_text ) : ?>
-                                <div class="reviews-block__text mb-4 flex-grow">
-                                    <p class="text-grey-text leading-relaxed text-sm"><?php echo wp_kses_post( nl2br( $review_text ) ); ?></p>
+                                <div class="reviews-block__text mb-4 flex-grow text-white leading-relaxed text-sm">
+                                    <?php echo wp_kses_post( $review_text ); ?>
                                 </div>
                             <?php endif; ?>
                             
@@ -185,7 +194,7 @@ $swiper_id = 'reviews-' . uniqid();
                                 }
                                 ?>
                                 <div class="swiper-slide">
-                                    <article class="reviews-block__item bg-grey-dark p-4 md:p-6 lg:p-8 h-full flex flex-col">
+                                    <article class="reviews-block__item bg-grey-card p-4 md:p-6 lg:p-8 h-full flex flex-col rounded-lg overflow-hidden">
                                         <?php if ( $review_logo ) : ?>
                                             <div class="reviews-block__logo-wrapper flex items-start justify-start mb-4">
                                                 <div class="reviews-block__logo-container">
@@ -202,8 +211,8 @@ $swiper_id = 'reviews-' . uniqid();
                                         <?php endif; ?>
                                         
                                         <?php if ( $review_text ) : ?>
-                                            <div class="reviews-block__text mb-4 flex-grow">
-                                                <p class="text-grey-text leading-relaxed text-sm"><?php echo wp_kses_post( nl2br( $review_text ) ); ?></p>
+                                            <div class="reviews-block__text mb-4 flex-grow text-white leading-relaxed text-sm">
+                                                <?php echo wp_kses_post( $review_text ); ?>
                                             </div>
                                         <?php endif; ?>
                                         

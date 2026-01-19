@@ -38,21 +38,19 @@ if ( ! $featured_image_id ) {
 <main id="primary" class="site-main">
 
     <!-- Project Hero -->
-    <section class="project-hero-block relative overflow-hidden">
-        <div class="outer-container">
+    <section class="hero-block relative overflow-hidden">
+        <div class="outer-container bg-beige">
             <?php if ( $featured_image_id ) : ?>
-                <div class="project-hero-block__background absolute top-0 left-0 right-0 bottom-0 w-full h-full z-0 overflow-hidden">
-                    <?php echo wp_get_attachment_image( $featured_image_id, 'full', false, array( 'class' => 'project-hero-block__background-image object-cover object-center w-full h-full' ) ); ?>
+                <div class="hero-block__background absolute top-0 left-0 right-0 bottom-0 w-full h-full z-0 overflow-hidden">
+                    <?php echo wp_get_attachment_image( $featured_image_id, 'full', false, array( 'class' => 'hero-block__background-image object-cover object-center w-full h-full' ) ); ?>
                 </div>
-                <div class="project-hero-block__gradient absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-gradient-to-r from-black/80 to-black/30 z-[5]"></div>
+                <div class="hero-block__gradient absolute top-0 left-0 right-0 bottom-0 w-full h-full z-[5]"></div>
             <?php endif; ?>
-            
-            <div class="project-hero-block__container container relative z-10 px-4 md:px-8">
-                <!-- Hero Content -->
-                <div class="project-hero-block__content text-white pt-48 lg:pt-72 pb-12 lg:pb-20 max-w-screen-lg mr-auto">
 
-                    <h1 class="project-hero-block__title text-3xl md:text-4xl lg:text-[90px] font-title uppercase font-normal mb-6 !leading-[1]"><strong><?php echo esc_html( get_the_title() ); ?></strong></h1>
-                    
+            <div class="hero-block__container container relative z-10 px-4 md:px-8">
+                <!-- Hero Content -->
+                <div class="hero-block__content text-white pt-72 pb-12 max-w-screen-lg mx-auto text-center">
+                    <h1 class="hero-block__title text-3xl md:text-4xl lg:text-[90px] font-title uppercase font-normal mb-6 !leading-[1]"><?php echo esc_html( get_the_title() ); ?></h1>
                 </div>
             </div>
             <div class="svg-wrapper">
@@ -62,17 +60,51 @@ if ( ! $featured_image_id ) {
     </section>
 
     <!-- Breadcrumbs -->
-    <section class="breadcrumbs-section bg-white">
+    <section class="breadcrumbs-section bg-beige">
         <div class="container py-4">
             <?php echo kj_breadcrumbs(); ?>
         </div>
     </section>
 
     <?php
-    // Render pagebuilder content if available
+    // Render pagebuilder content from the project itself first
     if ( have_rows( 'pagebuilder' ) ) {
         get_template_part( 'templates/pagebuilder/loop' );
     }
+    ?>
+
+    <!-- Pagebuilder from Options -->
+    <?php
+    // Get pagebuilder from options page 'Project - Artikel'
+    // The pagebuilder field group is configured to appear on the 'project-artikel' options page
+    if ( have_rows( 'project_pagebuilder', 'option' ) ) :
+        while ( have_rows( 'project_pagebuilder', 'option' ) ) : the_row();
+            $layout = get_row_layout();
+            
+            if ( ! empty( $layout ) ) {
+                // Get the template for this layout (new folder structure)
+                $template_path = get_stylesheet_directory() . '/templates/pagebuilder/' . $layout . '/' . $layout . '.php';
+                
+                if ( file_exists( $template_path ) ) {
+                    include $template_path;
+                } else {
+                    // Fallback: try old structure
+                    $old_template_path = get_stylesheet_directory() . '/templates/pagebuilder/' . $layout . '.php';
+                    
+                    if ( file_exists( $old_template_path ) ) {
+                        include $old_template_path;
+                    } else {
+                        // Fallback: use component
+                        $component_path = get_stylesheet_directory() . '/templates/components/' . $layout . '.php';
+                        
+                        if ( file_exists( $component_path ) ) {
+                            include $component_path;
+                        }
+                    }
+                }
+            }
+        endwhile;
+    endif;
     ?>
 
 </main><!-- #main -->

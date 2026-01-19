@@ -24,3 +24,17 @@ function kj_limit_revisions( $num, $post ) {
 	return 5;
 }
 
+/**
+ * Modify query for kennisbank archive filtering
+ */
+add_action( 'pre_get_posts', 'kj_kennisbank_archive_filter' );
+function kj_kennisbank_archive_filter( $query ) {
+    // Only modify main query on blog archive/home page
+    if ( ! is_admin() && $query->is_main_query() && ( is_home() || ( is_archive() && get_post_type() === 'post' ) ) ) {
+        $current_category = isset( $_GET['categorie'] ) ? sanitize_text_field( $_GET['categorie'] ) : '';
+        
+        if ( $current_category && $current_category !== 'alle' ) {
+            $query->set( 'category_name', $current_category );
+        }
+    }
+}

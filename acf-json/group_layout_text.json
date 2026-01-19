@@ -1,10 +1,10 @@
 {
-    "key": "group_layout_hero_offerte",
-    "title": "Layout: Hero & Offerte",
+    "key": "group_layout_text",
+    "title": "Layout: Text",
     "fields": [
         {
-            "key": "field_hero_offerte_content_tab",
-            "label": "Content",
+            "key": "field_text_content_tab",
+            "label": "Inhoud",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -18,11 +18,11 @@
             },
             "placement": "top",
             "endpoint": 0,
-            "no_preference": 0,
-            "selected": 0
+            "selected": 0,
+            "no_preference": 0
         },
         {
-            "key": "field_hero_offerte_title",
+            "key": "field_text_title",
             "label": "Titel",
             "name": "title",
             "aria-label": "",
@@ -43,11 +43,11 @@
             "append": ""
         },
         {
-            "key": "field_hero_offerte_image",
-            "label": "Afbeelding",
-            "name": "image",
+            "key": "field_text_text",
+            "label": "Tekst",
+            "name": "text",
             "aria-label": "",
-            "type": "image",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -56,44 +56,16 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 0,
-            "min_height": 0,
-            "min_size": 0,
-            "max_width": 0,
-            "max_height": 0,
-            "max_size": 0,
-            "mime_types": "",
-            "uploader": "",
-            "acfe_thumbnail": 0,
-            "upload_folder": ""
-        },
-        {
-            "key": "field_hero_offerte_form_shortcode",
-            "label": "Formulier Shortcode",
-            "name": "form_shortcode",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Voer de shortcode van het offerte formulier in (bijv. [contact-form-7 id=\"123\"])",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
             "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "[contact-form-7 id=\"123\"]",
-            "prepend": "",
-            "append": ""
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 0,
+            "delay": 0,
+            "allow_in_bindings": 1
         },
         {
-            "key": "field_hero_offerte_spacing_tab",
-            "label": "Witruimte",
+            "key": "field_text_styling_tab",
+            "label": "Styling",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -106,50 +78,12 @@
                 "id": ""
             },
             "placement": "top",
-            "endpoint": 0
+            "endpoint": 0,
+            "selected": 0,
+            "no_preference": 0
         },
         {
-            "key": "field_hero_offerte_padding_top",
-            "label": "Witruimte boven",
-            "name": "padding_top",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "Aan",
-            "ui_off_text": "Uit"
-        },
-        {
-            "key": "field_hero_offerte_padding_bottom",
-            "label": "Witruimte onder",
-            "name": "padding_bottom",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 1,
-            "ui": 1,
-            "ui_on_text": "Aan",
-            "ui_off_text": "Uit"
-        },
-        {
-            "key": "field_hero_offerte_background_color",
+            "key": "field_text_background_color",
             "label": "Achtergrondkleur",
             "name": "background_color",
             "aria-label": "",
@@ -158,16 +92,128 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
             "choices": {
                 "white": "Wit",
                 "beige": "Beige",
-                "grey-light": "Lichtgrijs"
+                "beige-darker": "Donkerbeige"
             },
             "default_value": "white",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0,
+            "allow_custom": 0,
+            "search_placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": ""
+        },
+        {
+            "key": "field_text_padding_top",
+            "label": "Witruimte boven",
+            "name": "padding_top",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Aan",
+            "ui_off_text": "Uit"
+        },
+        {
+            "key": "field_text_padding_bottom",
+            "label": "Witruimte onder",
+            "name": "padding_bottom",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "Aan",
+            "ui_off_text": "Uit"
+        },
+        {
+            "key": "field_text_alignment",
+            "label": "Tekst uitlijning",
+            "name": "text_alignment",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Kies hoe de titel en tekst uitgelijnd moeten worden",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "left": "Links",
+                "center": "Gecentreerd"
+            },
+            "default_value": "center",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0,
+            "allow_custom": 0,
+            "search_placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": ""
+        },
+        {
+            "key": "field_text_container_width",
+            "label": "Container breedte",
+            "name": "container_width",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "Kies de maximale breedte van de container",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "full": "Volledig",
+                "2xl": "Smal",
+                "4xl": "Medium",
+                "5xl": "Breed",
+                "screen-lg": "Extra breed",
+                "screen-xl": "Zeer breed"
+            },
+            "default_value": "4xl",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -205,7 +251,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": false,
-    "description": "",
+    "description": "Text layout met gecentreerde titel en tekst",
     "show_in_rest": 0,
     "display_title": "",
     "acfe_autosync": [
@@ -214,5 +260,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1768515967
+    "modified": 1768829233
 }

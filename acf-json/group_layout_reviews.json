@@ -244,9 +244,10 @@
             },
             "choices": {
                 "white": "Wit",
-                "grey-light": "Lichtgrijs"
+                "beige": "Beige",
+                "beige-darker": "Donkerbeige"
             },
-            "default_value": "grey-light",
+            "default_value": "white",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -327,5 +328,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1767785000
+    "modified": 1768829196
 }

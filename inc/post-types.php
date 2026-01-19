@@ -114,7 +114,7 @@ function kj_register_post_types() {
         'show_in_admin_bar'     => true,
         'show_in_nav_menus'     => true,
         'can_export'            => true,
-        'has_archive'           => true,
+        'has_archive'           => false,
         'exclude_from_search'   => false,
         'publicly_queryable'    => true,
         'capability_type'       => 'post',
@@ -183,6 +183,61 @@ function kj_register_post_types() {
     );
     
     register_post_type( 'review', $args );
+    
+    // Register Auteurs Post Type
+    $labels = array(
+        'name'                  => _x( 'Auteurs', 'Post Type General Name', 'kj' ),
+        'singular_name'         => _x( 'Auteur', 'Post Type Singular Name', 'kj' ),
+        'menu_name'             => __( 'Auteurs', 'kj' ),
+        'name_admin_bar'        => __( 'Auteur', 'kj' ),
+        'archives'              => __( 'Auteur Archief', 'kj' ),
+        'attributes'            => __( 'Auteur Attributen', 'kj' ),
+        'parent_item_colon'     => __( 'Bovenliggende Auteur:', 'kj' ),
+        'all_items'             => __( 'Alle Auteurs', 'kj' ),
+        'add_new_item'          => __( 'Nieuwe Auteur Toevoegen', 'kj' ),
+        'add_new'               => __( 'Nieuwe Auteur', 'kj' ),
+        'new_item'              => __( 'Nieuwe Auteur', 'kj' ),
+        'edit_item'             => __( 'Auteur Bewerken', 'kj' ),
+        'update_item'           => __( 'Auteur Bijwerken', 'kj' ),
+        'view_item'             => __( 'Auteur Bekijken', 'kj' ),
+        'view_items'            => __( 'Auteurs Bekijken', 'kj' ),
+        'search_items'          => __( 'Auteur Zoeken', 'kj' ),
+        'not_found'             => __( 'Niet gevonden', 'kj' ),
+        'not_found_in_trash'    => __( 'Niet gevonden in prullenbak', 'kj' ),
+        'featured_image'        => __( 'Profielfoto', 'kj' ),
+        'set_featured_image'    => __( 'Profielfoto Instellen', 'kj' ),
+        'remove_featured_image' => __( 'Profielfoto Verwijderen', 'kj' ),
+        'use_featured_image'    => __( 'Gebruik als Profielfoto', 'kj' ),
+        'insert_into_item'      => __( 'Invoegen in Auteur', 'kj' ),
+        'uploaded_to_this_item' => __( 'Geüpload naar deze Auteur', 'kj' ),
+        'items_list'            => __( 'Auteurs Lijst', 'kj' ),
+        'items_list_navigation' => __( 'Auteurs Lijst Navigatie', 'kj' ),
+        'filter_items_list'     => __( 'Filter Auteurs Lijst', 'kj' ),
+    );
+    
+    $args = array(
+        'label'                 => __( 'Auteur', 'kj' ),
+        'description'           => __( 'Auteurs post type', 'kj' ),
+        'labels'                => $labels,
+        'supports'              => array( 'title', 'thumbnail', 'custom-fields' ),
+        'taxonomies'            => array(),
+        'hierarchical'          => false,
+        'public'                => false,
+        'show_ui'               => true,
+        'show_in_menu'          => true,
+        'menu_position'         => 23,
+        'menu_icon'             => 'dashicons-admin-users',
+        'show_in_admin_bar'     => true,
+        'show_in_nav_menus'     => false,
+        'can_export'            => true,
+        'has_archive'           => false,
+        'exclude_from_search'   => true,
+        'publicly_queryable'    => false,
+        'capability_type'       => 'post',
+        'show_in_rest'          => true,
+    );
+    
+    register_post_type( 'auteur', $args );
 }
 add_action( 'init', 'kj_register_post_types', 0 );
 

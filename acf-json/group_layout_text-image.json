@@ -174,7 +174,7 @@
         },
         {
             "key": "field_text_image_mode",
-            "label": "Mode",
+            "label": "Achtergrondkleur",
             "name": "mode",
             "aria-label": "",
             "type": "select",
@@ -187,10 +187,12 @@
                 "id": ""
             },
             "choices": {
-                "light": "Light",
-                "dark": "Dark"
+                "beige": "Beige",
+                "beige-darker": "Beige-darker",
+                "white": "Wit",
+                "dark": "Donker"
             },
-            "default_value": "light",
+            "default_value": "beige",
             "multiple": 0,
             "allow_null": 0,
             "ui": 0,
@@ -293,5 +295,5 @@
     "description": "",
     "show_in_rest": 0,
     "display_title": "",
-    "modified": 1765371281
+    "modified": 1768813170
 }

@@ -1,0 +1,67 @@
+/**
+ * Zakelijke Aanvraag Block Styles
+ * 
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.zakelijke-aanvraag-block {
+    /* Base styles */
+}
+
+.zakelijke-aanvraag-block__container {
+    /* Container styles */
+}
+
+.zakelijke-aanvraag-block__wrapper {
+    /* Grid wrapper styles */
+}
+
+.zakelijke-aanvraag-block__content {
+    /* Left column with content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.zakelijke-aanvraag-block__content-inner {
+    /* Content inner wrapper */
+}
+
+.zakelijke-aanvraag-block__title {
+    /* Title styles */
+    color: white;
+}
+
+.zakelijke-aanvraag-block__text {
+    /* Text styles */
+    color: #F7F7F7;
+}
+
+.zakelijke-aanvraag-block__text p {
+    margin-bottom: 1rem;
+}
+
+.zakelijke-aanvraag-block__text p:last-child {
+    margin-bottom: 0;
+}
+
+.zakelijke-aanvraag-block__buttons {
+    /* Button container */
+}
+
+.zakelijke-aanvraag-block__image-wrapper {
+    /* Right column with image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zakelijke-aanvraag-block__image-inner {
+    /* Image inner wrapper */
+}
+
+.zakelijke-aanvraag-block__image {
+    /* Image styles */
+}

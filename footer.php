@@ -25,8 +25,19 @@ defined( 'ABSPATH' ) || exit;
 				<!-- Column 1: Logo Wit -->
 				<div class="footer-col">
 					<div class="mb-4">
-						<img src="<?php echo esc_url( $footer_logo_wit['url'] ); ?>" alt="<?php echo esc_attr( $footer_logo_wit['alt'] ?: 'Logo' ); ?>" class="h-auto max-h-12 md:max-h-16 object-contain">
+						<img src="<?php echo esc_url( $footer_logo_wit['url'] ); ?>" alt="<?php echo esc_attr( $footer_logo_wit['alt'] ?: __( 'Logo', 'kj' ) ); ?>" class="h-auto max-h-12 md:max-h-16 object-contain">
 					</div>
+					<?php
+					// Offerte Button
+					$offerte_page = get_field('page_offerte_aanvragen', 'option');
+					if ( $offerte_page ) :
+						?>
+						<div class="mt-auto mt-6 md:mt-0">
+							<?php kj_button(__('Vraag offerte aan', 'kj'), $offerte_page, 'internal', 'primary blue'); ?>
+						</div>
+						<?php
+					endif;
+					?>
 				</div>
 				<?php endif; ?>
 				
@@ -144,7 +155,7 @@ defined( 'ABSPATH' ) || exit;
 							<div class="pt-4">
 								<?php
 								$route_button = array(
-									'button_label'       => 'Plan mijn route',
+									'button_label'       => __( 'Plan mijn route', 'kj' ),
 									'button_style'       => 'secondary white',
 									'button_link_type'   => 'external',
 									'button_link_extern' => $route_link,

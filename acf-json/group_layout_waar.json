@@ -305,7 +305,7 @@
         },
         {
             "key": "field_waar_padding_top",
-            "label": "Padding Boven",
+            "label": "Witruimte boven",
             "name": "padding_top",
             "aria-label": "",
             "type": "true_false",
@@ -326,7 +326,7 @@
         },
         {
             "key": "field_waar_padding_bottom",
-            "label": "Padding Onder",
+            "label": "Witruimte onder",
             "name": "padding_bottom",
             "aria-label": "",
             "type": "true_false",
@@ -346,15 +346,7 @@
             "style": ""
         }
     ],
-    "location": [
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "post"
-            }
-        ]
-    ],
+    "location": [],
     "menu_order": 0,
     "position": "normal",
     "style": "default",
@@ -371,5 +363,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1767777078
+    "modified": 1768818965
 }

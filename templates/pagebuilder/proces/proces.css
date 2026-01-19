@@ -1,172 +1,62 @@
-.proces-block__right {
-  @apply rounded-none;
+/* Proces Block - Accordion style with numbered steps and yellow connecting line */
+
+/* Step number column */
+.proces-block__step-number-col {
+  @apply flex-shrink-0;
 }
 
-.proces-block__nav-wrapper {
-  @apply relative flex flex-row overflow-hidden;
-  min-height: 400px;
-  max-height: 400px;
+/* Step number box - default state (yellow border, transparent bg, dark text) */
+.proces-block__step-number {
+  @apply font-title font-bold transition-all duration-300;
 }
 
-.proces-block__nav-arrows {
-  @apply flex-shrink-0 self-start mt-2;
+/* Step number box - active state (yellow bg, white text) */
+.proces-block__step.is-active .proces-block__step-number {
+  @apply bg-primary border-primary;
 }
 
-.proces-block__nav-arrow {
-  @apply w-10 h-10 flex items-center justify-center bg-transparent border-0 text-white hover:text-primary transition-colors duration-300 cursor-pointer;
+.proces-block__step.is-active .proces-block__step-number-text {
+  @apply text-white;
 }
 
-.proces-block__nav-arrow.disabled {
-  @apply opacity-30 cursor-not-allowed;
-}
-
-.proces-block__nav-arrow svg {
-  @apply w-auto h-3;
-  fill: currentColor;
-  stroke: currentColor;
-}
-
-.proces-block__nav-arrow--prev svg {
-  transform: rotate(-90deg);
-}
-
-.proces-block__nav-arrow--next svg {
-  transform: rotate(90deg);
-}
-
-.proces-block__scrollbar-wrapper {
-  @apply relative flex-shrink-0 self-stretch;
-  width: 6px;
-  max-height: calc(400px - 3rem);
-  height: calc(400px - 3rem);
-}
-
-@media (min-width: 768px) {
-  .proces-block__scrollbar-wrapper {
-    max-height: calc(400px - 4rem);
-    height: calc(400px - 4rem);
-  }
-}
-
-@media (min-width: 1024px) {
-  .proces-block__scrollbar-wrapper {
-    max-height: calc(400px - 5rem);
-    height: calc(400px - 5rem);
-  }
-}
-
-.proces-block__scrollbar-track {
-  @apply absolute top-0 left-0 w-full bg-black/20;
-  height: 100%;
-}
-
-.proces-block__scrollbar-indicator {
-  @apply absolute left-0 w-full bg-primary;
-  transition: top 0.2s ease, height 0.2s ease;
+/* Vertical connecting line between steps */
+.proces-block__step-line {
   min-height: 20px;
 }
 
-.proces-block__nav-list-wrapper {
-  @apply relative flex-1 flex-shrink min-w-0 overflow-hidden;
-  max-height: calc(400px - 3rem);
-  height: calc(400px - 3rem);
+.proces-block__step-line-content {
+  min-height: 100%;
 }
 
-@media (min-width: 768px) {
-  .proces-block__nav-list-wrapper {
-    max-height: calc(400px - 4rem);
-    height: calc(400px - 4rem);
-  }
+/* Step content - collapsed by default */
+.proces-block__step-content {
+  @apply max-h-0;
 }
 
-@media (min-width: 1024px) {
-  .proces-block__nav-list-wrapper {
-    max-height: calc(400px - 5rem);
-    height: calc(400px - 5rem);
-  }
+/* Step content - expanded when active */
+.proces-block__step.is-active .proces-block__step-content {
+  @apply max-h-[2000px];
 }
 
-.proces-block__nav-list {
-  @apply flex flex-col gap-0 relative w-full overflow-y-auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  height: 100%;
+/* Chevron icon rotation */
+.proces-block__step-icon {
+  @apply -rotate-90;
 }
 
-.proces-block__nav-list-gradient {
-  @apply absolute left-0 right-0 pointer-events-none z-10;
-  height: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.proces-block__step.is-active .proces-block__step-icon {
+  @apply rotate-0;
 }
 
-.proces-block__nav-list-gradient--top {
-  @apply top-0;
-  background: linear-gradient(to bottom, rgb(26, 22, 3) 0%, rgba(26, 22, 3, 0) 100%);
+/* Step header hover state */
+.proces-block__step-header:hover .proces-block__step-number {
+  @apply bg-primary/10;
 }
 
-.proces-block__nav-list-gradient--bottom {
-  @apply bottom-0;
-  background: linear-gradient(to top, rgb(26, 22, 3) 0%, rgba(26, 22, 3, 0) 100%);
+.proces-block__step.is-active .proces-block__step-header:hover .proces-block__step-number {
+  @apply bg-primary;
 }
 
-.proces-block__nav-list-wrapper.scrollable-top .proces-block__nav-list-gradient--top {
-  opacity: 1;
+/* Image wrapper for portrait images */
+.proces-block__image-wrapper {
+  @apply overflow-hidden;
 }
-
-.proces-block__nav-list-wrapper.scrollable-bottom .proces-block__nav-list-gradient--bottom {
-  opacity: 1;
-}
-
-.proces-block__nav-list::-webkit-scrollbar {
-  display: none;
-}
-
-.proces-block__step {
-  @apply relative text-left bg-transparent border border-transparent rounded-none px-2 py-3 text-grey-light/80 transition-colors duration-200 cursor-pointer w-full text-left;
-}
-
-.proces-block__step.is-active {
-  @apply bg-grey-light;
-}
-
-.proces-block__step.is-active .proces-block__step-title {
-  @apply text-grey-dark;
-}
-
-.proces-block__step-title {
-  @apply font-title uppercase text-xl md:text-2xl leading-tight;
-}
-
-.proces-block__step.is-active .proces-block__step-title {
-  @apply text-2xl md:text-3xl;
-}
-
-.proces-block__details {
-  @apply bg-grey-light text-grey-dark;
-}
-
-.proces-block__content {
-  @apply hidden;
-}
-
-.proces-block__content.is-active {
-  @apply block;
-}
-
-.proces-block__content-badge-wrapper {
-  @apply mb-4;
-}
-
-.proces-block__content-badge {
-  @apply inline-block bg-grey-dark text-white px-3 py-1 text-lg md:text-2xl uppercase tracking-[0.08em] font-title font-semibold;
-}
-
-.proces-block__content-title {
-  @apply font-title uppercase text-2xl md:text-3xl text-secondary;
-}
-
-.proces-block__content-text p {
-  @apply text-grey leading-relaxed;
-}
-

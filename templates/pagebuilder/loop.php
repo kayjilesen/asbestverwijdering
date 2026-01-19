@@ -48,7 +48,7 @@ if ( have_rows( 'pagebuilder' ) ) :
         if ( $row_index === 0 && $first_block_is_hero && ! is_front_page() ) {
             ?>
             <!-- Breadcrumbs -->
-            <section class="breadcrumbs-section bg-white border-b border-grey-light">
+            <section class="breadcrumbs-section bg-beige border-b border-grey-light">
                 <div class="container py-4">
                     <?php echo kj_breadcrumbs(); ?>
                 </div>

@@ -14,10 +14,23 @@
   @apply w-full;
 }
 
-.hero-offerte-block__image {
-  @apply object-cover;
-}
-
 .hero-offerte-block__form-wrapper {
   @apply sticky top-8;
+}
+
+@media (min-width: 1024px) {
+  .hero-offerte-block__left {
+    @apply relative;
+  }
+  
+  .hero-offerte-block__usps {
+    @apply absolute;
+    bottom: 0;
+    left: 3rem;
+    right: 0;
+    transform: translateY(50%);
+    width: auto;
+    padding-right: 1rem;
+    z-index: 10;
+  }
 }

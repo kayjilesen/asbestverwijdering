@@ -1,0 +1,25 @@
+/**
+ * Kennisbank Block Styles
+ *
+ * @package asbestverwijdering
+ * @version 1.0.0
+ * @author Kay Jilesen
+ */
+
+.kennisbank-block__swiper-wrapper {
+  @apply relative;
+}
+
+.kennisbank-block__swiper-wrapper .swiper {
+  @apply overflow-visible;
+}
+
+/* Swiper Scrollbar */
+.kennisbank-block__swiper-wrapper .swiper-scrollbar {
+  @apply mt-6;
+}
+
+/* Desktop Grid Layout */
+.kennisbank-block__grid {
+  @apply gap-6;
+}

@@ -14,9 +14,13 @@ $use_default = (bool) get_sub_field( 'mode' );
 if ( $use_default ) {
     $title = get_field( 'projecten_cases_default_title', 'option' );
     $subtitle = get_field( 'projecten_cases_default_subtitle', 'option' );
+    $text = get_field( 'projecten_cases_default_text', 'option' );
+    $buttons = get_field( 'projecten_cases_default_buttons', 'option' );
 } else {
     $title = get_sub_field( 'title' );
     $subtitle = get_sub_field( 'subtitle' );
+    $text = get_sub_field( 'text' );
+    $buttons = get_sub_field( 'buttons' );
 }
 
 $source = get_sub_field( 'source' ) ?: 'manual';
@@ -113,6 +117,14 @@ $padding_class = ! empty( $padding_classes ) ? implode( ' ', $padding_classes ) 
             </div>
         <?php endif; ?>
         
+        <?php if ( $text ) : ?>
+            <div class="projecten-cases-block__text mb-12 md:mb-16 text-center max-w-4xl mx-auto">
+                <div class="text-sm md:text-base text-grey-text">
+                    <?php echo wp_kses_post( $text ); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        
         <div class="projecten-cases-block__swiper-wrapper">
             <div class="swiper js-projecten-cases-swiper" id="<?php echo esc_attr( $swiper_id ); ?>">
                 <div class="swiper-wrapper">
@@ -145,6 +157,18 @@ $padding_class = ! empty( $padding_classes ) ? implode( ' ', $padding_classes ) 
                 </div>
             </div>
         </div>
+        
+        <?php if ( ! empty( $buttons ) ) : ?>
+            <div class="projecten-cases-block__buttons mt-8 flex flex-row gap-4 justify-center">
+                <?php foreach ( $buttons as $button ) : ?>
+                    <?php
+                    // Handle new group structure: if button data is nested in 'button' key, extract it
+                    $button_data = isset( $button['button'] ) && is_array( $button['button'] ) ? $button['button'] : $button;
+                    kj_render_button( $button_data );
+                    ?>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </div>
 </section>
 

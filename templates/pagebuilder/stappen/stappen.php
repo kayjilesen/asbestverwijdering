@@ -49,11 +49,11 @@ if ( ! $title && ! $description && ! $stappen_count ) {
 }
 ?>
 
-<section class="stappen-block <?php echo esc_attr( $padding_class ); ?> bg-beige-darker">
+<section class="stappen-block relative z-[2] <?php echo esc_attr( $padding_class ); ?> bg-beige-darker">
     <div class="stappen-block__container container">
 
         <!-- Header -->
-        <div class="stappen-block__header flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16 mb-12 lg:mb-16">
+        <div class="stappen-block__header flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-16 mb-12 lg:mb-16 relative z-[3]">
 
             <!-- Left: Title -->
             <?php if ( $title ) : ?>
@@ -83,7 +83,7 @@ if ( ! $title && ! $description && ! $stappen_count ) {
 
         <!-- Stappen Grid -->
         <?php if ( $stappen_count ) : ?>
-            <div class="stappen-block__grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 p-4 md:p-5 bg-[#F7F7F2] rounded-[10px]">
+            <div class="stappen-block__grid relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 p-4 md:p-5 bg-[#F7F7F2] rounded-[10px] z-[3]">
                 <?php foreach ( $stappen as $index => $stap ) :
                     $stap_title = $stap['title'] ?? '';
                     $stap_text  = $stap['text'] ?? '';
@@ -92,7 +92,7 @@ if ( ! $title && ! $description && ! $stappen_count ) {
                     <div class="stappen-block__item text-center bg-[#F0F0EC] rounded-[8px] p-4 md:p-6">
                         <!-- STAP label -->
                         <div class="stappen-block__label font-title text-sm md:text-base uppercase font-bold text-secondary -mb-3 relative z-[2]">
-                            STAP
+                            <?php esc_html_e( 'STAP', 'kj' ); ?>
                         </div>
                         
                         <!-- Nummer -->
@@ -124,7 +124,22 @@ if ( ! $title && ! $description && ! $stappen_count ) {
                     </div>
                 <?php endforeach; ?>
             </div>
+            
         <?php endif; ?>
 
+    </div>
+
+    <!-- Decorative SVG - Left top (half above the grid, aligned to left edge) -->
+    <div class="stappen-block__svg stappen-block__svg--left absolute left-0 top-0 h-[85px] w-auto z-[0] hidden lg:block translate-y-[300%]">
+        <svg width="421" height="85" viewBox="0 0 421 85" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-auto">
+            <rect x="-50.0605" y="1" width="469.792" height="82.99" rx="6" stroke="#FFD500" stroke-width="2"/>
+        </svg>
+    </div>
+    
+    <!-- Decorative SVG - Right (same as text-image with image right) -->
+    <div class="stappen-block__svg stappen-block__svg--right absolute right-0 bottom-20 lg:bottom-[120px] h-[107px] translate-y-1/2 w-auto z-0 hidden lg:block">
+        <svg width="317" height="108" viewBox="0 0 317 108" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-full w-auto">
+            <rect x="1" y="1" width="401.97" height="105.433" rx="6" stroke="#FFD500" stroke-width="2"/>
+        </svg>
     </div>
 </section>

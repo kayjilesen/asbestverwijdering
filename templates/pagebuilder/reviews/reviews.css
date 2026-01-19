@@ -28,7 +28,8 @@
 }
 
 .reviews-block.text-left .reviews-block__swiper-wrapper::after {
-  @apply content-[''] absolute top-0 bottom-0 right-full w-[100vw] bg-grey-light z-[1];
+  @apply content-[''] absolute top-0 bottom-0 right-full w-[100vw] z-[1];
+  background-color: var(--reviews-bg-color, #F7F7F7);
 }
 
 /* Text right: swiper can overflow to the left, cover right overflow */
@@ -37,5 +38,100 @@
 }
 
 .reviews-block.text-right .reviews-block__swiper-wrapper::after {
-  @apply content-[''] absolute top-0 bottom-0 left-full w-[100vw] bg-grey-light z-[1];
+  @apply content-[''] absolute top-0 bottom-0 left-full w-[100vw] z-[1];
+  background-color: var(--reviews-bg-color, #F7F7F7);
+}
+
+/* WYSIWYG Content Styling */
+.reviews-block__text {
+  @apply text-white;
+}
+
+.reviews-block__text p {
+  @apply mb-3 last:mb-0;
+}
+
+.reviews-block__text p:first-child {
+  @apply mt-0;
+}
+
+.reviews-block__text p:last-child {
+  @apply mb-0;
+}
+
+.reviews-block__text h1,
+.reviews-block__text h2,
+.reviews-block__text h3,
+.reviews-block__text h4,
+.reviews-block__text h5,
+.reviews-block__text h6 {
+  @apply text-white font-bold mb-3 mt-4 first:mt-0;
+}
+
+.reviews-block__text h1 {
+  @apply text-2xl;
+}
+
+.reviews-block__text h2 {
+  @apply text-xl;
+}
+
+.reviews-block__text h3 {
+  @apply text-lg;
+}
+
+.reviews-block__text h4 {
+  @apply text-base;
+}
+
+.reviews-block__text h5,
+.reviews-block__text h6 {
+  @apply text-sm;
+}
+
+.reviews-block__text ul,
+.reviews-block__text ol {
+  @apply mb-3 ml-6 list-outside;
+}
+
+.reviews-block__text ul {
+  @apply list-disc;
+}
+
+.reviews-block__text ol {
+  @apply list-decimal;
+}
+
+.reviews-block__text li {
+  @apply mb-1;
+}
+
+.reviews-block__text a {
+  @apply text-white underline hover:no-underline;
+}
+
+.reviews-block__text strong,
+.reviews-block__text b {
+  @apply font-bold;
+}
+
+.reviews-block__text em,
+.reviews-block__text i {
+  @apply italic;
+}
+
+.reviews-block__text blockquote {
+  @apply border-l-4 border-white pl-4 my-4 italic;
+}
+
+.reviews-block__text code {
+  @apply bg-white bg-opacity-20 px-1 py-0.5 rounded text-xs;
+}
+
+.reviews-block__text pre {
+  @apply bg-white bg-opacity-20 p-4 rounded my-4 overflow-x-auto;
+}
+
+.reviews-block__text pre code {
+  @apply bg-transparent p-0;
 }

@@ -2,6 +2,12 @@
 /**
  * Proces Block
  *
+ * Layout:
+ * - Titel en beschrijving gecentreerd boven de content (volledige breedte)
+ * - Daaronder 2 kolommen (60% - 40%):
+ *   - Links: stappen met nummering en gele verbindingslijn (accordion)
+ *   - Rechts: staande afbeelding
+ *
  * @package asbestverwijdering
  */
 
@@ -14,11 +20,13 @@ if ( $use_default ) {
     $description = get_field( 'proces_default_description', 'option' );
     $buttons     = get_field( 'proces_default_buttons', 'option' );
     $processes   = get_field( 'proces_default_processen', 'option' );
+    $image       = get_field( 'proces_default_image', 'option' );
 } else {
     $title       = get_sub_field( 'title' );
     $description = get_sub_field( 'description' );
     $buttons     = get_sub_field( 'buttons' );
     $processes   = get_sub_field( 'processen' );
+    $image       = get_sub_field( 'image' );
 }
 
 // Normalize buttons (repeater of clone group_button_fields)
@@ -36,15 +44,12 @@ if ( is_array( $buttons ) ) {
 $process_count = is_array( $processes ) ? count( $processes ) : 0;
 $block_id      = 'proces-' . uniqid();
 
-// Get padding options - ACF true_false returns empty string/0 when unchecked, 1 when checked
-$padding_top_value = get_sub_field( 'padding_top' );
+// Get padding options
+$padding_top_value    = get_sub_field( 'padding_top' );
 $padding_bottom_value = get_sub_field( 'padding_bottom' );
+$padding_top          = ( $padding_top_value === null ) ? true : ! empty( $padding_top_value );
+$padding_bottom       = ( $padding_bottom_value === null ) ? true : ! empty( $padding_bottom_value );
 
-// If field hasn't been set (null), default to true. Otherwise check if value is truthy (1, true) or falsy (0, false, empty string)
-$padding_top = ( $padding_top_value === null ) ? true : ! empty( $padding_top_value );
-$padding_bottom = ( $padding_bottom_value === null ) ? true : ! empty( $padding_bottom_value );
-
-// Set padding classes based on options
 $padding_classes = array();
 if ( $padding_top ) {
     $padding_classes[] = 'pt-20 lg:pt-[120px]';
@@ -59,24 +64,108 @@ if ( ! $title && ! $description && ! $process_count ) {
 }
 ?>
 
-<section class="proces-block <?php echo esc_attr( $padding_class ); ?> bg-white" id="<?php echo esc_attr( $block_id ); ?>">
+<section class="proces-block <?php echo esc_attr( $padding_class ); ?> bg-beige" id="<?php echo esc_attr( $block_id ); ?>">
     <div class="proces-block__container container">
+
+        <!-- Header (centered, full width) -->
+        <?php if ( $title || $description ) : ?>
+        <div class="proces-block__header text-center mb-10 lg:mb-16">
+            <?php if ( $title ) : ?>
+                <h2 class="proces-block__title font-title text-4xl md:text-5xl lg:text-6xl uppercase font-bold text-secondary mb-4"><?php echo esc_html( $title ); ?></h2>
+            <?php endif; ?>
+
+            <?php if ( $description ) : ?>
+                <div class="proces-block__description text-grey-text text-base md:text-lg leading-relaxed text-wrapper max-w-2xl mx-auto">
+                    <?php echo wp_kses_post( nl2br( $description ) ); ?>
+                </div>
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
+
+        <!-- Content: Steps + Image -->
         <div class="proces-block__wrapper flex flex-col lg:flex-row gap-12 lg:gap-16">
 
-            <!-- Left Content -->
-            <div class="proces-block__left w-full lg:w-1/3 space-y-6">
-                <?php if ( $title ) : ?>
-                    <h2 class="proces-block__title font-title text-4xl md:text-5xl lg:text-6xl uppercase font-bold text-secondary"><?php echo esc_html( $title ); ?></h2>
+            <!-- Left Content (60%) - Steps -->
+            <div class="proces-block__left w-full lg:w-3/5">
+                <!-- Steps (Accordion) -->
+                <?php if ( $process_count ) : ?>
+                <div class="proces-block__steps">
+                    <?php foreach ( $processes as $index => $item ) :
+                        $step_number = $index + 1;
+                        $item_title  = $item['title'] ?? '';
+                        $item_desc   = $item['description'] ?? '';
+                        $is_last     = $index === $process_count - 1;
+                        $is_active   = $index === 0;
+                        $step_id     = $block_id . '-step-' . $index;
+                        ?>
+                        <div class="proces-block__step <?php echo $is_active ? 'is-active' : ''; ?>" data-proces-step>
+                            <!-- Step header (clickable) -->
+                            <button
+                                type="button"
+                                class="proces-block__step-header flex gap-5 lg:gap-8 w-full text-left cursor-pointer"
+                                aria-expanded="<?php echo $is_active ? 'true' : 'false'; ?>"
+                                aria-controls="<?php echo esc_attr( $step_id . '-content' ); ?>"
+                                data-proces-toggle
+                            >
+                                <!-- Number column with line -->
+                                <div class="proces-block__step-number-col relative flex flex-col items-center">
+                                    <!-- Number box (rotated only when active) -->
+                                    <div class="proces-block__step-number flex-shrink-0 w-12 h-12 lg:w-14 lg:h-14 border-2 border-primary bg-transparent flex items-center justify-center font-title text-xl lg:text-2xl font-bold relative z-10 <?php echo $is_active ? 'rotate-[8deg]' : ''; ?>">
+                                        <span class="proces-block__step-number-text <?php echo $is_active ? '-rotate-[8deg]' : ''; ?> text-secondary"><?php echo esc_html( $step_number ); ?></span>
+                                    </div>
+                                    <!-- Vertical line -->
+                                    <?php if ( ! $is_last ) : ?>
+                                    <div class="proces-block__step-line flex-1 w-0.5 bg-primary mt-0"></div>
+                                    <?php endif; ?>
+                                </div>
+
+                                <!-- Title column -->
+                                <div class="proces-block__step-title-wrapper flex-1 pt-3 pb-4">
+                                    <?php if ( $item_title ) : ?>
+                                        <h3 class="proces-block__step-title font-title uppercase text-xl lg:text-2xl text-secondary flex items-center gap-3">
+                                            <?php echo esc_html( $item_title ); ?>
+                                            <span class="proces-block__step-icon text-secondary transition-transform duration-300">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                </svg>
+                                            </span>
+                                        </h3>
+                                    <?php endif; ?>
+                                </div>
+                            </button>
+
+                            <!-- Step content (collapsible) -->
+                            <div
+                                class="proces-block__step-content overflow-hidden transition-all duration-300 ease-in-out"
+                                id="<?php echo esc_attr( $step_id . '-content' ); ?>"
+                                data-proces-content
+                            >
+                                <div class="proces-block__step-content-inner flex gap-5 lg:gap-8">
+                                    <!-- Spacer for number column -->
+                                    <div class="proces-block__step-spacer flex-shrink-0 w-12 lg:w-14 relative flex flex-col items-center">
+                                        <?php if ( ! $is_last ) : ?>
+                                        <div class="proces-block__step-line-content flex-1 w-0.5 bg-primary"></div>
+                                        <?php endif; ?>
+                                    </div>
+
+                                    <!-- Content column -->
+                                    <div class="proces-block__step-text-wrapper flex-1 pb-6 lg:pb-8">
+                                        <?php if ( $item_desc ) : ?>
+                                            <div class="proces-block__step-text text-grey-text text-sm lg:text-base leading-relaxed">
+                                                <?php echo wp_kses_post( nl2br( $item_desc ) ); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
                 <?php endif; ?>
 
-                <?php if ( $description ) : ?>
-                    <div class="proces-block__description text-grey-text text-base md:text-lg leading-relaxed text-wrapper">
-                        <?php echo wp_kses_post( nl2br( $description ) ); ?>
-                    </div>
-                <?php endif; ?>
-
+                <!-- Buttons -->
                 <?php if ( ! empty( $button_list ) ) : ?>
-                    <div class="proces-block__buttons pt-2 flex flex-wrap gap-3">
+                    <div class="proces-block__buttons mt-10 lg:mt-12 flex flex-wrap gap-3">
                         <?php foreach ( $button_list as $btn ) : ?>
                             <?php kj_render_button( $btn ); ?>
                         <?php endforeach; ?>
@@ -84,85 +173,16 @@ if ( ! $title && ! $description && ! $process_count ) {
                 <?php endif; ?>
             </div>
 
-            <!-- Right Content -->
-            <?php if ( $process_count ) : ?>
-            <div class="proces-block__right w-full lg:w-2/3 bg-secondary text-white">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
-
-                    <!-- Nav -->
-                    <div class="proces-block__nav-wrapper col-span-1 flex flex-row items-start p-6 md:p-8 lg:p-10 !pr-0">
-                        <!-- Navigation Arrows -->
-                        <div class="proces-block__nav-arrows flex flex-col gap-2 flex-shrink-0 -ml-4 -mt-3">
-                            <button type="button" class="proces-block__nav-arrow proces-block__nav-arrow--prev disabled" data-proces-nav="prev" aria-label="Vorige stap">
-                                <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
-                                </svg>
-                            </button>
-                            <button type="button" class="proces-block__nav-arrow proces-block__nav-arrow--next" data-proces-nav="next" aria-label="Volgende stap">
-                                <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10.4825 0.398001C10.7243 0.15647 11.1165 0.156324 11.3582 0.398001L15.2989 4.33973C15.5407 4.58159 15.5407 4.97364 15.2989 5.2155L11.3582 9.15723C11.1165 9.39891 10.7243 9.39876 10.4825 9.15723C10.2407 8.91537 10.2407 8.52252 10.4825 8.28066L13.366 5.39694L0.836077 5.39694C0.494058 5.39694 0.216796 5.11966 0.216796 4.77761C0.216797 4.43557 0.494058 4.15829 0.836077 4.15829L13.366 4.15829L10.4825 1.27457C10.2407 1.03271 10.2407 0.639861 10.4825 0.398001Z" fill="currentColor" stroke="currentColor" stroke-width="0.43372"/>
-                                </svg>
-                            </button>
-                        </div>
-
-                        <!-- Scrollbar -->
-                        <div class="proces-block__scrollbar-wrapper h-full relative mr-4">
-                            <div class="proces-block__scrollbar-track absolute top-0 left-0 w-full bg-black/20"></div>
-                            <div class="proces-block__scrollbar-indicator absolute top-0 left-0 w-full bg-primary" id="<?php echo esc_attr( $block_id . '-scrollbar-indicator' ); ?>"></div>
-                        </div>
-
-                        <!-- Steps List -->
-                        <div class="proces-block__nav-list-wrapper relative flex-1 w-full">
-                            <div class="proces-block__nav-list-gradient proces-block__nav-list-gradient--top"></div>
-                            <div class="proces-block__nav-list flex flex-col gap-0 relative w-full overflow-y-auto" id="<?php echo esc_attr( $block_id . '-nav-list' ); ?>">
-                                <?php foreach ( $processes as $index => $item ) : 
-                                    $is_active = $index === 0;
-                                    $step_id   = $block_id . '-' . $index;
-                                    $title_i   = $item['title'] ?? '';
-                                    ?>
-                                    <?php if ( $title_i ) : ?>
-                                    <button type="button"
-                                        class="proces-block__step <?php echo $is_active ? 'is-active' : ''; ?>"
-                                        data-proces-step="<?php echo esc_attr( $step_id ); ?>"
-                                        data-proces-index="<?php echo esc_attr( $index ); ?>"
-                                        aria-controls="<?php echo esc_attr( $step_id . '-content' ); ?>"
-                                        aria-expanded="<?php echo $is_active ? 'true' : 'false'; ?>">
-                                        <span class="proces-block__step-title"><?php echo esc_html( $title_i ); ?></span>
-                                    </button>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </div>
-                            <div class="proces-block__nav-list-gradient proces-block__nav-list-gradient--bottom"></div>
-                        </div>
-                    </div>
-
-                    <!-- Content -->
-                    <div class="proces-block__details col-span-1 bg-grey-light text-grey-dark p-6 md:p-8 lg:p-10 relative">
-                        <?php foreach ( $processes as $index => $item ) : 
-                            $is_active    = $index === 0;
-                            $step_id      = $block_id . '-' . $index;
-                            $item_title   = $item['title'] ?? '';
-                            $item_desc    = $item['description'] ?? '';
-                            ?>
-                            <div class="proces-block__content <?php echo $is_active ? 'is-active' : 'hidden'; ?>" data-proces-content="<?php echo esc_attr( $step_id ); ?>" id="<?php echo esc_attr( $step_id . '-content' ); ?>">
-                                <?php if ( $item_title ) : ?>
-                                    <div class="proces-block__content-header mb-4">
-                                        <div class="proces-block__content-ebadge-wrapper mb-4">
-                                            <span class="proces-block__content-badge">Stap <?php echo esc_html( $index + 1 ); ?> / <?php echo esc_html( $process_count ); ?></span>
-                                        </div>
-                                        <h3 class="proces-block__content-title font-title uppercase text-2xl md:text-3xl text-secondary mb-0"><?php echo esc_html( $item_title ); ?></h3>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ( $item_desc ) : ?>
-                                    <div class="proces-block__content-text text-grey text-sm md:text-base leading-relaxed">
-                                        <?php echo wp_kses_post( nl2br( $item_desc ) ); ?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-
+            <!-- Right Content (40%) - Image -->
+            <?php if ( $image && ! empty( $image['url'] ) ) : ?>
+            <div class="proces-block__right w-full lg:w-2/5">
+                <div class="proces-block__image-wrapper relative h-full min-h-[400px] lg:min-h-[600px]">
+                    <img
+                        src="<?php echo esc_url( $image['sizes']['large'] ?? $image['url'] ); ?>"
+                        alt="<?php echo esc_attr( $image['alt'] ?? '' ); ?>"
+                        class="proces-block__image absolute inset-0 w-full h-full object-cover"
+                        loading="lazy"
+                    >
                 </div>
             </div>
             <?php endif; ?>
@@ -177,155 +197,56 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!block) return;
 
     const steps = block.querySelectorAll('[data-proces-step]');
-    const contents = block.querySelectorAll('[data-proces-content]');
-    const navList = block.querySelector('#<?php echo esc_js( $block_id . '-nav-list' ); ?>');
-    const navListWrapper = block.querySelector('.proces-block__nav-list-wrapper');
-    const scrollbarIndicator = block.querySelector('#<?php echo esc_js( $block_id . '-scrollbar-indicator' ); ?>');
-    const scrollbarWrapper = block.querySelector('.proces-block__scrollbar-wrapper');
-    const prevBtn = block.querySelector('.proces-block__nav-arrow--prev');
-    const nextBtn = block.querySelector('.proces-block__nav-arrow--next');
-    
-    let currentIndex = 0;
-    const totalSteps = steps.length;
+    const toggles = block.querySelectorAll('[data-proces-toggle]');
 
-    function updateScrollbarIndicator() {
-        if (!scrollbarIndicator || !scrollbarWrapper || totalSteps === 0) return;
-        
-        const wrapperHeight = scrollbarWrapper.clientHeight;
-        const indicatorHeight = wrapperHeight / totalSteps;
-        const indicatorTop = (currentIndex / totalSteps) * wrapperHeight;
-        
-        scrollbarIndicator.style.height = indicatorHeight + 'px';
-        scrollbarIndicator.style.top = indicatorTop + 'px';
-    }
+    toggles.forEach(function(toggle) {
+        toggle.addEventListener('click', function() {
+            const step = this.closest('[data-proces-step]');
+            const content = step.querySelector('[data-proces-content]');
+            const isActive = step.classList.contains('is-active');
 
-    function updateGradients() {
-        if (!navList || !navListWrapper) return;
-        
-        const scrollTop = navList.scrollTop;
-        const scrollHeight = navList.scrollHeight;
-        const clientHeight = navList.clientHeight;
-        const isScrollable = scrollHeight > clientHeight;
-        
-        if (!isScrollable) {
-            navListWrapper.classList.remove('scrollable-top', 'scrollable-bottom');
-            return;
-        }
-        
-        // Check if scrolled from top
-        if (scrollTop > 1) {
-            navListWrapper.classList.add('scrollable-top');
-        } else {
-            navListWrapper.classList.remove('scrollable-top');
-        }
-        
-        // Check if scrolled to bottom (with 1px tolerance for rounding)
-        if (scrollTop + clientHeight < scrollHeight - 1) {
-            navListWrapper.classList.add('scrollable-bottom');
-        } else {
-            navListWrapper.classList.remove('scrollable-bottom');
-        }
-    }
+            // Close all other steps
+            steps.forEach(function(otherStep) {
+                if (otherStep !== step) {
+                    otherStep.classList.remove('is-active');
+                    const otherToggle = otherStep.querySelector('[data-proces-toggle]');
+                    const otherContent = otherStep.querySelector('[data-proces-content]');
+                    const otherNumberBox = otherStep.querySelector('.proces-block__step-number');
+                    const otherNumberText = otherStep.querySelector('.proces-block__step-number-text');
+                    if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+                    if (otherContent) otherContent.style.maxHeight = '0px';
+                    if (otherNumberBox) otherNumberBox.classList.remove('rotate-[8deg]');
+                    if (otherNumberText) otherNumberText.classList.remove('-rotate-[8deg]');
+                }
+            });
 
-    function updateNavigation() {
-        if (prevBtn) {
-            prevBtn.classList.toggle('disabled', currentIndex === 0);
-        }
-        if (nextBtn) {
-            nextBtn.classList.toggle('disabled', currentIndex === totalSteps - 1);
-        }
-    }
-
-    function activate(stepId) {
-        const stepIndex = parseInt(block.querySelector('[data-proces-step="' + stepId + '"]')?.getAttribute('data-proces-index') || '0');
-        currentIndex = stepIndex;
-
-        steps.forEach(function(btn) {
-            const isActive = btn.getAttribute('data-proces-step') === stepId;
-            btn.classList.toggle('is-active', isActive);
-            btn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-        });
-
-        contents.forEach(function(panel) {
-            const isActive = panel.getAttribute('data-proces-content') === stepId;
-            panel.classList.toggle('is-active', isActive);
-            panel.classList.toggle('hidden', !isActive);
-        });
-
-        // Scroll active step into view
-        const activeStep = block.querySelector('[data-proces-step="' + stepId + '"]');
-        if (activeStep && navList) {
-            const stepTop = activeStep.offsetTop;
-            const stepHeight = activeStep.offsetHeight;
-            const listHeight = navList.clientHeight;
-            const scrollTop = navList.scrollTop;
+            // Toggle current step
+            const numberBox = step.querySelector('.proces-block__step-number');
+            const numberText = step.querySelector('.proces-block__step-number-text');
             
-            if (stepTop < scrollTop) {
-                navList.scrollTop = stepTop;
-            } else if (stepTop + stepHeight > scrollTop + listHeight) {
-                navList.scrollTop = stepTop + stepHeight - listHeight;
+            if (isActive) {
+                step.classList.remove('is-active');
+                this.setAttribute('aria-expanded', 'false');
+                content.style.maxHeight = '0px';
+                if (numberBox) numberBox.classList.remove('rotate-[8deg]');
+                if (numberText) numberText.classList.remove('-rotate-[8deg]');
+            } else {
+                step.classList.add('is-active');
+                this.setAttribute('aria-expanded', 'true');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                if (numberBox) numberBox.classList.add('rotate-[8deg]');
+                if (numberText) numberText.classList.add('-rotate-[8deg]');
             }
-        }
-
-        updateScrollbarIndicator();
-        updateNavigation();
-        updateGradients();
-    }
-
-    function navigate(direction) {
-        if (direction === 'prev' && currentIndex > 0) {
-            const prevStep = steps[currentIndex - 1];
-            activate(prevStep.getAttribute('data-proces-step'));
-        } else if (direction === 'next' && currentIndex < totalSteps - 1) {
-            const nextStep = steps[currentIndex + 1];
-            activate(nextStep.getAttribute('data-proces-step'));
-        }
-    }
-
-    steps.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            activate(this.getAttribute('data-proces-step'));
         });
     });
 
-    if (prevBtn) {
-        prevBtn.addEventListener('click', function() {
-            if (!this.classList.contains('disabled')) {
-                navigate('prev');
-            }
-        });
+    // Initialize first step as open
+    const firstStep = block.querySelector('[data-proces-step]');
+    if (firstStep) {
+        const firstContent = firstStep.querySelector('[data-proces-content]');
+        if (firstContent) {
+            firstContent.style.maxHeight = firstContent.scrollHeight + 'px';
+        }
     }
-
-    if (nextBtn) {
-        nextBtn.addEventListener('click', function() {
-            if (!this.classList.contains('disabled')) {
-                navigate('next');
-            }
-        });
-    }
-
-    // Initialize scrollbar indicator and gradients
-    updateScrollbarIndicator();
-    updateGradients();
-    
-    // Update gradients on scroll
-    if (navList) {
-        navList.addEventListener('scroll', updateGradients);
-    }
-
-    // Initialize navigation
-    updateNavigation();
-    
-    // Initialize with first step
-    if (steps.length > 0) {
-        activate(steps[0].getAttribute('data-proces-step'));
-    }
-
-    // Update scrollbar indicator and gradients on resize
-    window.addEventListener('resize', function() {
-        updateScrollbarIndicator();
-        updateGradients();
-    });
 });
 </script>
-

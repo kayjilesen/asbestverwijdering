@@ -3,11 +3,15 @@
 @import 'footer.css';
 @import 'text.css';
 @import 'archive-project.css';
+@import 'archive-kennisbank.css';
 @import 'components/buttons.css';
 @import 'components/form.css';
+@import 'components/gravity.css';
 @import 'components/swiper.css';
 @import 'components/project-hero.css';
 @import 'components/project-card.css';
+@import 'components/post-card.css';
+@import 'components/author-info.css';
 
 /* Pagebuilder Block Styles */
 @import '../../templates/pagebuilder/hero/hero.css';
@@ -24,12 +28,19 @@
 @import '../../templates/pagebuilder/certificeringen/certificeringen.css';
 @import '../../templates/pagebuilder/werken-bij/werken-bij.css';
 @import '../../templates/pagebuilder/proces/proces.css';
+@import '../../templates/pagebuilder/proces-kort/proces-kort.css';
 @import '../../templates/pagebuilder/content-usps/content-usps.css';
 @import '../../templates/pagebuilder/info-cards/info-cards.css';
 @import '../../templates/pagebuilder/uitdagingen/uitdagingen.css';
 @import '../../templates/pagebuilder/highlights/highlights.css';
 @import '../../templates/pagebuilder/hero-offerte/hero-offerte.css';
 @import '../../templates/pagebuilder/stappen/stappen.css';
+@import '../../templates/pagebuilder/team/team.css';
+@import '../../templates/pagebuilder/sparren/sparren.css';
+@import '../../templates/pagebuilder/zakelijke-aanvraag/zakelijke-aanvraag.css';
+@import '../../templates/pagebuilder/kennisbank/kennisbank.css';
+@import '../../templates/pagebuilder/offerte/offerte.css';
+@import '../../templates/pagebuilder/text/text.css';
 
 @tailwind base;
 @tailwind components;
@@ -83,4 +94,9 @@
 
 .text-wrapper li {
   @apply mb-2;
+}
+
+/* Shadow */
+.kj-shadow {
+  box-shadow: 0px 10px 48px -16px rgba(0, 0, 0, 0.2);
 }

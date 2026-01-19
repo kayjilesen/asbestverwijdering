@@ -1,0 +1,171 @@
+.proces-kort-block__right {
+  @apply rounded-none;
+}
+
+.proces-kort-block__nav-wrapper {
+  @apply relative flex flex-row overflow-hidden;
+  min-height: 400px;
+  max-height: 400px;
+}
+
+.proces-kort-block__nav-arrows {
+  @apply flex-shrink-0 self-start mt-2;
+}
+
+.proces-kort-block__nav-arrow {
+  @apply w-10 h-10 flex items-center justify-center bg-transparent border-0 text-white hover:text-primary transition-colors duration-300 cursor-pointer;
+}
+
+.proces-kort-block__nav-arrow.disabled {
+  @apply opacity-30 cursor-not-allowed;
+}
+
+.proces-kort-block__nav-arrow svg {
+  @apply w-auto h-3;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.proces-kort-block__nav-arrow--prev svg {
+  transform: rotate(-90deg);
+}
+
+.proces-kort-block__nav-arrow--next svg {
+  transform: rotate(90deg);
+}
+
+.proces-kort-block__scrollbar-wrapper {
+  @apply relative flex-shrink-0 self-stretch;
+  width: 6px;
+  max-height: calc(400px - 3rem);
+  height: calc(400px - 3rem);
+}
+
+@media (min-width: 768px) {
+  .proces-kort-block__scrollbar-wrapper {
+    max-height: calc(400px - 4rem);
+    height: calc(400px - 4rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .proces-kort-block__scrollbar-wrapper {
+    max-height: calc(400px - 5rem);
+    height: calc(400px - 5rem);
+  }
+}
+
+.proces-kort-block__scrollbar-track {
+  @apply absolute top-0 left-0 w-full bg-black/20;
+  height: 100%;
+}
+
+.proces-kort-block__scrollbar-indicator {
+  @apply absolute left-0 w-full bg-primary;
+  transition: top 0.2s ease, height 0.2s ease;
+  min-height: 20px;
+}
+
+.proces-kort-block__nav-list-wrapper {
+  @apply relative flex-1 flex-shrink min-w-0 overflow-hidden;
+  max-height: calc(400px - 3rem);
+  height: calc(400px - 3rem);
+}
+
+@media (min-width: 768px) {
+  .proces-kort-block__nav-list-wrapper {
+    max-height: calc(400px - 4rem);
+    height: calc(400px - 4rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .proces-kort-block__nav-list-wrapper {
+    max-height: calc(400px - 5rem);
+    height: calc(400px - 5rem);
+  }
+}
+
+.proces-kort-block__nav-list {
+  @apply flex flex-col gap-0 relative w-full overflow-y-auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  height: 100%;
+}
+
+.proces-kort-block__nav-list-gradient {
+  @apply absolute left-0 right-0 pointer-events-none z-10;
+  height: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.proces-kort-block__nav-list-gradient--top {
+  @apply top-0;
+  background: linear-gradient(to bottom, rgb(26, 22, 3) 0%, rgba(26, 22, 3, 0) 100%);
+}
+
+.proces-kort-block__nav-list-gradient--bottom {
+  @apply bottom-0;
+  background: linear-gradient(to top, rgb(26, 22, 3) 0%, rgba(26, 22, 3, 0) 100%);
+}
+
+.proces-kort-block__nav-list-wrapper.scrollable-top .proces-kort-block__nav-list-gradient--top {
+  opacity: 1;
+}
+
+.proces-kort-block__nav-list-wrapper.scrollable-bottom .proces-kort-block__nav-list-gradient--bottom {
+  opacity: 1;
+}
+
+.proces-kort-block__nav-list::-webkit-scrollbar {
+  display: none;
+}
+
+.proces-kort-block__step {
+  @apply relative text-left bg-transparent border border-transparent rounded-none px-2 py-3 text-grey-light/80 transition-colors duration-200 cursor-pointer w-full text-left;
+}
+
+.proces-kort-block__step.is-active {
+  @apply bg-grey-light;
+}
+
+.proces-kort-block__step.is-active .proces-kort-block__step-title {
+  @apply text-grey-dark;
+}
+
+.proces-kort-block__step-title {
+  @apply font-title uppercase text-xl md:text-2xl leading-tight;
+}
+
+.proces-kort-block__step.is-active .proces-kort-block__step-title {
+  @apply text-2xl md:text-3xl;
+}
+
+.proces-kort-block__details {
+  @apply bg-grey-light text-grey-dark;
+}
+
+.proces-kort-block__content {
+  @apply hidden;
+}
+
+.proces-kort-block__content.is-active {
+  @apply block;
+}
+
+.proces-kort-block__content-badge-wrapper {
+  @apply mb-4;
+}
+
+.proces-kort-block__content-badge {
+  @apply inline-block bg-grey-dark text-white px-3 py-1 text-lg md:text-2xl uppercase tracking-[0.08em] font-title font-semibold;
+}
+
+.proces-kort-block__content-title {
+  @apply font-title uppercase text-2xl md:text-3xl text-secondary;
+}
+
+.proces-kort-block__content-text p {
+  @apply text-grey leading-relaxed;
+}
